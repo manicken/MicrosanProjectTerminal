@@ -1,0 +1,40 @@
+<xml>
+  <TcpClient>
+    <Ip value="192.168.50.235" />
+    <Port value="8266" />
+    <MessageStart value=":" />
+    <MessageStop value="\n" />
+  </TcpClient>
+  <MainForm>
+    <Width value="916" />
+    <Height value="906" />
+  </MainForm>
+  <DataGridViewSendForm>
+    <Width value="625" />
+    <Height value="863" />
+    <Top value="0" />
+    <Left value="0" />
+    <Visible value="True" />
+  </DataGridViewSendForm>
+  <rf433sfcForm>
+    <Width value="326" />
+    <Height value="419" />
+    <Top value="260" />
+    <Left value="8" />
+    <Visible value="True" />
+  </rf433sfcForm>
+  <TCPClientSettingForm>
+    <Width value="298" />
+    <Height value="202" />
+    <Top value="0" />
+    <Left value="0" />
+    <Visible value="True" />
+  </TCPClientSettingForm>
+  <rtxtForm>
+    <Width value="310" />
+    <Top value="0" />
+    <Left value="0" />
+    <Height value="440" />
+  </rtxtForm>
+  <ProjectName value="Development" />
+</xml>

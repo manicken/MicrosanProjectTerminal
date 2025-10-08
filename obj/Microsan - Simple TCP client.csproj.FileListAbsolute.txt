@@ -1,0 +1,13 @@
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\ResolveAssemblyReference.cache
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Project01.DataGridViewSendForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Project01.MainForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Project01.RF433_SFC_Form.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csproj.GenerateResource.Cache
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.exe
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+C:\_Projects\_Software\Simple TCP client.exe
+C:\_Projects\_Software\Simple TCP client.pdb
+C:\_Projects\_Software\Simple TCP Client\Simple TCP client.exe
+C:\_Projects\_Software\Simple TCP Client\Simple TCP client.pdb
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Project01.TCPClientSettingForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.RichTextBoxForm.resources

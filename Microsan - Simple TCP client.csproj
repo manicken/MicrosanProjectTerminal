@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BC18B6E3-A11E-4F1C-9710-DBF46ED1472A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Simple TCP client</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>False</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Project01</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>False</SignAssembly>
+    <NoStdLib>False</NoStdLib>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>False</Optimize>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>Full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>Simple TCP client.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastColoredTextBox">
+      <HintPath>..\_CommonSourceFiles\FastColoredTextBox-master\Binary\FastColoredTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\_CommonSourceFiles\DataGridViewSendForm.cs">
+      <Link>DataGridViewSendForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\DataGridViewSendForm.designer.cs">
+      <Link>DataGridViewSendForm.designer.cs</Link>
+      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\DataGridViewSendFormDataStructures.cs">
+      <Link>DataGridViewSendFormDataStructures.cs</Link>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\DebugLogForm.cs">
+      <Link>DebugLogForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\DebugLogForm.designer.cs">
+      <Link>DebugLogForm.designer.cs</Link>
+      <DependentUpon>DebugLogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\MicrosanExtensions.cs">
+      <Link>MicrosanExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\QuickFileAndFolderDialogs.cs">
+      <Link>QuickFileAndFolderDialogs.cs</Link>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\RichTextBoxForm.cs">
+      <Link>RichTextBoxForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\RichTextBoxForm.designer.cs">
+      <Link>RichTextBoxForm.designer.cs</Link>
+      <DependentUpon>RichTextBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\Autocomplete.cs">
+      <Link>RuntimeProgramming\Autocomplete.cs</Link>
+    </Compile>
+    <EmbeddedResource Include="..\_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
+      <Link>RuntimeProgramming\NewClass_Template.cs</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\_CommonSourceFiles\RuntimeProgramming\RootClass_Template.cs">
+      <Link>RuntimeProgramming\RootClass_Template.cs</Link>
+    </EmbeddedResource>
+    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\RuntimeProgramming.cs">
+      <Link>RuntimeProgramming\RuntimeProgramming.cs</Link>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.cs">
+      <Link>RuntimeProgramming\SourceCodeEditControl.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.designer.cs">
+      <Link>RuntimeProgramming\SourceCodeEditControl.designer.cs</Link>
+      <DependentUpon>SourceCodeEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\TCPClientSettingForm.cs">
+      <Link>TCPClientSettingForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\TCPClientSettingForm.designer.cs">
+      <Link>TCPClientSettingForm.designer.cs</Link>
+      <DependentUpon>TCPClientSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\XMLConfig\ConfigSetting.cs">
+      <Link>XmlConfig\ConfigSetting.cs</Link>
+    </Compile>
+    <Compile Include="..\_CommonSourceFiles\XMLConfig\XmlConfig.cs">
+      <Link>XmlConfig\XmlConfig.cs</Link>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainRootDataStructures.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Content Include="App.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="..\_CommonSourceFiles\DataGridViewSendForm.resx">
+      <Link>DataGridViewSendForm.resx</Link>
+      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\_CommonSourceFiles\DebugLogForm.resx">
+      <Link>DebugLogForm.resx</Link>
+      <DependentUpon>DebugLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\_CommonSourceFiles\RichTextBoxForm.resx">
+      <Link>RichTextBoxForm.resx</Link>
+      <DependentUpon>RichTextBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.resx">
+      <Link>RuntimeProgramming\SourceCodeEditControl.resx</Link>
+      <DependentUpon>SourceCodeEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\_CommonSourceFiles\TCPClientSettingForm.resx">
+      <Link>TCPClientSettingForm.resx</Link>
+      <DependentUpon>TCPClientSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\_CommonSourceFiles\Crom.Controls\Crom.Controls.csproj">
+      <Project>{f2999c1d-bed3-4d47-a8ac-8027334ecdc1}</Project>
+      <Name>Crom.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>

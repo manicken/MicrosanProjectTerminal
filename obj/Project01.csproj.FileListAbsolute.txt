@@ -1,0 +1,25 @@
+M:\!!!!!Projects\H.A.C.S\Client\obj\Debug\ResolveAssemblyReference.cache
+M:\!!!!!Projects\H.A.C.S\Client\obj\Debug\Project01.csproj.GenerateResource.Cache
+M:\!!!!!Projects\H.A.C.S\Client\obj\Debug\Project01.MainForm.resources
+M:\!!!!!Projects\H.A.C.S\Client\obj\Debug\Simple TCP client.exe
+M:\!!!!!Projects\H.A.C.S\Client\obj\Debug\Simple TCP client.pdb
+M:\!!!!!Projects\H.A.C.S\Simple TCP client.exe
+M:\!!!!!Projects\H.A.C.S\Simple TCP client.pdb
+I:\!!!!!Projects\H.A.C.S\Simple TCP Client\obj\Debug\Simple TCP client.exe
+I:\!!!!!Projects\H.A.C.S\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+C:\_Projects\H.A.C.S\Simple TCP Client\obj\Debug\ResolveAssemblyReference.cache
+C:\_Projects\H.A.C.S\Simple TCP Client\obj\Debug\Project01.MainForm.resources
+C:\_Projects\H.A.C.S\Simple TCP Client\obj\Debug\Project01.csproj.GenerateResource.Cache
+C:\_Projects\H.A.C.S\Simple TCP Client\obj\Debug\Simple TCP client.exe
+C:\_Projects\H.A.C.S\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+C:\_Projects\H.A.C.S\Simple TCP client.exe
+C:\_Projects\H.A.C.S\Simple TCP client.pdb
+C:\_Projects\H.A.C.S\Simple TCP Client\obj\Debug\Project01.RF433_SFC_Form.resources
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP Client\obj\Debug\ResolveAssemblyReference.cache
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP Client\obj\Debug\Project01.MainForm.resources
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP Client\obj\Debug\Project01.RF433_SFC_Form.resources
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP Client\obj\Debug\Project01.csproj.GenerateResource.Cache
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP Client\obj\Debug\Simple TCP client.exe
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP client.exe
+C:\_Projects\___Värmesystem_Hemautomation\H.A.C.S\Simple TCP client.pdb

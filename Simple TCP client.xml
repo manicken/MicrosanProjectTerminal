@@ -1,0 +1,972 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simple TCP client</name>
+    </assembly>
+    <members>
+        <member name="T:Microsan.DataGridViewSendForm">
+            <summary>
+            Description of DataGridViewSendForm.
+            </summary>
+        </member>
+        <member name="F:Microsan.DataGridViewSendForm.SendData">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.#ctor(System.Action{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="SendDataHandler"></param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.SaveAllXml">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microsan.DataGridViewSendForm.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.SendDataJsonItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microsan.SendDataJsonItems.items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SendDataJsonItems.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.SendDataJsonItems.ToJsonString(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.SendDataJsonFile">
+            
+        </member>
+        <member name="F:Microsan.SendDataJsonFile.data">
+            
+        </member>
+        <member name="M:Microsan.SendDataJsonFile.GetFileName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.SendDataJsonFile.#ctor(System.String)">
+            
+        </member>
+        <member name="M:Microsan.SendDataJsonFile.Save">
+            
+        </member>
+        <member name="T:Microsan.SendDataItem">
+            
+        </member>
+        <member name="P:Microsan.SendDataItem.Data">
+            
+        </member>
+        <member name="P:Microsan.SendDataItem.Note">
+            
+        </member>
+        <member name="M:Microsan.SendDataItem.ToJsonString">
+            
+        </member>
+        <member name="T:Microsan.Debugger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microsan.XmlDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetXmlDocFile(System.Reflection.Assembly)">
+            <summary>
+            
+            </summary>
+            <param name="assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetFallbackDirectories(System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.Enumerate``1(``0,System.Func{``0,``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="start"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.CombinePath(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetDocMember(System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement},System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="docMembers"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetMemberId(System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetMemberPrefix(System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetMemberFullName(System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.XmlDoc.GetMethodDocName(System.Reflection.MethodInfo)">
+            <summary>
+            
+            </summary>
+            <param name="mi"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.MicrosanExtensions">
+            <summary>
+            Description of MicrosanExtensions.
+            </summary>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.WordBefore(System.String,System.Int32)">
+            <summary>
+            Gets the word before the inputted index, the word can begin with any whitecharacter
+            </summary>
+            <param name="str"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.NullOrEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="thisString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.TryGetIndexOf(System.String,System.Char,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="thisString"></param>
+            <param name="value"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.TryGetIndexOf(System.String,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="thisString"></param>
+            <param name="value"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.StringItems(System.Windows.Forms.ComboBox)">
+            <summary>
+            
+            </summary>
+            <param name="thisComboBox"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.ToStringArray(System.Windows.Forms.ComboBox.ObjectCollection)">
+            <summary>
+            
+            </summary>
+            <param name="thisComboBoxItems"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.TryGetSubstringBetween(System.String,System.Int32,System.Char,System.Char,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="thisString"></param>
+            <param name="startIndex"></param>
+            <param name="firstChar"></param>
+            <param name="secondChar"></param>
+            <param name="subString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.MoveAndResize(System.Windows.Forms.Control,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="thisControl"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:Microsan.MicrosanExtensions.GetElementsByClass(System.Windows.Forms.HtmlElementCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hec"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.QuickDialogs">
+            <summary>
+            Description of QuickFileAndFolderDialogs.
+            </summary>
+        </member>
+        <member name="T:Microsan.RichTextBoxForm">
+            <summary>
+            Description of RichTextBoxForm.
+            </summary>
+        </member>
+        <member name="M:Microsan.RichTextBoxForm.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.RichTextBoxForm.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+        </member>
+        <member name="F:Microsan.RichTextBoxForm.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.RichTextBoxForm.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.RichTextBoxForm.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.RuntimeProgramming">
+            <summary>
+            Description of RuntimeProgramming.
+            </summary>
+        </member>
+        <member name="M:Microsan.RuntimeProgramming.InitScriptEditor_IfNeeded">
+            <summary>
+            Creates new instance of SourceCodeEditControl if not done before.
+            <para>And initialize it.</para>
+            </summary>
+        </member>
+        <member name="M:Microsan.SourceFile.#ctor(System.String)">
+            <summary>
+            Creates new empty source file, it also creates an empty file on the disk 
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="T:Microsan.SourceCodeEditControl">
+            <summary>
+            Description of SourceCodeEditControl.
+            </summary>
+        </member>
+        <member name="F:Microsan.SourceCodeEditControl.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.SourceCodeEditControl.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the control.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.SourceCodeEditControl.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.TCPClientSettingForm">
+            <summary>
+            Description of TCPClientSettingForm.
+            </summary>
+        </member>
+        <member name="F:Microsan.TCPClientSettingForm.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.TCPClientSettingForm.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.TCPClientSettingForm.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.MainForm">
+            <summary>
+            Description of MainForm_Designer.
+            </summary>
+            <summary>
+            Summary description for Form1.
+            </summary>
+        </member>
+        <member name="M:Microsan.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:Microsan.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Microsan.MainForm.Main">
+            <summary> The main entry point for the application. </summary>
+        </member>
+        <member name="F:Microsan.MainForm.hostIp">
+            <summary> current host ip </summary>
+        </member>
+        <member name="F:Microsan.MainForm.hostPort">
+            <summary> current host port </summary>
+        </member>
+        <member name="F:Microsan.MainForm.messageStartId">
+            <summary> current messageStartId </summary>
+        </member>
+        <member name="F:Microsan.MainForm.messageStopId">
+            <summary> current messageStopId </summary>
+        </member>
+        <member name="M:Microsan.MainForm.#ctor">
+            <summary>
+            main form constructor
+            </summary>
+        </member>
+        <member name="M:Microsan.MainForm.dc_FormClosing(System.Object,Crom.Controls.Docking.DockableFormClosingEventArgs)">
+            <summary>
+            called when any docked form closes, now it cancels all requests
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsan.MainForm.this_Shown(System.Object,System.EventArgs)">
+            <summary>
+            when the form is first shown 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsan.MainForm.ReadSettingsFile">
+            <summary>
+            Read the program settings file
+            </summary>
+        </member>
+        <member name="M:Microsan.MainForm.InitAllStuff">
+            <summary>
+            init all docked forms
+            </summary>
+        </member>
+        <member name="M:Microsan.MainForm._TcpConnect(System.Boolean)">
+            <summary>
+            local _TcpConnect 
+            </summary>
+            <param name="connectState">true if a connection should be estabilazed</param>
+        </member>
+        <member name="M:Microsan.MainForm.TcpConnect(System.Boolean)">
+            <summary>
+            Public TcpConnect that have a return value
+            </summary>
+            <param name="connectState"></param>
+            <returns>true if the connection was completed</returns>
+        </member>
+        <member name="M:Microsan.MainForm.dgvSendForm_SendData(System.String)">
+            <summary>
+            the handler method for DataGridView SendForm
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Microsan.MainForm.this_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            before this form closes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsan.MainForm.SendMessage(System.String)">
+            <summary>
+            sends a message as: messageStartId + message + messageStopId
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Microsan.MainForm.bgwReceive_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            the receive worker that runs in seperate thread
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsan.MainForm.bgwReceive_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            is called when the connection closes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Microsan.MainRootDataStructures">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.MainRootDataStructures.sendItemsTabs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.MainRootDataStructures.socket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.MainRootDataStructures.window">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.MainRootDataStructures.Save(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="T:Microsan.SocketConnectionSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SocketConnectionSettings.ip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SocketConnectionSettings.port">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SocketConnectionSettings.msgPrefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SocketConnectionSettings.msgPostfix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.SocketConnectionSettings.ToJsonString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="lineincr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.RectData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.RectData.x">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.RectData.y">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.RectData.width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.RectData.height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.RectData.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.RectData.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Microsan.RectData.ToRectangle">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.WindowSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.WindowSettings.socket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.WindowSettings.dgvSend">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.WindowSettings.log">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.WindowSettings.ToJsonString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="lineincr"></param>
+            <returns></returns>
+        </member>
+        <member name="F:RoboRemoPC.DebugLogForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:RoboRemoPC.DebugLogForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:RoboRemoPC.DebugLogForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:System.Reflection.MicrosanExtensions.AdditionalInfo(System.Reflection.MemberInfo)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="P:System.Drawing.Fonts.CourierNew">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.QuickDialogs.SaveFile(System.String,System.String,System.String,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="InitialDirectory"></param>
+            <param name="Filter"></param>
+            <param name="Title"></param>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CGS.ProgressStream">
+            <summary>
+            Wraps another stream and provides reporting for when bytes are read or written to the stream.
+            </summary>
+        </member>
+        <member name="M:CGS.ProgressStream.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a new ProgressStream supplying the stream for it to report on.
+            </summary>
+            <param name="streamToReportOn">The underlying stream that will be reported on when bytes are read or written.</param>
+        </member>
+        <member name="E:CGS.ProgressStream.BytesRead">
+            <summary>
+            Raised when bytes are read from the stream.
+            </summary>
+        </member>
+        <member name="E:CGS.ProgressStream.BytesWritten">
+            <summary>
+            Raised when bytes are written to the stream.
+            </summary>
+        </member>
+        <member name="E:CGS.ProgressStream.BytesMoved">
+            <summary>
+            Raised when bytes are either read or written to the stream.
+            </summary>
+        </member>
+        <member name="T:CGS.ProgressStreamReportEventArgs">
+            <summary>
+            Contains the pertinent data for a ProgressStream Report event.
+            </summary>
+        </member>
+        <member name="P:CGS.ProgressStreamReportEventArgs.BytesMoved">
+            <summary>
+            The number of bytes that were read/written to/from the stream.
+            </summary>
+        </member>
+        <member name="P:CGS.ProgressStreamReportEventArgs.StreamLength">
+            <summary>
+            The total length of the stream in bytes.
+            </summary>
+        </member>
+        <member name="P:CGS.ProgressStreamReportEventArgs.StreamPosition">
+            <summary>
+            The current position in the stream.
+            </summary>
+        </member>
+        <member name="P:CGS.ProgressStreamReportEventArgs.WasRead">
+            <summary>
+            True if the bytes were read from the stream, false if they were written.
+            </summary>
+        </member>
+        <member name="M:CGS.ProgressStreamReportEventArgs.#ctor">
+            <summary>
+            Default constructor for ProgressStreamReportEventArgs.
+            </summary>
+        </member>
+        <member name="M:CGS.ProgressStreamReportEventArgs.#ctor(System.Int32,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            Creates a new ProgressStreamReportEventArgs initializing its members.
+            </summary>
+            <param name="bytesMoved">The number of bytes that were read/written to/from the stream.</param>
+            <param name="streamLength">The total length of the stream in bytes.</param>
+            <param name="streamPosition">The current position in the stream.</param>
+            <param name="wasRead">True if the bytes were read from the stream, false if they were written.</param>
+        </member>
+        <member name="T:CGS.ProgressStreamReportDelegate">
+            <summary>
+            The delegate for handling a ProgressStream Report event.
+            </summary>
+            <param name="sender">The object that raised the event, should be a ProgressStream.</param>
+            <param name="args">The arguments raised with the event.</param>
+        </member>
+        <member name="T:FastColoredTextBoxNS.Autocomplete.DeclarationSnippet">
+            <summary>
+            This item appears when any part of snippet text is typed
+            </summary>
+        </member>
+        <member name="T:FastColoredTextBoxNS.Autocomplete.InsertSpaceSnippet">
+            <summary>
+            Divides numbers and words: "123AND456" -> "123 AND 456"
+            Or "i=2" -> "i = 2"
+            </summary>
+        </member>
+        <member name="T:FastColoredTextBoxNS.Autocomplete.InsertEnterSnippet">
+            <summary>
+            Inerts line break after '}'
+            </summary>
+        </member>
+        <member name="T:VAkos.ConfigSetting">
+            <summary>
+            Represents a Configuration Node in the XML file
+            </summary>
+        </member>
+        <member name="F:VAkos.ConfigSetting.node">
+            <summary>
+            The node from the XMLDocument, which it describes
+            </summary>
+        </member>
+        <member name="M:VAkos.ConfigSetting.#ctor">
+            <summary>
+            This class cannot be constructed directly. You will need to give a node to describe
+            </summary>
+        </member>
+        <member name="M:VAkos.ConfigSetting.#ctor(System.Xml.XmlNode)">
+            <summary>
+            Creates an instance of the class
+            </summary>
+            <param name="node">
+            the XmlNode to describe
+            </param>
+        </member>
+        <member name="P:VAkos.ConfigSetting.Name">
+            <summary>
+            The Name of the element it describes
+            </summary>
+            <remarks>Read only property</remarks>        
+        </member>
+        <member name="P:VAkos.ConfigSetting.ChildCount">
+            <summary>
+            Number of children nodes
+            </summary>
+            <remarks>Read only property</remarks>
+        </member>
+        <member name="P:VAkos.ConfigSetting.ChildrenNames">
+            <summary>
+            A string array with the names of the child nodes
+            </summary>
+            <remarks>Read only property</remarks>
+        </member>
+        <member name="P:VAkos.ConfigSetting.Children">
+            <summary>
+            A ConfigSetting array describin each child node
+            </summary>
+            <remarks>Read only property</remarks>
+        </member>
+        <member name="P:VAkos.ConfigSetting.Value">
+            <summary>
+            String value of the specific Configuration Node
+            </summary>
+        </member>
+        <member name="P:VAkos.ConfigSetting.intValue">
+            <summary>
+            int value of the specific Configuration Node
+            </summary>
+        </member>
+        <member name="P:VAkos.ConfigSetting.boolValue">
+            <summary>
+            bool value of the specific Configuration Node
+            </summary>
+        </member>
+        <member name="P:VAkos.ConfigSetting.floatValue">
+            <summary>
+            float value of the specific Configuration Node
+            </summary>
+        </member>
+        <member name="P:VAkos.ConfigSetting.Item(System.String)">
+            <summary>
+            Get a specific child node
+            </summary>
+            <param name="path">
+            The path to the specific node. Can be either only a name, or a full path separated by '/' or '\'
+            </param>
+            <example>
+            <code>
+            XmlConfig conf = new XmlConfig("configuration.xml");
+            screenname = conf.Settings["screen"].Value;
+            height = conf.Settings["screen/height"].IntValue;
+             // OR
+            height = conf.Settings["screen"]["height"].IntValue;
+            </code>
+            </example>
+            <returns></returns>
+        </member>
+        <member name="M:VAkos.ConfigSetting.Validate">
+            <summary>
+            Check if the node conforms with the config xml restrictions
+            1. No nodes with two children of the same name
+            2. Only alphanumerical names
+            </summary>
+            <returns>
+            True on success and false on failiure
+            </returns>        
+        </member>
+        <member name="M:VAkos.ConfigSetting.Remove">
+            <summary>
+            Remove the specific node from the tree
+            </summary>
+        </member>
+        <member name="M:VAkos.ConfigSetting.RemoveChildren">
+            <summary>
+            Remove all children of the node, but keep the node itself
+            </summary>
+        </member>
+        <member name="T:VAkos.Xmlconfig">
+            <summary>
+            The class which represents a configuration xml file
+            </summary>
+        </member>
+        <member name="M:VAkos.Xmlconfig.ValidateXML(System.Boolean)">
+            <summary>
+            Check XML file if it conforms the config xml restrictions
+            1. No nodes with two children of the same name
+            2. Only alphanumerical names
+            </summary>
+            <param name="silent">
+            Whether to return a true/false value, or throw an exception on failiure
+            </param>
+            <returns>
+            True on success and in case of silent mode false on failiure
+            </returns>
+        </member>
+        <member name="M:VAkos.Xmlconfig.#ctor">
+            <summary>
+            Create an XmlConfig from an empty xml file 
+            containing only the rootelement named as 'xml'
+            </summary>
+        </member>
+        <member name="M:VAkos.Xmlconfig.#ctor(System.String,System.Boolean)">
+            <summary>
+            Create an XmlConfig from an existing file, or create a new one
+            </summary>
+            <param name="loadfromfile">
+            Path and filename from where to load the xml file
+            </param>
+            <param name="create">
+            If file does not exist, create it, or throw an exception?
+            </param>
+        </member>
+        <member name="P:VAkos.Xmlconfig.CommitOnUnload">
+            <summary>
+            When unloading the current XML config file
+            shold any changes be saved back to the file?
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item>Only applies if it was loaded from a local file</item>
+            <item>True by default</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:VAkos.Xmlconfig.Dispose">
+            <summary>
+            Save any modifications to the XML file before destruction
+            if CommitOnUnload is true
+            </summary>
+        </member>
+        <member name="M:VAkos.Xmlconfig.LoadXmlFromFile(System.String,System.Boolean)">
+            <summary>
+            Load a new XmlDocument from a file
+            </summary>
+            <param name="filename">
+            Path and filename from where to load the xml file
+            </param>
+            <param name="create">
+            If file does not exist, create it, or throw an exception?
+            </param>
+        </member>
+        <member name="M:VAkos.Xmlconfig.LoadXmlFromFile(System.String)">
+            <summary>
+            Load a new XmlDocument from a file
+            </summary>
+            <param name="filename">
+            Path and filename from where to load the xml file
+            </param>
+            <remarks>
+            Throws an exception if file does not exist
+            </remarks>
+        </member>
+        <member name="M:VAkos.Xmlconfig.LoadXmlFromString(System.String)">
+            <summary>
+            Load a new XmlDocument from a string
+            </summary>
+            <param name="xml">
+            XML string
+            </param>
+        </member>
+        <member name="M:VAkos.Xmlconfig.NewXml(System.String)">
+            <summary>
+            Load an empty XmlDocument
+            </summary>
+            <param name="rootelement">
+            Name of root element
+            </param>
+        </member>
+        <member name="M:VAkos.Xmlconfig.Save(System.String)">
+            <summary>
+            Save configuration to an xml file
+            </summary>
+            <param name="filename">
+            Path and filname where to save
+            </param>
+        </member>
+        <member name="M:VAkos.Xmlconfig.Save(System.IO.Stream)">
+            <summary>
+            Save configuration to a stream
+            </summary>
+            <param name="stream">
+            Stream where to save
+            </param>
+        </member>
+        <member name="M:VAkos.Xmlconfig.Commit">
+            <summary>
+            If loaded from a file, commit any changes, by overwriting the file
+            </summary>
+            <returns>
+            True on success
+            False on failiure, probably due to the file was not loaded from a file
+            </returns>
+        </member>
+        <member name="M:VAkos.Xmlconfig.Reload">
+            <summary>
+            If loaded from a file, trash any changes, and reload the file
+            </summary>
+            <returns>
+            True on success
+            False on failiure, probably due to file was not loaded from a file
+            </returns>
+        </member>
+        <member name="P:VAkos.Xmlconfig.Settings">
+            <summary>
+            Gets the root ConfigSetting
+            </summary>
+        </member>
+        <member name="T:Project01.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Project01.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Project01.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

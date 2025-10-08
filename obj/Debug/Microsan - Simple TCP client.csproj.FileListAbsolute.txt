@@ -1,0 +1,46 @@
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.RichTextBoxForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csproj.GenerateResource.Cache
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.exe
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+C:\_Projects\_Software\Simple TCP Client\Simple TCP client.exe
+C:\_Projects\_Software\Simple TCP Client\Simple TCP client.pdb
+C:\_Projects\_Software\Simple TCP Client\Crom.Controls.dll
+C:\_Projects\_Software\Simple TCP Client\Crom.Controls.pdb
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.DataGridViewSendForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.TCPClientSettingForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.MainForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.SourceCodeEditForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csprojResolveAssemblyReference.cache
+C:\_Projects\_Software\Simple TCP Client\Simple TCP client.exe.config
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\FastColoredTextBoxNS.FastColoredTextBox.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\FastColoredTextBoxNS.FindForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\FastColoredTextBoxNS.GoToForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\FastColoredTextBoxNS.HotkeysEditorForm.resources
+C:\_Projects\_Software\Simple TCP Client\obj\Debug\FastColoredTextBoxNS.ReplaceForm.resources
+C:\_Projects\_Software\Simple TCP Client\Simple TCP client.xml
+D:\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csprojAssemblyReference.cache
+D:\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.exe
+D:\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csproj.AssemblyReference.cache
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.RichTextBoxForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.TCPClientSettingForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.MainForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csproj.GenerateResource.cache
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csproj.CoreCompileInputs.cache
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.exe
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Simple TCP client.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Simple TCP client.xml
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Crom.Controls.dll
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Crom.Controls.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - Simple TCP client.csproj.CopyComplete
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Simple TCP client.exe.config
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Simple TCP client.exe
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Simple TCP client.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.SourceCodeEditControl.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\RoboRemoPC.DebugLogForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\FastColoredTextBox.dll
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\FastColoredTextBox.xml
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Project01.Properties.Resources.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Newtonsoft.Json.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Newtonsoft.Json.xml
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.DataGridViewSendForm.resources
