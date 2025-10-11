@@ -39,4 +39,3 @@ G:\_git\__Csharp\MicrosanProjectTerminal\MicrosanProjectTerminal.exe
 G:\_git\__Csharp\MicrosanProjectTerminal\MicrosanProjectTerminal.pdb
 G:\_git\__Csharp\MicrosanProjectTerminal\Crom.Controls.dll
 G:\_git\__Csharp\MicrosanProjectTerminal\Crom.Controls.pdb
-G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.Properties.Resources.resources

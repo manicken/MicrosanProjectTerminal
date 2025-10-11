@@ -138,11 +138,6 @@
     <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\Autocomplete.cs">
       <Link>RuntimeProgramming\Autocomplete.cs</Link>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
       <Link>RuntimeProgramming\NewClass_Template.cs</Link>
     </EmbeddedResource>
@@ -204,10 +199,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Csharp_CommonSourceFiles\Crom.Controls\Crom.Controls.csproj">
