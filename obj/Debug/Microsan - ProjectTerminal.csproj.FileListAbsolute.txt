@@ -1,0 +1,42 @@
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - ProjectTerminal.csproj.AssemblyReference.cache
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.DataGridViewSendForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\RoboRemoPC.DebugLogForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.RichTextBoxForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.SourceCodeEditControl.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.TCPClientSettingForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.MainForm.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan.Properties.Resources.resources
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - ProjectTerminal.csproj.GenerateResource.cache
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - ProjectTerminal.csproj.CoreCompileInputs.cache
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\Microsan - ProjectTerminal.csproj.CopyComplete
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\MicrosanProjectTerminal.exe.config
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\MicrosanProjectTerminal.exe
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Simple TCP client.xml
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\obj\Debug\MicrosanProjectTerminal.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\MicrosanProjectTerminal.exe
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\MicrosanProjectTerminal.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Crom.Controls.dll
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\FastColoredTextBox.dll
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Crom.Controls.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\FastColoredTextBox.xml
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Newtonsoft.Json.pdb
+B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Newtonsoft.Json.xml
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan - ProjectTerminal.csproj.AssemblyReference.cache
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.DataGridViewSendForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\RoboRemoPC.DebugLogForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.RichTextBoxForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.SourceCodeEditControl.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.TCPClientSettingForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.MainForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan - ProjectTerminal.csproj.GenerateResource.cache
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan - ProjectTerminal.csproj.CoreCompileInputs.cache
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan - ProjectTerminal.csproj.CopyComplete
+G:\_git\__Csharp\MicrosanProjectTerminal\MicrosanProjectTerminal.exe.config
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\MicrosanProjectTerminal.exe
+G:\_git\__Csharp\MicrosanProjectTerminal\Simple TCP client.xml
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\MicrosanProjectTerminal.pdb
+G:\_git\__Csharp\MicrosanProjectTerminal\MicrosanProjectTerminal.exe
+G:\_git\__Csharp\MicrosanProjectTerminal\MicrosanProjectTerminal.pdb
+G:\_git\__Csharp\MicrosanProjectTerminal\Crom.Controls.dll
+G:\_git\__Csharp\MicrosanProjectTerminal\Crom.Controls.pdb
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.Properties.Resources.resources

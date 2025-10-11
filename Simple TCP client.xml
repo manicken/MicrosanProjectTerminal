@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Simple TCP client</name>
+        <name>MicrosanProjectTerminal</name>
     </assembly>
     <members>
         <member name="T:Microsan.DataGridViewSendForm">
@@ -15,15 +15,26 @@
             </summary>
             
         </member>
+        <member name="F:Microsan.DataGridViewSendForm.sendGroups">
+            <summary>
+            This is only a stored local reference
+            </summary>
+        </member>
         <member name="M:Microsan.DataGridViewSendForm.#ctor(System.Action{System.String})">
             <summary>
             
             </summary>
             <param name="SendDataHandler"></param>
         </member>
-        <member name="M:Microsan.DataGridViewSendForm.SaveAllXml">
+        <member name="M:Microsan.DataGridViewSendForm.SetData(System.Collections.Generic.List{Microsan.SendDataJsonItems})">
             <summary>
             
+            </summary>
+            <param name="sendGroups"></param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
             </summary>
         </member>
         <member name="F:Microsan.DataGridViewSendForm.components">
@@ -44,6 +55,19 @@
             not be able to load this method if it was changed manually.
             </summary>
         </member>
+        <member name="T:Microsan.TabPageExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.TabPageExt.Create(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="tooltip"></param>
+            <returns></returns>
+        </member>
         <member name="T:Microsan.SendDataJsonItems">
             <summary>
             
@@ -58,6 +82,18 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="P:Microsan.SendDataJsonItems.Note">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.SendDataJsonItems.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="note"></param>
         </member>
         <member name="M:Microsan.SendDataJsonItems.ToJsonString(System.String)">
             <summary>
@@ -291,6 +327,22 @@
             not be able to load this method if it was changed manually.
             </summary>
         </member>
+        <member name="T:Microsan.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsan.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsan.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
         <member name="T:Microsan.RuntimeProgramming">
             <summary>
             Description of RuntimeProgramming.
@@ -336,6 +388,11 @@
             Description of TCPClientSettingForm.
             </summary>
         </member>
+        <member name="M:Microsan.TCPClientSettingForm.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
         <member name="F:Microsan.TCPClientSettingForm.components">
             <summary>
             Designer variable used to keep track of non-visual components.
@@ -376,18 +433,6 @@
         <member name="M:Microsan.MainForm.Main">
             <summary> The main entry point for the application. </summary>
         </member>
-        <member name="F:Microsan.MainForm.hostIp">
-            <summary> current host ip </summary>
-        </member>
-        <member name="F:Microsan.MainForm.hostPort">
-            <summary> current host port </summary>
-        </member>
-        <member name="F:Microsan.MainForm.messageStartId">
-            <summary> current messageStartId </summary>
-        </member>
-        <member name="F:Microsan.MainForm.messageStopId">
-            <summary> current messageStopId </summary>
-        </member>
         <member name="M:Microsan.MainForm.#ctor">
             <summary>
             main form constructor
@@ -407,12 +452,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Microsan.MainForm.ReadSettingsFile">
-            <summary>
-            Read the program settings file
-            </summary>
-        </member>
-        <member name="M:Microsan.MainForm.InitAllStuff">
+        <member name="M:Microsan.MainForm.LoadAndAppyProjectJson">
             <summary>
             init all docked forms
             </summary>
@@ -463,27 +503,45 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="T:Microsan.MainRootDataStructures">
+        <member name="T:Microsan.MultiInputDialog">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Microsan.MainRootDataStructures.sendItemsTabs">
+        <member name="M:Microsan.MultiInputDialog.Show(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="fields"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.ProjectData">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Microsan.MainRootDataStructures.socket">
+        <member name="P:Microsan.ProjectData.meta">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Microsan.MainRootDataStructures.window">
+        <member name="P:Microsan.ProjectData.sendGroups">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Microsan.MainRootDataStructures.Save(System.String)">
+        <member name="P:Microsan.ProjectData.socket">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.ProjectData.window">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.ProjectData.Save(System.String)">
             <summary>
             
             </summary>
@@ -557,6 +615,18 @@
             </summary>
             <param name="r"></param>
         </member>
+        <member name="M:Microsan.RectData.ApplyTo(System.Windows.Forms.Form)">
+            <summary>
+            
+            </summary>
+            <param name="f">the windows form</param>
+        </member>
+        <member name="M:Microsan.RectData.GetFrom(System.Windows.Forms.Form)">
+            <summary>
+            
+            </summary>
+            <param name="f">the windows form</param>
+        </member>
         <member name="M:Microsan.RectData.ToRectangle">
             <summary>
             
@@ -564,6 +634,11 @@
             <returns></returns>
         </member>
         <member name="T:Microsan.WindowSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.WindowSettings.main">
             <summary>
             
             </summary>
@@ -584,6 +659,38 @@
             </summary>
         </member>
         <member name="M:Microsan.WindowSettings.ToJsonString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="lineincr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.Metadata">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.Metadata.projectName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.Metadata.created">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.Metadata.modified">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.Metadata.version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.Metadata.ToJsonString(System.String)">
             <summary>
             
             </summary>
@@ -715,257 +822,6 @@
         <member name="T:FastColoredTextBoxNS.Autocomplete.InsertEnterSnippet">
             <summary>
             Inerts line break after '}'
-            </summary>
-        </member>
-        <member name="T:VAkos.ConfigSetting">
-            <summary>
-            Represents a Configuration Node in the XML file
-            </summary>
-        </member>
-        <member name="F:VAkos.ConfigSetting.node">
-            <summary>
-            The node from the XMLDocument, which it describes
-            </summary>
-        </member>
-        <member name="M:VAkos.ConfigSetting.#ctor">
-            <summary>
-            This class cannot be constructed directly. You will need to give a node to describe
-            </summary>
-        </member>
-        <member name="M:VAkos.ConfigSetting.#ctor(System.Xml.XmlNode)">
-            <summary>
-            Creates an instance of the class
-            </summary>
-            <param name="node">
-            the XmlNode to describe
-            </param>
-        </member>
-        <member name="P:VAkos.ConfigSetting.Name">
-            <summary>
-            The Name of the element it describes
-            </summary>
-            <remarks>Read only property</remarks>        
-        </member>
-        <member name="P:VAkos.ConfigSetting.ChildCount">
-            <summary>
-            Number of children nodes
-            </summary>
-            <remarks>Read only property</remarks>
-        </member>
-        <member name="P:VAkos.ConfigSetting.ChildrenNames">
-            <summary>
-            A string array with the names of the child nodes
-            </summary>
-            <remarks>Read only property</remarks>
-        </member>
-        <member name="P:VAkos.ConfigSetting.Children">
-            <summary>
-            A ConfigSetting array describin each child node
-            </summary>
-            <remarks>Read only property</remarks>
-        </member>
-        <member name="P:VAkos.ConfigSetting.Value">
-            <summary>
-            String value of the specific Configuration Node
-            </summary>
-        </member>
-        <member name="P:VAkos.ConfigSetting.intValue">
-            <summary>
-            int value of the specific Configuration Node
-            </summary>
-        </member>
-        <member name="P:VAkos.ConfigSetting.boolValue">
-            <summary>
-            bool value of the specific Configuration Node
-            </summary>
-        </member>
-        <member name="P:VAkos.ConfigSetting.floatValue">
-            <summary>
-            float value of the specific Configuration Node
-            </summary>
-        </member>
-        <member name="P:VAkos.ConfigSetting.Item(System.String)">
-            <summary>
-            Get a specific child node
-            </summary>
-            <param name="path">
-            The path to the specific node. Can be either only a name, or a full path separated by '/' or '\'
-            </param>
-            <example>
-            <code>
-            XmlConfig conf = new XmlConfig("configuration.xml");
-            screenname = conf.Settings["screen"].Value;
-            height = conf.Settings["screen/height"].IntValue;
-             // OR
-            height = conf.Settings["screen"]["height"].IntValue;
-            </code>
-            </example>
-            <returns></returns>
-        </member>
-        <member name="M:VAkos.ConfigSetting.Validate">
-            <summary>
-            Check if the node conforms with the config xml restrictions
-            1. No nodes with two children of the same name
-            2. Only alphanumerical names
-            </summary>
-            <returns>
-            True on success and false on failiure
-            </returns>        
-        </member>
-        <member name="M:VAkos.ConfigSetting.Remove">
-            <summary>
-            Remove the specific node from the tree
-            </summary>
-        </member>
-        <member name="M:VAkos.ConfigSetting.RemoveChildren">
-            <summary>
-            Remove all children of the node, but keep the node itself
-            </summary>
-        </member>
-        <member name="T:VAkos.Xmlconfig">
-            <summary>
-            The class which represents a configuration xml file
-            </summary>
-        </member>
-        <member name="M:VAkos.Xmlconfig.ValidateXML(System.Boolean)">
-            <summary>
-            Check XML file if it conforms the config xml restrictions
-            1. No nodes with two children of the same name
-            2. Only alphanumerical names
-            </summary>
-            <param name="silent">
-            Whether to return a true/false value, or throw an exception on failiure
-            </param>
-            <returns>
-            True on success and in case of silent mode false on failiure
-            </returns>
-        </member>
-        <member name="M:VAkos.Xmlconfig.#ctor">
-            <summary>
-            Create an XmlConfig from an empty xml file 
-            containing only the rootelement named as 'xml'
-            </summary>
-        </member>
-        <member name="M:VAkos.Xmlconfig.#ctor(System.String,System.Boolean)">
-            <summary>
-            Create an XmlConfig from an existing file, or create a new one
-            </summary>
-            <param name="loadfromfile">
-            Path and filename from where to load the xml file
-            </param>
-            <param name="create">
-            If file does not exist, create it, or throw an exception?
-            </param>
-        </member>
-        <member name="P:VAkos.Xmlconfig.CommitOnUnload">
-            <summary>
-            When unloading the current XML config file
-            shold any changes be saved back to the file?
-            </summary>
-            <remarks>
-            <list type="bullet">
-            <item>Only applies if it was loaded from a local file</item>
-            <item>True by default</item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:VAkos.Xmlconfig.Dispose">
-            <summary>
-            Save any modifications to the XML file before destruction
-            if CommitOnUnload is true
-            </summary>
-        </member>
-        <member name="M:VAkos.Xmlconfig.LoadXmlFromFile(System.String,System.Boolean)">
-            <summary>
-            Load a new XmlDocument from a file
-            </summary>
-            <param name="filename">
-            Path and filename from where to load the xml file
-            </param>
-            <param name="create">
-            If file does not exist, create it, or throw an exception?
-            </param>
-        </member>
-        <member name="M:VAkos.Xmlconfig.LoadXmlFromFile(System.String)">
-            <summary>
-            Load a new XmlDocument from a file
-            </summary>
-            <param name="filename">
-            Path and filename from where to load the xml file
-            </param>
-            <remarks>
-            Throws an exception if file does not exist
-            </remarks>
-        </member>
-        <member name="M:VAkos.Xmlconfig.LoadXmlFromString(System.String)">
-            <summary>
-            Load a new XmlDocument from a string
-            </summary>
-            <param name="xml">
-            XML string
-            </param>
-        </member>
-        <member name="M:VAkos.Xmlconfig.NewXml(System.String)">
-            <summary>
-            Load an empty XmlDocument
-            </summary>
-            <param name="rootelement">
-            Name of root element
-            </param>
-        </member>
-        <member name="M:VAkos.Xmlconfig.Save(System.String)">
-            <summary>
-            Save configuration to an xml file
-            </summary>
-            <param name="filename">
-            Path and filname where to save
-            </param>
-        </member>
-        <member name="M:VAkos.Xmlconfig.Save(System.IO.Stream)">
-            <summary>
-            Save configuration to a stream
-            </summary>
-            <param name="stream">
-            Stream where to save
-            </param>
-        </member>
-        <member name="M:VAkos.Xmlconfig.Commit">
-            <summary>
-            If loaded from a file, commit any changes, by overwriting the file
-            </summary>
-            <returns>
-            True on success
-            False on failiure, probably due to the file was not loaded from a file
-            </returns>
-        </member>
-        <member name="M:VAkos.Xmlconfig.Reload">
-            <summary>
-            If loaded from a file, trash any changes, and reload the file
-            </summary>
-            <returns>
-            True on success
-            False on failiure, probably due to file was not loaded from a file
-            </returns>
-        </member>
-        <member name="P:VAkos.Xmlconfig.Settings">
-            <summary>
-            Gets the root ConfigSetting
-            </summary>
-        </member>
-        <member name="T:Project01.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Project01.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Project01.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
             </summary>
         </member>
     </members>

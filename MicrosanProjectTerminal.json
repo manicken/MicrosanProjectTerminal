@@ -1,0 +1,25 @@
+{
+  "meta": {
+  "projectName":"",
+  "created":"2025-10-11 18:37:46",
+  "modified":"2025-10-11 18:56:49",
+  "version":1
+  },
+  "sendGroups": [
+    {"name":"New Group","note":"please rename this","items":[
+  
+    ]}
+  ],
+  "socket":{
+    "ip": "127.0.0.1",
+    "port": 9000,
+    "msgPrefix": "",
+    "msgPostfix": "\r\n"
+  },
+  "window": {
+    "main": {"x":0,"y":0,"width":552,"height":545},
+    "socket": {"x":0,"y":0,"width":300,"height":236},
+    "dgvSend": {"x":0,"y":0,"width":255,"height":481},
+    "log": {"x":0,"y":0,"width":310,"height":249}
+  }
+}

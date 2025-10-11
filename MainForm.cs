@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.Net.Sockets ;
-using VAkos;
 using Microsan;
 using Crom.Controls.Docking;
 using Crom.Controls.TabbedDocument;
@@ -22,6 +21,7 @@ namespace Microsan
 	/// </summary>
 	public partial class MainForm : System.Windows.Forms.Form
 	{
+        private const string JSON_PROJECT_FILENAME = "MicrosanProjectTerminal.json";
         private const string LOG_TX_PREFIX = ">> ";
         private const string LOG_RX_PREFIX = "<< ";
         /// <summary> The main entry point for the application. </summary>
@@ -31,15 +31,14 @@ namespace Microsan
             Application.Run(new MainForm());
         }
 
+        // Note here, the reason that all here is
+        // public is that then they are accessable from
+        // RuntimeProgramming
+
         public Socket m_socWorker;
 
         public bool socketConnected = false;
 
-        private string projectName = "";
-        
-        //public IniFile iniSettingFile;
-        public Xmlconfig xmlConfig;
-        
         public TCPClientSettingForm tcpClientCfgForm;
         public DockableFormInfo dfi_tcpClientCfgForm;
         
@@ -52,27 +51,15 @@ namespace Microsan
         
         public RuntimeProgramming rtPrg;
         
-        /// <summary> current host ip </summary>
-        public string hostIp = "";
-        /// <summary> current host port </summary>
-        public string hostPort = "";
-        /// <summary> current messageStartId </summary>
-        public string messageStartId = "";
-        /// <summary> current messageStopId </summary>
-        public string messageStopId = "";
-        
-        public string execName;
-        public string settingsFileName;
-
-        public MainRootDataStructures mainRootDataStructures = new MainRootDataStructures();
+        public ProjectData projectData = new ProjectData();
 
         /// <summary>
         /// main form constructor
         /// </summary>
 		public MainForm()
 		{        
-            execName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
-            settingsFileName = execName + ".ini.xml";
+            //execName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
+            //settingsFileName = execName + ".ini.xml";
             
 			InitializeComponent();
 			
@@ -88,10 +75,11 @@ namespace Microsan
             dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
 
             
+
             dc.FormClosing += dc_FormClosing;
             
             Microsan.Debugger.Message = rtxtForm.rtxt.AppendText;
-            
+
             
 
 
@@ -117,74 +105,42 @@ namespace Microsan
         {
             rtPrg = new RuntimeProgramming(this);
             rtPrg.InitScriptEditor_IfNeeded();
-            InitAllStuff();
-            
-            //rtPrg.ShowScriptEditor();
+            LoadAndAppyProjectJson();
+
+            rtxtForm.ShowIcon = false;
+            dgvSendForm.ShowIcon = false;
+            tcpClientCfgForm.ShowIcon = false;
+
         }
-        
-        /// <summary>
-        /// Read the program settings file
-        /// </summary>
-        public void ReadSettingsFile()
+
+        private void LoadProjectJson()
         {
-            if (!System.IO.File.Exists(settingsFileName))
-                return;
-
-            xmlConfig = new Xmlconfig(settingsFileName, true);
-
-            projectName = xmlConfig.Settings["ProjectName"].Value;
-            ApplyProjectName();
-            tstxtProjectName.Text = projectName;
-            
-            hostIp = xmlConfig.Settings["TcpClient/Ip"].Value;
-            hostPort = xmlConfig.Settings["TcpClient/Port"].Value;
-            messageStartId = xmlConfig.Settings["TcpClient/MessageStart"].Value;
-            messageStopId = xmlConfig.Settings["TcpClient/MessageStop"].Value;
-            
-            this.Width = xmlConfig.Settings["MainForm/Width"].intValue;
-            this.Height = xmlConfig.Settings["MainForm/Height"].intValue;
-            
-            dgvSendForm.Width = xmlConfig.Settings["DataGridViewSendForm/Width"].intValue;
-            dgvSendForm.Height = xmlConfig.Settings["DataGridViewSendForm/Height"].intValue;
-            
-            
-            int test = xmlConfig.Settings["DataGridViewSendForm/Top"].intValue;
-            if (test != 0)
+            try
             {
-                dgvSendForm.Top = xmlConfig.Settings["DataGridViewSendForm/Top"].intValue;
-                dgvSendForm.Left = xmlConfig.Settings["DataGridViewSendForm/Left"].intValue;
+                string jsonStr = File.ReadAllText(JSON_PROJECT_FILENAME);
+                projectData = JsonConvert.DeserializeObject<ProjectData>(jsonStr);
             }
-
-            test = xmlConfig.Settings["rtxtForm/Width"].intValue;
-            if (test != 0)
+            catch (Exception ex)
             {
-                rtxtForm.Width = xmlConfig.Settings["rtxtForm/Width"].intValue;
-                rtxtForm.Height = xmlConfig.Settings["rtxtForm/Height"].intValue;
-                rtxtForm.Top = xmlConfig.Settings["rtxtForm/Top"].intValue;
-                rtxtForm.Left = xmlConfig.Settings["rtxtForm/Left"].intValue;
-            }
-
-            test = xmlConfig.Settings["TCPClientSettingForm/Width"].intValue;
-            if (test != 0)
-            {
-                tcpClientCfgForm.Width = xmlConfig.Settings["TCPClientSettingForm/Width"].intValue;
-                tcpClientCfgForm.Height = xmlConfig.Settings["TCPClientSettingForm/Height"].intValue;
-                tcpClientCfgForm.Top = xmlConfig.Settings["TCPClientSettingForm/Top"].intValue;
-                tcpClientCfgForm.Left = xmlConfig.Settings["TCPClientSettingForm/Left"].intValue;
+                MessageBox.Show(ex.ToString());
             }
         }
+
         
         /// <summary>
         /// init all docked forms
         /// </summary>
-		private void InitAllStuff()
+		private void LoadAndAppyProjectJson()
 		{
-            ReadSettingsFile();
+            if (File.Exists(JSON_PROJECT_FILENAME))
+                LoadProjectJson();
 
-            tcpClientCfgForm.txtHostIP.Text = hostIp;
-            tcpClientCfgForm.txtHostPort.Text = hostPort;
-            tcpClientCfgForm.txtMessageStartId.Text = messageStartId;
-            tcpClientCfgForm.txtMessageStopId.Text = messageStopId;
+            ApplyProjectName();
+
+            tcpClientCfgForm.txtHostIP.Text = projectData.socket.ip;
+            tcpClientCfgForm.txtHostPort.Text = projectData.socket.port.ToString();
+            tcpClientCfgForm.txtMessageStartId.Text = projectData.socket.msgPrefix;
+            tcpClientCfgForm.txtMessageStopId.Text = projectData.socket.msgPostfix;
             
             tcpClientCfgForm.MaximizeBox = false;
             rtxtForm.MaximizeBox = false;
@@ -200,11 +156,29 @@ namespace Microsan
 
             //dc.DockForm(dfi_rtxtForm, DockStyle.Left, zDockMode.Outer);
             //dc.DockForm(dfi_tcpClientCfgForm, dfi_rtxtForm, DockStyle.Top, zDockMode.Outer);
-            
-            
+
             //dc.GetFormsDecorator(dfi_tcpClientCfgForm).Height =  208;
             //dc.GetFormsDecorator(dfi_tcpClientCfgForm).SetFormsPanelBounds();
-		}
+
+
+            projectData.window.main.ApplyTo(this);
+            projectData.window.socket.ApplyTo(tcpClientCfgForm);
+            projectData.window.log.ApplyTo(rtxtForm);
+            projectData.window.dgvSend.ApplyTo(dgvSendForm);
+
+
+            dgvSendForm.SetData(projectData.sendGroups);
+        }
+
+        private void SaveToProjectJson()
+        {
+            projectData.window.main.GetFrom(this);
+            projectData.window.socket.GetFrom(tcpClientCfgForm);
+            projectData.window.log.GetFrom(rtxtForm);
+            projectData.window.dgvSend.GetFrom(dgvSendForm);
+
+            projectData.Save(JSON_PROJECT_FILENAME);
+        }
 		
         /// <summary>
         /// local _TcpConnect 
@@ -226,21 +200,18 @@ namespace Microsan
 		    
 		    if (connectState)
 		    {
-                hostIp = tcpClientCfgForm.txtHostIP.Text;
-                hostPort = tcpClientCfgForm.txtHostPort.Text;
-                messageStartId = tcpClientCfgForm.txtMessageStartId.Text;
-                messageStopId = tcpClientCfgForm.txtMessageStopId.Text;
+                projectData.socket.ip = tcpClientCfgForm.txtHostIP.Text;
+                projectData.socket.port = Convert.ToInt32(tcpClientCfgForm.txtHostPort.Text);
+                projectData.socket.msgPrefix = tcpClientCfgForm.txtMessageStartId.Text;
+                projectData.socket.msgPostfix = tcpClientCfgForm.txtMessageStopId.Text;
                 
 		      try
               {
                 //create a new client socket ...
                 m_socWorker = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                String szIPSelected  = hostIp;
-                String szPort = hostPort;
-                int  alPort = System.Convert.ToInt16 (szPort,10);
-            
-                System.Net.IPAddress    remoteIPAddress     = System.Net.IPAddress.Parse(szIPSelected);
-                System.Net.IPEndPoint    remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, alPort);
+
+                System.Net.IPAddress    remoteIPAddress     = System.Net.IPAddress.Parse(projectData.socket.ip);
+                System.Net.IPEndPoint    remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, projectData.socket.port);
                 m_socWorker.Connect(remoteEndPoint);
                 
                 if (m_socWorker.Connected)
@@ -288,41 +259,11 @@ namespace Microsan
 		private void this_FormClosing(object sender, FormClosingEventArgs e)
         {
             socketConnected = false;
-            dgvSendForm.SaveAllXml();
             if (m_socWorker != null)
             {
                 m_socWorker.Close();
             }
-            if (xmlConfig == null)
-                xmlConfig = new Xmlconfig(execName + ".ini.xml", true);
-            xmlConfig["ProjectName"].Value = projectName;
-            xmlConfig["TcpClient/Ip"].Value = hostIp;
-            xmlConfig["TcpClient/Port"].Value = hostPort;
-            xmlConfig["TcpClient/MessageStart"].Value = messageStartId;
-            xmlConfig["TcpClient/MessageStop"].Value = messageStopId;
-            
-            xmlConfig["MainForm/Width"].intValue = this.Width;
-            xmlConfig["MainForm/Height"].intValue = this.Height;
-            
-            xmlConfig["DataGridViewSendForm/Top"].intValue = dgvSendForm.Top;
-            xmlConfig["DataGridViewSendForm/Left"].intValue = dgvSendForm.Left;
-            xmlConfig["DataGridViewSendForm/Width"].intValue = dgvSendForm.Width;
-            xmlConfig["DataGridViewSendForm/Height"].intValue = dgvSendForm.Height;
-            
-            xmlConfig["rtxtForm/Top"].intValue = rtxtForm.Top;
-            xmlConfig["rtxtForm/Left"].intValue = rtxtForm.Left;
-            xmlConfig["rtxtForm/Width"].intValue = rtxtForm.Width;
-            xmlConfig["rtxtForm/Height"].intValue = rtxtForm.Height;
-
-            xmlConfig.Settings["TCPClientSettingForm/Top"].Value = tcpClientCfgForm.Top.ToString();
-            xmlConfig.Settings["TCPClientSettingForm/Left"].Value = tcpClientCfgForm.Left.ToString();
-            //xmlConfig.Settings["TCPClientSettingForm/Width"].Value = tcpClientCfgForm.Width.ToString();
-            //xmlConfig.Settings["TCPClientSettingForm/Height"].Value = tcpClientCfgForm.Height.ToString();
-            //xmlConfig.Settings["TCPClientSettingForm/Visible"].boolValue = tcpClientCfgForm.Visible;
-
-            xmlConfig.Commit();
-            if (System.IO.File.Exists(execName + ".ini"))
-                System.IO.File.Delete(execName + ".ini");
+            SaveToProjectJson();
         }
 
         /// <summary>
@@ -331,7 +272,7 @@ namespace Microsan
         /// <param name="message"></param>
         public void SendMessage(string message)
 		{
-            message = messageStartId + message + messageStopId;
+            message = projectData.socket.msgPrefix + message + projectData.socket.msgPostfix;
             
             if ((m_socWorker == null) || (m_socWorker.Connected == false))
 		    {
@@ -455,9 +396,17 @@ namespace Microsan
             rtPrg.ShowScriptEditor();
         }
 
-        private void tsBtnProjectNameApply_Click(object sender, EventArgs e)
+        private void tsBtnProjectNameEdit_Click(object sender, EventArgs e)
         {
-            projectName = tstxtProjectName.Text;
+            var projectMeta = new Dictionary<string, string>()
+            {
+                { "Project name", projectData.meta.projectName }
+            };
+            var result = MultiInputDialog.Show("Edit Project Name", projectMeta);
+            if (result != null)
+            {
+                projectData.meta.projectName = result["Name"];
+            }
             ApplyProjectName();
         }
 
@@ -465,48 +414,16 @@ namespace Microsan
         {
             string exePath = Assembly.GetExecutingAssembly().Location;
             string exeNameWithoutExt = Path.GetFileNameWithoutExtension(exePath);
-            if (projectName.Trim().Length != 0) 
-                this.Text = $"{exeNameWithoutExt} - {projectName}";
+            if ( projectData.meta.projectName.Trim().Length != 0) 
+                this.Text = $"{exeNameWithoutExt} - {projectData.meta.projectName}";
             else
                 this.Text = $"{exeNameWithoutExt}";
         }
 
+
         private void tsbtnSave_Click(object sender, EventArgs e)
         {
-            if (mainRootDataStructures.sendItemsTabs.Count == 0)
-            {
-                rtxtForm.rtxt.AppendTextLine("mainRootDataStructures.sendItemsTabs.Count == 0", HorizontalAlignment.Left);
-                for (int i = 0; i < dgvSendForm.openJsonFiles.Count; i++)
-                {
-                    SendDataJsonItems sdji = new SendDataJsonItems();
-                    sdji.Name = dgvSendForm.openJsonFiles[i].GetFileName();
-                    mainRootDataStructures.sendItemsTabs.Add(sdji);
-                    for (int j = 0; j < dgvSendForm.openJsonFiles[i].data.Count; j++)
-                    {
-                        sdji.items.Add(dgvSendForm.openJsonFiles[i].data[j]);
-                    }
-
-                }
-
-                
-            } else
-            {
-                rtxtForm.rtxt.AppendTextLine("using existing structure", HorizontalAlignment.Left);
-            }
-            mainRootDataStructures.Save("test.json");
-        }
-
-        private void tsbtnLoad_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string jsonStr = File.ReadAllText("test.json");
-                mainRootDataStructures = JsonConvert.DeserializeObject<MainRootDataStructures>(jsonStr);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            SaveToProjectJson();
         }
     }
 }

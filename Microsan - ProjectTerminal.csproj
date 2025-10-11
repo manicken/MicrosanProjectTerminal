@@ -10,13 +10,13 @@
     <ApplicationIcon>App.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>Simple TCP client</AssemblyName>
+    <AssemblyName>MicrosanProjectTerminal</AssemblyName>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>False</DelaySign>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Project01</RootNamespace>
+    <RootNamespace>Microsan</RootNamespace>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -66,7 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FastColoredTextBox">
-      <HintPath>..\_CommonSourceFiles\FastColoredTextBox-master\Binary\FastColoredTextBox.dll</HintPath>
+      <HintPath>..\Csharp_CommonSourceFiles\FastColoredTextBox-master\Binary\FastColoredTextBox.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
@@ -102,82 +102,77 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\_CommonSourceFiles\DataGridViewSendForm.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\DataGridViewSendForm.cs">
       <Link>DataGridViewSendForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\DataGridViewSendForm.designer.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\DataGridViewSendForm.designer.cs">
       <Link>DataGridViewSendForm.designer.cs</Link>
       <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\DataGridViewSendFormDataStructures.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\DataGridViewSendFormDataStructures.cs">
       <Link>DataGridViewSendFormDataStructures.cs</Link>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\DebugLogForm.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\DebugLogForm.cs">
       <Link>DebugLogForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\DebugLogForm.designer.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\DebugLogForm.designer.cs">
       <Link>DebugLogForm.designer.cs</Link>
       <DependentUpon>DebugLogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\MicrosanExtensions.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\MicrosanExtensions.cs">
       <Link>MicrosanExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\QuickFileAndFolderDialogs.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\QuickFileAndFolderDialogs.cs">
       <Link>QuickFileAndFolderDialogs.cs</Link>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\RichTextBoxForm.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\RichTextBoxForm.cs">
       <Link>RichTextBoxForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\RichTextBoxForm.designer.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\RichTextBoxForm.designer.cs">
       <Link>RichTextBoxForm.designer.cs</Link>
       <DependentUpon>RichTextBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\Autocomplete.cs">
+    <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\Autocomplete.cs">
       <Link>RuntimeProgramming\Autocomplete.cs</Link>
     </Compile>
-    <EmbeddedResource Include="..\_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
-      <Link>RuntimeProgramming\NewClass_Template.cs</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\_CommonSourceFiles\RuntimeProgramming\RootClass_Template.cs">
-      <Link>RuntimeProgramming\RootClass_Template.cs</Link>
-    </EmbeddedResource>
-    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\RuntimeProgramming.cs">
-      <Link>RuntimeProgramming\RuntimeProgramming.cs</Link>
-    </Compile>
-    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.cs">
-      <Link>RuntimeProgramming\SourceCodeEditControl.cs</Link>
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="..\_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.designer.cs">
-      <Link>RuntimeProgramming\SourceCodeEditControl.designer.cs</Link>
-      <DependentUpon>SourceCodeEditControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\_CommonSourceFiles\TCPClientSettingForm.cs">
-      <Link>TCPClientSettingForm.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\_CommonSourceFiles\TCPClientSettingForm.designer.cs">
-      <Link>TCPClientSettingForm.designer.cs</Link>
-      <DependentUpon>TCPClientSettingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\_CommonSourceFiles\XMLConfig\ConfigSetting.cs">
-      <Link>XmlConfig\ConfigSetting.cs</Link>
-    </Compile>
-    <Compile Include="..\_CommonSourceFiles\XMLConfig\XmlConfig.cs">
-      <Link>XmlConfig\XmlConfig.cs</Link>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainRootDataStructures.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
+      <Link>RuntimeProgramming\NewClass_Template.cs</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\RootClass_Template.cs">
+      <Link>RuntimeProgramming\RootClass_Template.cs</Link>
+    </EmbeddedResource>
+    <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\RuntimeProgramming.cs">
+      <Link>RuntimeProgramming\RuntimeProgramming.cs</Link>
+    </Compile>
+    <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.cs">
+      <Link>RuntimeProgramming\SourceCodeEditControl.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.designer.cs">
+      <Link>RuntimeProgramming\SourceCodeEditControl.designer.cs</Link>
+      <DependentUpon>SourceCodeEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\Csharp_CommonSourceFiles\TCPClientSettingForm.cs">
+      <Link>TCPClientSettingForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\Csharp_CommonSourceFiles\TCPClientSettingForm.designer.cs">
+      <Link>TCPClientSettingForm.designer.cs</Link>
+      <DependentUpon>TCPClientSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiInputDialog.cs" />
+    <Compile Include="ProjectData.cs" />
     <Content Include="App.ico" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -185,23 +180,23 @@
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="..\_CommonSourceFiles\DataGridViewSendForm.resx">
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\DataGridViewSendForm.resx">
       <Link>DataGridViewSendForm.resx</Link>
       <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\_CommonSourceFiles\DebugLogForm.resx">
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\DebugLogForm.resx">
       <Link>DebugLogForm.resx</Link>
       <DependentUpon>DebugLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\_CommonSourceFiles\RichTextBoxForm.resx">
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RichTextBoxForm.resx">
       <Link>RichTextBoxForm.resx</Link>
       <DependentUpon>RichTextBoxForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.resx">
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.resx">
       <Link>RuntimeProgramming\SourceCodeEditControl.resx</Link>
       <DependentUpon>SourceCodeEditControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\_CommonSourceFiles\TCPClientSettingForm.resx">
+    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\TCPClientSettingForm.resx">
       <Link>TCPClientSettingForm.resx</Link>
       <DependentUpon>TCPClientSettingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,7 +210,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\_CommonSourceFiles\Crom.Controls\Crom.Controls.csproj">
+    <ProjectReference Include="..\Csharp_CommonSourceFiles\Crom.Controls\Crom.Controls.csproj">
       <Project>{f2999c1d-bed3-4d47-a8ac-8027334ecdc1}</Project>
       <Name>Crom.Controls</Name>
     </ProjectReference>
