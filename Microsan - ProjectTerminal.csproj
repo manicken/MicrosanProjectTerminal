@@ -45,6 +45,7 @@
     <DebugType>Full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <DocumentationFile>Simple TCP client.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -102,17 +103,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Csharp_CommonSourceFiles\DataGridViewSendForm.cs">
-      <Link>DataGridViewSendForm.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\Csharp_CommonSourceFiles\DataGridViewSendForm.designer.cs">
-      <Link>DataGridViewSendForm.designer.cs</Link>
-      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\Csharp_CommonSourceFiles\DataGridViewSendFormDataStructures.cs">
-      <Link>DataGridViewSendFormDataStructures.cs</Link>
-    </Compile>
     <Compile Include="..\Csharp_CommonSourceFiles\DebugLogForm.cs">
       <Link>DebugLogForm.cs</Link>
       <SubType>Form</SubType>
@@ -137,6 +127,37 @@
     </Compile>
     <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\Autocomplete.cs">
       <Link>RuntimeProgramming\Autocomplete.cs</Link>
+    </Compile>
+    <Compile Include="ConnectionController.cs" />
+    <Compile Include="ConnectionSettingControls\SerialSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConnectionSettingControls\SerialSettingsControl.Designer.cs">
+      <DependentUpon>SerialSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionSettingsForm.Designer.cs">
+      <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewSendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGridViewSendForm.Designer.cs">
+      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewSendFormDataStructures.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionSettingControls\TCPSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConnectionSettingControls\TCPSettingsControl.Designer.cs">
+      <DependentUpon>TCPSettingsControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
       <Link>RuntimeProgramming\NewClass_Template.cs</Link>
@@ -175,10 +196,6 @@
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\DataGridViewSendForm.resx">
-      <Link>DataGridViewSendForm.resx</Link>
-      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\Csharp_CommonSourceFiles\DebugLogForm.resx">
       <Link>DebugLogForm.resx</Link>
       <DependentUpon>DebugLogForm.cs</DependentUpon>
@@ -195,11 +212,26 @@
       <Link>TCPClientSettingForm.resx</Link>
       <DependentUpon>TCPClientSettingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionSettingControls\SerialSettingsControl.resx">
+      <DependentUpon>SerialSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionSettingsForm.resx">
+      <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewSendForm.resx">
+      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionSettingControls\TCPSettingsControl.resx">
+      <DependentUpon>TCPSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Csharp_CommonSourceFiles\Crom.Controls\Crom.Controls.csproj">

@@ -25,6 +25,7 @@ namespace Microsan
         /// 
         /// </summary>
         public SocketConnectionSettings socket { get; set; } = new SocketConnectionSettings();
+        public ConnectionsData connections { get; set; } = new ConnectionsData();
         /// <summary>
         /// 
         /// </summary>
@@ -40,6 +41,7 @@ namespace Microsan
             sb.AppendLine(meta.ToJsonString("  ") + ",");
             sb.AppendLine(SendGroupsToJsonString("  ") + ",");
             sb.AppendLine(socket.ToJsonString("  ") + ",");
+            sb.AppendLine(connections.ToJsonString("  ") + ",");
             sb.AppendLine(window.ToJsonString("  "));
             sb.AppendLine("}");
             File.WriteAllText(path, sb.ToString());
@@ -176,6 +178,7 @@ namespace Microsan
         /// 
         /// </summary>
         public RectData socket { get; set; } = new RectData();
+        public RectData connections { get; set; } = new RectData();
         /// <summary>
         /// 
         /// </summary>
@@ -195,6 +198,7 @@ namespace Microsan
             sb.Append(lineincr); sb.AppendLine("\"window\": {");
             sb.Append(lineincr); sb.Append("  \"main\": "); sb.AppendLine(JsonConvert.SerializeObject(main) + ",");
             sb.Append(lineincr); sb.Append("  \"socket\": ");  sb.AppendLine(JsonConvert.SerializeObject(socket) + ",");
+            sb.Append(lineincr); sb.Append("  \"connections\": "); sb.AppendLine(JsonConvert.SerializeObject(connections) + ",");
             sb.Append(lineincr); sb.Append("  \"dgvSend\": "); sb.AppendLine(JsonConvert.SerializeObject(dgvSend) + ",");
             sb.Append(lineincr); sb.Append("  \"log\": ");     sb.AppendLine(JsonConvert.SerializeObject(log));
             sb.Append(lineincr + "}");

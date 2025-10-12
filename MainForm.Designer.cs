@@ -46,12 +46,15 @@ namespace Microsan
             this.bgwReceive = new System.ComponentModel.BackgroundWorker();
             this.dc = new Crom.Controls.Docking.DockContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtnShowCodeEditor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnReload = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnShowCodeEditor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnProjectNameEdit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +68,7 @@ namespace Microsan
             this.dc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dc.BackColor = System.Drawing.Color.Gray;
             this.dc.Location = new System.Drawing.Point(0, 42);
             this.dc.Name = "dc";
             this.dc.Size = new System.Drawing.Size(536, 464);
@@ -83,28 +86,22 @@ namespace Microsan
             this.toolStripSeparator3,
             this.tsbtnSave,
             this.toolStripSeparator2,
+            this.tsbtnReload,
+            this.toolStripSeparator4,
             this.tsbtnShowCodeEditor,
             this.toolStripSeparator1,
-            this.tsBtnProjectNameEdit});
+            this.tsBtnProjectNameEdit,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(536, 36);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // tsbtnShowCodeEditor
+            // toolStripSeparator3
             // 
-            this.tsbtnShowCodeEditor.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowCodeEditor.Image")));
-            this.tsbtnShowCodeEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnShowCodeEditor.Name = "tsbtnShowCodeEditor";
-            this.tsbtnShowCodeEditor.Size = new System.Drawing.Size(137, 33);
-            this.tsbtnShowCodeEditor.Text = "Show Code Editor";
-            this.tsbtnShowCodeEditor.Click += new System.EventHandler(this.tsbtnShowCodeEditor_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 36);
             // 
             // tsbtnSave
             // 
@@ -121,6 +118,35 @@ namespace Microsan
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
             // 
+            // tsbtnReload
+            // 
+            this.tsbtnReload.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnReload.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnReload.Image")));
+            this.tsbtnReload.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnReload.Name = "tsbtnReload";
+            this.tsbtnReload.Size = new System.Drawing.Size(36, 33);
+            this.tsbtnReload.Text = "Reload dgv send data";
+            this.tsbtnReload.Click += new System.EventHandler(this.tsbtnReload_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 36);
+            // 
+            // tsbtnShowCodeEditor
+            // 
+            this.tsbtnShowCodeEditor.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowCodeEditor.Image")));
+            this.tsbtnShowCodeEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnShowCodeEditor.Name = "tsbtnShowCodeEditor";
+            this.tsbtnShowCodeEditor.Size = new System.Drawing.Size(137, 33);
+            this.tsbtnShowCodeEditor.Text = "Show Code Editor";
+            this.tsbtnShowCodeEditor.Click += new System.EventHandler(this.tsbtnShowCodeEditor_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
+            // 
             // tsBtnProjectNameEdit
             // 
             this.tsBtnProjectNameEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnProjectNameEdit.Image")));
@@ -130,10 +156,15 @@ namespace Microsan
             this.tsBtnProjectNameEdit.Text = "Change Projectname";
             this.tsBtnProjectNameEdit.Click += new System.EventHandler(this.tsBtnProjectNameEdit_Click);
             // 
-            // toolStripSeparator3
+            // toolStripButton1
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 36);
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 33);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // MainForm
             // 
@@ -160,5 +191,8 @@ namespace Microsan
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsbtnSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton tsbtnReload;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

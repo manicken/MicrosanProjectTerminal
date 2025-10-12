@@ -40,18 +40,25 @@ namespace Microsan
         public bool socketConnected = false;
 
         public TCPClientSettingForm tcpClientCfgForm;
+       
         public DockableFormInfo dfi_tcpClientCfgForm;
-        
+  
+
         public DataGridViewSendForm dgvSendForm;
         public DockableFormInfo dfi_dgvSendForm;
         
         public RichTextBoxForm rtxtForm;
         public DockableFormInfo dfi_rtxtForm;
+
+        public DockableFormInfo dfi_connectionCfgForm;
         
         
         public RuntimeProgramming rtPrg;
         
         public ProjectData projectData = new ProjectData();
+
+        
+        public ConnectionController connectionCtrl = new ConnectionController();
 
         /// <summary>
         /// main form constructor
@@ -70,11 +77,12 @@ namespace Microsan
             dgvSendForm = new DataGridViewSendForm(dgvSendForm_SendData);
             tcpClientCfgForm = new TCPClientSettingForm(_TcpConnect);
             
+            
             dfi_tcpClientCfgForm = dc.Add(tcpClientCfgForm, zAllowedDock.All, tcpClientCfgForm.GetType().GUID);
+
             dfi_rtxtForm = dc.Add(rtxtForm, zAllowedDock.All, rtxtForm.GetType().GUID);
             dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
-
-            
+           
 
             dc.FormClosing += dc_FormClosing;
             
@@ -103,6 +111,8 @@ namespace Microsan
         /// <param name="e"></param>
         private void this_Shown(object sender, EventArgs e)
         {
+            dfi_connectionCfgForm = dc.Add(connectionCtrl.connectionSettingsForm, zAllowedDock.All, connectionCtrl.connectionSettingsForm.GetType().GUID);
+
             rtPrg = new RuntimeProgramming(this);
             rtPrg.InitScriptEditor_IfNeeded();
             LoadAndAppyProjectJson();
@@ -111,6 +121,7 @@ namespace Microsan
             dgvSendForm.ShowIcon = false;
             tcpClientCfgForm.ShowIcon = false;
 
+            connectionCtrl.connectionSettingsForm.Show();
         }
 
         private void LoadProjectJson()
@@ -118,7 +129,28 @@ namespace Microsan
             try
             {
                 string jsonStr = File.ReadAllText(JSON_PROJECT_FILENAME);
-                projectData = JsonConvert.DeserializeObject<ProjectData>(jsonStr);
+                projectData = JsonConvert.DeserializeObject<ProjectData>(jsonStr, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void LoadDgvSenderDataOnly()
+        {
+            try
+            {
+                string jsonStr = File.ReadAllText(JSON_PROJECT_FILENAME);
+                ProjectData pdTemp = JsonConvert.DeserializeObject<ProjectData>(jsonStr, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+                projectData.sendGroups = pdTemp.sendGroups;
+                dgvSendForm.SetData(projectData.sendGroups);
             }
             catch (Exception ex)
             {
@@ -153,27 +185,36 @@ namespace Microsan
             
             dc.DockForm(dfi_tcpClientCfgForm, DockStyle.Left, zDockMode.None);
             dc.DockForm(dfi_rtxtForm, dfi_tcpClientCfgForm, DockStyle.Bottom, zDockMode.None);
+            dc.DockForm(dfi_connectionCfgForm, dfi_tcpClientCfgForm, DockStyle.Bottom, zDockMode.None);
 
             //dc.DockForm(dfi_rtxtForm, DockStyle.Left, zDockMode.Outer);
             //dc.DockForm(dfi_tcpClientCfgForm, dfi_rtxtForm, DockStyle.Top, zDockMode.Outer);
 
             //dc.GetFormsDecorator(dfi_tcpClientCfgForm).Height =  208;
             //dc.GetFormsDecorator(dfi_tcpClientCfgForm).SetFormsPanelBounds();
+            DockStateSerializer s = new DockStateSerializer(dc);
+            s.Save();
 
 
             projectData.window.main.ApplyTo(this);
-            projectData.window.socket.ApplyTo(tcpClientCfgForm);
             projectData.window.log.ApplyTo(rtxtForm);
+            projectData.window.socket.ApplyTo(tcpClientCfgForm);
+            projectData.window.connections.ApplyTo(connectionCtrl.connectionSettingsForm);
+            
+            
+            
             projectData.window.dgvSend.ApplyTo(dgvSendForm);
 
 
             dgvSendForm.SetData(projectData.sendGroups);
+            connectionCtrl.SetData(projectData.connections);
         }
 
         private void SaveToProjectJson()
         {
             projectData.window.main.GetFrom(this);
             projectData.window.socket.GetFrom(tcpClientCfgForm);
+            projectData.window.connections.GetFrom(connectionCtrl.connectionSettingsForm);
             projectData.window.log.GetFrom(rtxtForm);
             projectData.window.dgvSend.GetFrom(dgvSendForm);
 
@@ -188,6 +229,11 @@ namespace Microsan
 		{
             TcpConnect(connectState);
 		}
+
+        private void _SerialConnect(bool connectState)
+        {
+
+        }
 		
         /// <summary>
         /// Public TcpConnect that have a return value
@@ -424,6 +470,21 @@ namespace Microsan
         private void tsbtnSave_Click(object sender, EventArgs e)
         {
             SaveToProjectJson();
+        }
+
+        private void tsbtnReload_Click(object sender, EventArgs e)
+        {
+            LoadDgvSenderDataOnly();
+        }
+
+        private void tsComboboxCommSel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+           // connections.SaveSettings();
         }
     }
 }

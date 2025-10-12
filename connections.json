@@ -1,0 +1,21 @@
+"connections":{
+  "lasttype": "Serial",
+  "items": [
+    {
+      "$type": "Microsan.SerialSettings, MicrosanProjectTerminal",
+      "PortName": "COM1",
+      "BaudRate": 9600,
+      "msgPrefix": "",
+      "msgPostfix": "\\r\\n",
+      "Type": "Serial"
+    },
+    {
+      "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
+      "Host": "127.0.0.1",
+      "Port": 8080,
+      "msgPrefix": "",
+      "msgPostfix": "\\r\\n",
+      "Type": "TCP"
+    }
+  ]
+}

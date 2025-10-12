@@ -4,132 +4,22 @@
         <name>MicrosanProjectTerminal</name>
     </assembly>
     <members>
-        <member name="T:Microsan.DataGridViewSendForm">
+        <member name="F:RoboRemoPC.DebugLogForm.components">
             <summary>
-            Description of DataGridViewSendForm.
+            Required designer variable.
             </summary>
         </member>
-        <member name="F:Microsan.DataGridViewSendForm.SendData">
+        <member name="M:RoboRemoPC.DebugLogForm.Dispose(System.Boolean)">
             <summary>
-            
-            </summary>
-            
-        </member>
-        <member name="F:Microsan.DataGridViewSendForm.sendGroups">
-            <summary>
-            This is only a stored local reference
-            </summary>
-        </member>
-        <member name="M:Microsan.DataGridViewSendForm.#ctor(System.Action{System.String})">
-            <summary>
-            
-            </summary>
-            <param name="SendDataHandler"></param>
-        </member>
-        <member name="M:Microsan.DataGridViewSendForm.SetData(System.Collections.Generic.List{Microsan.SendDataJsonItems})">
-            <summary>
-            
-            </summary>
-            <param name="sendGroups"></param>
-        </member>
-        <member name="M:Microsan.DataGridViewSendForm.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
-            <summary>
-            Fix for GetCharIndexFromPosition() not reaching end of text.
-            </summary>
-        </member>
-        <member name="F:Microsan.DataGridViewSendForm.components">
-            <summary>
-            Designer variable used to keep track of non-visual components.
-            </summary>
-        </member>
-        <member name="M:Microsan.DataGridViewSendForm.Dispose(System.Boolean)">
-            <summary>
-            Disposes resources used by the form.
+            Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Microsan.DataGridViewSendForm.InitializeComponent">
+        <member name="M:RoboRemoPC.DebugLogForm.InitializeComponent">
             <summary>
-            This method is required for Windows Forms designer support.
-            Do not change the method contents inside the source code editor. The Forms designer might
-            not be able to load this method if it was changed manually.
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="T:Microsan.TabPageExt">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Microsan.TabPageExt.Create(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="title"></param>
-            <param name="tooltip"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Microsan.SendDataJsonItems">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Microsan.SendDataJsonItems.items">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.SendDataJsonItems.Name">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.SendDataJsonItems.Note">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Microsan.SendDataJsonItems.#ctor(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="name"></param>
-            <param name="note"></param>
-        </member>
-        <member name="M:Microsan.SendDataJsonItems.ToJsonString(System.String)">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Microsan.SendDataJsonFile">
-            
-        </member>
-        <member name="F:Microsan.SendDataJsonFile.data">
-            
-        </member>
-        <member name="M:Microsan.SendDataJsonFile.GetFileName">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Microsan.SendDataJsonFile.#ctor(System.String)">
-            
-        </member>
-        <member name="M:Microsan.SendDataJsonFile.Save">
-            
-        </member>
-        <member name="T:Microsan.SendDataItem">
-            
-        </member>
-        <member name="P:Microsan.SendDataItem.Data">
-            
-        </member>
-        <member name="P:Microsan.SendDataItem.Note">
-            
-        </member>
-        <member name="M:Microsan.SendDataItem.ToJsonString">
-            
         </member>
         <member name="T:Microsan.Debugger">
             <summary>
@@ -325,6 +215,220 @@
             This method is required for Windows Forms designer support.
             Do not change the method contents inside the source code editor. The Forms designer might
             not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.RawProtocolSettingsBase">
+            <summary>
+            used by TCP and Serial types
+            </summary>
+        </member>
+        <member name="T:Microsan.ConnectionController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.SerialSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
+        <member name="F:Microsan.SerialSettingsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.SerialSettingsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.SerialSettingsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Microsan.ConnectionSettingsForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.ConnectionSettingsForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.ConnectionSettingsForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Microsan.DataGridViewSendForm">
+            <summary>
+            Description of DataGridViewSendForm.
+            </summary>
+        </member>
+        <member name="F:Microsan.DataGridViewSendForm.SendData">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="F:Microsan.DataGridViewSendForm.sendGroups">
+            <summary>
+            This is only a stored local reference
+            </summary>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.#ctor(System.Action{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="SendDataHandler"></param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.SetData(System.Collections.Generic.List{Microsan.SendDataJsonItems})">
+            <summary>
+            
+            </summary>
+            <param name="sendGroups"></param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
+        <member name="F:Microsan.DataGridViewSendForm.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendForm.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.TabPageExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.TabPageExt.Create(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="tooltip"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.SendDataJsonItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microsan.SendDataJsonItems.items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SendDataJsonItems.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsan.SendDataJsonItems.Note">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.SendDataJsonItems.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="note"></param>
+        </member>
+        <member name="M:Microsan.SendDataJsonItems.ToJsonString(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsan.SendDataJsonFile">
+            
+        </member>
+        <member name="F:Microsan.SendDataJsonFile.data">
+            
+        </member>
+        <member name="M:Microsan.SendDataJsonFile.GetFileName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.SendDataJsonFile.#ctor(System.String)">
+            
+        </member>
+        <member name="M:Microsan.SendDataJsonFile.Save">
+            
+        </member>
+        <member name="T:Microsan.SendDataItem">
+            
+        </member>
+        <member name="P:Microsan.SendDataItem.Data">
+            
+        </member>
+        <member name="P:Microsan.SendDataItem.Note">
+            
+        </member>
+        <member name="M:Microsan.SendDataItem.ToJsonString">
+            
+        </member>
+        <member name="T:Microsan.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsan.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsan.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:Microsan.TCPSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
+        <member name="F:Microsan.TCPSettingsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.TCPSettingsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.TCPSettingsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:Microsan.RuntimeProgramming">
@@ -680,23 +784,6 @@
             </summary>
             <param name="lineincr"></param>
             <returns></returns>
-        </member>
-        <member name="F:RoboRemoPC.DebugLogForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:RoboRemoPC.DebugLogForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:RoboRemoPC.DebugLogForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
         </member>
         <member name="M:System.Reflection.MicrosanExtensions.AdditionalInfo(System.Reflection.MemberInfo)">
             <summary>
