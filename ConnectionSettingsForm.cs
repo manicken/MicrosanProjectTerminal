@@ -25,11 +25,18 @@ namespace Microsan
             cmbProtocol.Items.AddRange(items);
 
             this.ConnectionTypeSelectedHandler = ConnectionTypeSelectedHandler;
-            this.Shown += connectionSettingsForm_Shown;
             this.FormClosing += connectionSettingsForm_FormClosing;
             cmbProtocol.SelectedIndexChanged += cmbProtocol_SelectedIndexChanged;
 
             //this.SizeChanged += ConnectionSettingsForm_SizeChanged;
+        }
+
+        public void SetLock(bool state)
+        {
+            if (state)
+                grpBoxProtocolSelect.Enabled = false;
+            else
+                grpBoxProtocolSelect.Enabled = true;
         }
 
         private void ConnectionSettingsForm_SizeChanged(object sender, EventArgs e)
@@ -37,16 +44,19 @@ namespace Microsan
            // this.Text = this.Size.ToString();
         }
 
-        private void connectionSettingsForm_Shown(object sender, EventArgs e)
-        {
-            if (cmbProtocol.Items.Count > 0)
-                cmbProtocol.SelectedIndex = 0;           
-        }
-
         private void cmbProtocol_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ((cmbProtocol.SelectedItem as string).Length != 0)
                 ConnectionTypeSelectedHandler?.Invoke(cmbProtocol.SelectedItem as string);
+        }
+
+        public void SelectProtocolByIndex(int index)
+        {
+            //MessageBox.Show("SelectProtocolByIndex:" + index);
+            if (index >= cmbProtocol.Items.Count || index < 0) return;
+            cmbProtocol.SelectedIndexChanged -= cmbProtocol_SelectedIndexChanged;
+            cmbProtocol.SelectedIndex = index;
+            cmbProtocol.SelectedIndexChanged += cmbProtocol_SelectedIndexChanged;
         }
 
         public void SetControl(UserControl ctrl)

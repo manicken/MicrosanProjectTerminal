@@ -8,29 +8,6 @@ using Newtonsoft.Json;
 
 namespace Microsan
 {
-
-    public abstract class ConnectionSettingsBase
-    {
-        public string Type { get; set; } // "TCP", "Serial", etc.
-    }
-    /// <summary>
-    /// used by TCP and Serial types
-    /// </summary>
-    public abstract class RawProtocolSettingsBase : ConnectionSettingsBase
-    {
-        public string msgPrefix { get; set; } = "";
-        public string msgPostfix { get; set; } = "\\r\\n";
-    }
-
-    public class ConnectionBase
-    {
-        public Func<Action<bool>, UserControl> Create { get; set; }
-        public Action<UserControl, ConnectionSettingsBase> ApplySettings { get; set; }
-        public Action<UserControl, ConnectionSettingsBase> RetrieveSettings { get; set; }
-
-        public Func<ConnectionSettingsBase> GetNewConfigData { get; set; }
-        public Type SettingsType { get; set; }
-    }
     /// <summary>
     /// 
     /// </summary>
@@ -38,8 +15,8 @@ namespace Microsan
     {
         private static Dictionary<string, ConnectionBase> Types = new Dictionary<string, ConnectionBase>()
         {
-            { TCPSettingsControl.TypeName, TCPSettingsControl.GetConnectionBase() },
-            { SerialSettingsControl.TypeName, SerialSettingsControl.GetConnectionBase() }
+            { TCPClientConnection.TypeName, TCPClientConnection.GetConnectionBase() },
+            { SerialConnection.TypeName, SerialConnection.GetConnectionBase() }
             
             //{ "Websocket", new WebsocketSettingsControl() },
             //{ "HTTP", new HttpSettingsControl() }
@@ -53,6 +30,9 @@ namespace Microsan
 
         private UserControl currentCtrl;
 
+        public IConnection currentConnection = null;
+
+        public event Action<byte[]> DataReceived;
 
         public ConnectionController()
         {
@@ -63,13 +43,88 @@ namespace Microsan
         public void SetData(ConnectionsData connections)
         {
             this.connections = connections;
+            string[] typeNames = Types.Keys.ToArray();
+            int index = -1;
+            for (int i = 0; i < typeNames.Length; i++)
+            {
+                if (typeNames[i] == connections.activeType)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            connectionSettingsForm.SelectProtocolByIndex(index);
+            SelectSettingsControlForActiveType();
+        }
+
+        private void SaveCurrentSettings()
+        {
+            // retreive settings from current control
+            Types[connections.activeType].SettingsControl.RetrieveSettings(currentCtrl, GetCurrentOrNewSetting());
+        }
+
+        private void SelectSettingsControlForActiveType()
+        {
+            ConnectionBase cb = Types[connections.activeType];
+            currentCtrl = cb.SettingsControl.Create(_Connect);
+            cb.SettingsControl.ApplySettings(currentCtrl, GetCurrentOrNewSetting());
+            connectionSettingsForm.SetControl(currentCtrl);
         }
 
         private void _Connect(bool connectState)
         {
-            // get settings from the form
-            Types[connections.activeType].RetrieveSettings(currentCtrl, GetCurrentOrNewSetting());
+            if (connectState)
+            {
+                SaveCurrentSettings();
+                if (currentConnection == null)
+                {
+                    currentConnection = Types[connections.activeType].Create();
+                }
+                else
+                {
+                    if (currentConnection.Type != connections.activeType)
+                    {
+                        currentConnection.DataReceived -= currentConnection_DataReceived;
+                        currentConnection.Dispose();
+                        currentConnection = Types[connections.activeType].Create();
+                    }
+                }
+                currentConnection.DataReceived += currentConnection_DataReceived;
+                currentConnection.ConnectionStateChanged += currentConnection_ConnectionStateChanged;
+                currentConnection.Connect(GetCurrentOrNewSetting());
+            }
+            else
+            {
+                if (currentConnection != null)
+                    currentConnection.Disconnect();
+            }
+        }
 
+        private void currentConnection_DataReceived(byte[] data)
+        {
+            DataReceived?.Invoke(data);
+        }
+        private void currentConnection_ConnectionStateChanged(bool state)
+        {
+            currentCtrl.BeginInvoke((MethodInvoker)(() =>
+            {
+                connectionSettingsForm.SetLock(state);
+                Types[connections.activeType].SettingsControl.SetConnectedState(currentCtrl, state);
+            }));
+        }
+        public void SendToCurrentConnection(string text)
+        {
+            if (currentConnection == null) {
+                _Connect(true);
+            }
+            currentConnection.Send(text);
+        }
+        public void SendToCurrentConnection(byte[] data)
+        {
+            if (currentConnection == null) {
+                _Connect(true);
+            }
+            currentConnection.Send(data);
         }
         private ConnectionSettingsBase GetCurrentOrNewSetting()
         {
@@ -85,44 +140,11 @@ namespace Microsan
         }
         private void _ProtocolSelected(string type)
         {
+            SaveCurrentSettings();
             connections.activeType = type;
-            currentCtrl = Types[type].Create(_Connect);
-            Types[type].ApplySettings(currentCtrl, GetCurrentOrNewSetting());
-            connectionSettingsForm.SetControl(currentCtrl);
+            SelectSettingsControlForActiveType();
         }
+
     }
-    public class ConnectionsData
-    {
-        public string activeType { get; set; } = "";
-        public List<ConnectionSettingsBase> items { get; set; } = new List<ConnectionSettingsBase>();
-
-        public bool GetCurrent(out ConnectionSettingsBase data)
-        {
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (items[i].Type == activeType)
-                {
-                    data = items[i];
-                    return true;
-                }
-            }
-
-            data = null;
-            return false;
-        }
-
-        public string ToJsonString(string lineincr)
-        {
-            string jsonStr = lineincr + "\"connections\":";
-
-            jsonStr += JsonConvert.SerializeObject(this, Formatting.Indented,
-                new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto
-                }
-            );
-            jsonStr = jsonStr.Replace("\n", "\n" + lineincr);
-            return jsonStr;
-        }
-    }
+    
 }

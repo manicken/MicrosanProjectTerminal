@@ -129,6 +129,8 @@
       <Link>RuntimeProgramming\Autocomplete.cs</Link>
     </Compile>
     <Compile Include="ConnectionController.cs" />
+    <Compile Include="ConnectionDrivers\SerialConnection.cs" />
+    <Compile Include="ConnectionDrivers\TCPClientConnection.cs" />
     <Compile Include="ConnectionSettingControls\SerialSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +143,9 @@
     <Compile Include="ConnectionSettingsForm.Designer.cs">
       <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectionSettings\SerialSettings.cs" />
+    <Compile Include="ConnectionSettings\TCPSettings.cs" />
+    <Compile Include="ConnectionStructures.cs" />
     <Compile Include="DataGridViewSendForm.cs">
       <SubType>Form</SubType>
     </Compile>

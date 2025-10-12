@@ -14,18 +14,18 @@ namespace Microsan
 {
     public partial class SerialSettingsControl : UserControl
     {
+        private const string EMPTY_TEXTBOX_DEFAULT = "12345678";
+
         private readonly Action<bool> ConnectHandler;
 
-        public const string TypeName = "Serial";
-        public static ConnectionBase GetConnectionBase()
+        public static ConnectionSettingsControl GetConnectionSettingsControlBase()
         {
-            return new ConnectionBase
+            return new ConnectionSettingsControl
             {
                 Create = SerialSettingsControl.Create,
                 ApplySettings = SerialSettingsControl.ApplySettings,
                 RetrieveSettings = SerialSettingsControl.RetrieveSettings,
-                GetNewConfigData = SerialSettingsControl.GetNewConfigData
-
+                SetConnectedState = SerialSettingsControl.SetConnectedState
             };
         }
         public static ConnectionSettingsBase GetNewConfigData()
@@ -39,19 +39,19 @@ namespace Microsan
 
         public static void ApplySettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != TypeName) return;
+            if (data.Type != SerialConnection.TypeName) return;
 
             SerialSettingsControl ctrl = context as SerialSettingsControl;
             SerialSettings cfg = data as SerialSettings;
             ctrl.cmbPort.Text = cfg.PortName;
             ctrl.txtBaudRate.Text = cfg.BaudRate.ToString();
-            ctrl.txtMessageStartId.Text = cfg.msgPrefix;
-            ctrl.txtMessageStopId.Text = cfg.msgPostfix;
+            ctrl.txtMessageStartId.Text = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPrefix;
+            ctrl.txtMessageStopId.Text = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
         }
 
         public static void RetrieveSettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != TypeName) return;
+            if (data.Type != SerialConnection.TypeName) return;
 
             SerialSettingsControl ctrl = context as SerialSettingsControl;
             SerialSettings cfg = data as SerialSettings;
@@ -60,6 +60,19 @@ namespace Microsan
             cfg.BaudRate = Convert.ToInt32(ctrl.txtBaudRate.Text);
             cfg.msgPrefix = ctrl.txtMessageStartId.Text;
             cfg.msgPostfix = ctrl.txtMessageStopId.Text;
+            cfg.msgPrefix = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPrefix;
+            cfg.msgPostfix = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
+        }
+
+        public static void SetConnectedState(UserControl context, bool connected)
+        {
+            SerialSettingsControl ctrl = context as SerialSettingsControl;
+
+            ctrl.btnConnect.Enabled = !connected;
+            ctrl.btnDisconnect.Enabled = connected;
+
+            ctrl.grpBoxPort.Enabled = !connected;
+            ctrl.grpBoxMessageStartStop.Enabled = !connected;
         }
 
         public SerialSettingsControl(Action<bool> ConnectHandler)
@@ -100,19 +113,12 @@ namespace Microsan
             txtMessageStopId.Text = stopId;
         }
 
-        public void SetConnectedState(bool connected)
-        {
-            btnConnect.Enabled = !connected;
-            btnDisconnect.Enabled = connected;
-
-            grpBoxPort.Enabled = !connected;
-            grpBoxMessageStartStop.Enabled = !connected;
-        }
+        
 
         private void txtMessageStartStopIds_MouseClick(object sender, MouseEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            if (txt.Text == "12345678")
+            if (txt.Text == EMPTY_TEXTBOX_DEFAULT)
             {
                 txt.Text = "";
                 txt.ForeColor = Color.Black;
@@ -124,7 +130,7 @@ namespace Microsan
             TextBox txt = (TextBox)sender;
             if (txt.Text == "")
             {
-                txt.Text = "12345678";
+                txt.Text = EMPTY_TEXTBOX_DEFAULT;
                 txt.ForeColor = Color.Gray;
             }
         }
@@ -190,13 +196,12 @@ namespace Microsan
             cmbPort.Items.Clear();
             cmbPort.Items.AddRange(ports);
         }
+
+        private void btnConnect_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
-    public class SerialSettings : RawProtocolSettingsBase
-    {
-        public string PortName { get; set; } = "COM1";
-        public int BaudRate { get; set; } = 9600;
-
-        public SerialSettings() { Type = "Serial"; }
-    }
+    
 }

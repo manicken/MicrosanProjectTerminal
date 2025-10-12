@@ -2,12 +2,12 @@
   "meta": {
   "projectName":"",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-12 03:13:23",
+  "modified":"2025-10-12 16:10:23",
   "version":1
   },
   "sendGroups": [
     {"name":"Volumes","note":"","items":[
-  
+      {"data": "hal/read/string/i2c/list", "note": null}  
     ]},
     {"name":"InputStage","note":"","items":[
       {"data": "IG0", "note": "in6ch to out6ch"},
@@ -56,6 +56,7 @@
       {"data": "PA0", "note": "amp stage off"},
       {"data": "PA1", "note": "amp stage on"},
       {"data": "IM3F", "note": "in stage ch mute"},
+      {"data": "VM50", "note": null},
       {"data": "VM60", "note": "master volume (0-79)"},
       {"data": "VM79", "note": "front volume (0-15)"},
       {"data": "VF00", "note": "rear volume (0-15)"},
@@ -204,7 +205,7 @@
         "$type": "Microsan.SerialSettings, MicrosanProjectTerminal",
         "PortName": "COM4",
         "BaudRate": 115200,
-        "msgPrefix": ":",
+        "msgPrefix": "",
         "msgPostfix": "\\n",
         "Type": "Serial"
       }
@@ -213,8 +214,8 @@
   "window": {
     "main": {"x":404,"y":82,"width":664,"height":906},
     "socket": {"x":0,"y":0,"width":300,"height":118},
-    "connections": {"x":0,"y":0,"width":310,"height":132},
-    "dgvSend": {"x":0,"y":0,"width":367,"height":842},
-    "log": {"x":0,"y":0,"width":310,"height":610}
+    "connections": {"x":0,"y":0,"width":313,"height":246},
+    "dgvSend": {"x":0,"y":0,"width":364,"height":842},
+    "log": {"x":0,"y":0,"width":313,"height":610}
   }
 }

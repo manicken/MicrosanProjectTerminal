@@ -131,6 +131,7 @@ namespace Microsan
             this.btnConnect.Size = new System.Drawing.Size(131, 34);
             this.btnConnect.TabIndex = 8;
             this.btnConnect.Text = "Connect";
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
             // 
             // grpBaud
             // 

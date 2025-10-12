@@ -30,28 +30,29 @@ namespace Microsan
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionSettingsForm));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpBoxProtocolSelect = new System.Windows.Forms.GroupBox();
             this.cmbProtocol = new System.Windows.Forms.ComboBox();
             this.panel = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
+            this.grpBoxProtocolSelect.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpBoxProtocolSelect
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpBoxProtocolSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.cmbProtocol);
-            this.groupBox1.Location = new System.Drawing.Point(3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(364, 42);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Protocol:";
+            this.grpBoxProtocolSelect.Controls.Add(this.cmbProtocol);
+            this.grpBoxProtocolSelect.Location = new System.Drawing.Point(3, 2);
+            this.grpBoxProtocolSelect.Name = "grpBoxProtocolSelect";
+            this.grpBoxProtocolSelect.Size = new System.Drawing.Size(364, 42);
+            this.grpBoxProtocolSelect.TabIndex = 0;
+            this.grpBoxProtocolSelect.TabStop = false;
+            this.grpBoxProtocolSelect.Text = "Protocol:";
             // 
             // cmbProtocol
             // 
             this.cmbProtocol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProtocol.FormattingEnabled = true;
             this.cmbProtocol.Location = new System.Drawing.Point(6, 14);
             this.cmbProtocol.Name = "cmbProtocol";
@@ -74,18 +75,18 @@ namespace Microsan
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(370, 280);
             this.Controls.Add(this.panel);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpBoxProtocolSelect);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConnectionSettingsForm";
             this.Text = "Connection Settings";
-            this.groupBox1.ResumeLayout(false);
+            this.grpBoxProtocolSelect.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpBoxProtocolSelect;
         private System.Windows.Forms.ComboBox cmbProtocol;
         private System.Windows.Forms.Panel panel;
     }

@@ -13,23 +13,18 @@ namespace Microsan
 {
     public partial class TCPSettingsControl : UserControl
     {
+        private const string EMPTY_TEXTBOX_DEFAULT = "12345678";
         private readonly Action<bool> ConnectHandler;
 
-        public const string TypeName = "TCP";
-        public static ConnectionBase GetConnectionBase()
+        public static ConnectionSettingsControl GetConnectionSettingsControlBase()
         {
-            return new ConnectionBase
+            return new ConnectionSettingsControl
             {
                 Create = TCPSettingsControl.Create,
                 ApplySettings = TCPSettingsControl.ApplySettings,
                 RetrieveSettings = TCPSettingsControl.RetrieveSettings,
-                GetNewConfigData = TCPSettingsControl.GetNewConfigData
+                SetConnectedState = TCPSettingsControl.SetConnectedState
             };
-        }
-
-        public static ConnectionSettingsBase GetNewConfigData()
-        {
-            return new TCPSettings();
         }
 
         public static UserControl Create(Action<bool> ConnectCallback)
@@ -39,19 +34,19 @@ namespace Microsan
 
         public static void ApplySettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != TypeName) return;
+            if (data.Type != TCPClientConnection.TypeName) return;
 
             TCPSettingsControl ctrl = context as TCPSettingsControl;
             TCPSettings cfg = data as TCPSettings;
             ctrl.txtHostIP.Text = cfg.Host;
             ctrl.txtHostPort.Text = cfg.Port.ToString();
-            ctrl.txtMessageStartId.Text = cfg.msgPrefix;
-            ctrl.txtMessageStopId.Text = cfg.msgPostfix;
+            ctrl.txtMessageStartId.Text = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT)?"": cfg.msgPrefix;
+            ctrl.txtMessageStopId.Text = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
         }
 
         public static void RetrieveSettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != TypeName) return;
+            if (data.Type != TCPClientConnection.TypeName) return;
 
             TCPSettingsControl ctrl = context as TCPSettingsControl;
             TCPSettings cfg = data as TCPSettings;
@@ -60,6 +55,18 @@ namespace Microsan
             cfg.Port = Convert.ToInt32(ctrl.txtHostPort.Text);
             cfg.msgPrefix = ctrl.txtMessageStartId.Text;
             cfg.msgPostfix = ctrl.txtMessageStopId.Text;
+            cfg.msgPrefix = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPrefix;
+            cfg.msgPostfix = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
+        }
+        public static void SetConnectedState(UserControl context, bool connected)
+        {
+            TCPSettingsControl ctrl = context as TCPSettingsControl;
+
+            ctrl.btnConnect.Enabled = !connected;
+            ctrl.btnDisconnect.Enabled = connected;
+
+            ctrl.grpBoxIpPort.Enabled = !connected;
+            ctrl.grpBoxMessageStartStop.Enabled = !connected;
         }
 
         public TCPSettingsControl(Action<bool> ConnectHandler)
@@ -104,19 +111,10 @@ namespace Microsan
             txtMessageStopId.Text = stopId;
         }
 
-        public void SetConnectedState(bool connected)
-        {
-            btnConnect.Enabled = !connected;
-            btnDisconnect.Enabled = connected;
-
-            grpBoxIpPort.Enabled = !connected;
-            grpBoxMessageStartStop.Enabled = !connected;
-        }
-
         private void txtMessageStartStopIds_MouseClick(object sender, MouseEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            if (txt.Text == "12345678")
+            if (txt.Text == EMPTY_TEXTBOX_DEFAULT)
             {
                 txt.Text = "";
                 txt.ForeColor = Color.Black;
@@ -128,7 +126,7 @@ namespace Microsan
             TextBox txt = (TextBox)sender;
             if (txt.Text == "")
             {
-                txt.Text = "12345678";
+                txt.Text = EMPTY_TEXTBOX_DEFAULT;
                 txt.ForeColor = Color.Gray;
             }
         }
@@ -189,11 +187,5 @@ namespace Microsan
         }
     }
 
-    public class TCPSettings : RawProtocolSettingsBase
-    {
-        public string Host { get; set; } = "127.0.0.1";
-        public int Port { get; set; } = 8080;
-
-        public TCPSettings() { Type = "TCP"; }
-    }
+    
 }
