@@ -16,9 +16,9 @@ namespace Microsan
         private static Dictionary<string, ConnectionBase> Types = new Dictionary<string, ConnectionBase>()
         {
             { TCPClientConnection.TypeName, TCPClientConnection.GetConnectionBase() },
-            { SerialConnection.TypeName, SerialConnection.GetConnectionBase() }
+            { SerialConnection.TypeName, SerialConnection.GetConnectionBase() },
+            { WebSocketClientConnection.TypeName, WebSocketClientConnection.GetConnectionBase() }
             
-            //{ "Websocket", new WebsocketSettingsControl() },
             //{ "HTTP", new HttpSettingsControl() }
         };
 

@@ -6,76 +6,71 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.IO.Ports;
 
 #pragma warning disable IDE1006
 
 namespace Microsan
 {
-    public partial class SerialSettingsControl : UserControl
+    public partial class WebsocketClientSettingsControl : UserControl
     {
         private const string EMPTY_TEXTBOX_DEFAULT = "12345678";
-
         private readonly Action<bool> ConnectHandler;
 
         public static ConnectionSettingsControl GetConnectionSettingsControlBase()
         {
             return new ConnectionSettingsControl
             {
-                Create = SerialSettingsControl.Create,
-                ApplySettings = SerialSettingsControl.ApplySettings,
-                RetrieveSettings = SerialSettingsControl.RetrieveSettings,
-                SetConnectedState = SerialSettingsControl.SetConnectedState
+                Create = WebsocketClientSettingsControl.Create,
+                ApplySettings = WebsocketClientSettingsControl.ApplySettings,
+                RetrieveSettings = WebsocketClientSettingsControl.RetrieveSettings,
+                SetConnectedState = WebsocketClientSettingsControl.SetConnectedState
             };
         }
-        public static ConnectionSettingsBase GetNewConfigData()
-        {
-            return new SerialSettings();
-        }
+
         public static UserControl Create(Action<bool> ConnectCallback)
         {
-            return new SerialSettingsControl(ConnectCallback);
+            return new WebsocketClientSettingsControl(ConnectCallback);
         }
 
         public static void ApplySettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != SerialConnection.TypeName) return;
+            if (data.Type != WebSocketClientConnection.TypeName) return;
 
-            SerialSettingsControl ctrl = context as SerialSettingsControl;
-            SerialSettings cfg = data as SerialSettings;
-            ctrl.cmbPort.Text = cfg.PortName;
-            ctrl.txtBaudRate.Text = cfg.BaudRate.ToString();
-            ctrl.txtMessageStartId.Text = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPrefix;
+            WebsocketClientSettingsControl ctrl = context as WebsocketClientSettingsControl;
+            WebsocketClientSettings cfg = data as WebsocketClientSettings;
+            ctrl.txtUri.Text = cfg.Uri;
+            ctrl.chkUseSecure.Checked = cfg.UseSecure;
+            ctrl.txtMessageStartId.Text = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT)?"": cfg.msgPrefix;
             ctrl.txtMessageStopId.Text = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
         }
 
         public static void RetrieveSettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != SerialConnection.TypeName) return;
+            if (data.Type != TCPClientConnection.TypeName) return;
 
-            SerialSettingsControl ctrl = context as SerialSettingsControl;
-            SerialSettings cfg = data as SerialSettings;
-            
-            cfg.PortName = ctrl.cmbPort.Text;
-            cfg.BaudRate = Convert.ToInt32(ctrl.txtBaudRate.Text);
+            WebsocketClientSettingsControl ctrl = context as WebsocketClientSettingsControl;
+            WebsocketClientSettings cfg = data as WebsocketClientSettings;
+
+            cfg.Uri = ctrl.txtUri.Text;
+            cfg.UseSecure = ctrl.chkUseSecure.Checked;
             cfg.msgPrefix = ctrl.txtMessageStartId.Text;
             cfg.msgPostfix = ctrl.txtMessageStopId.Text;
             cfg.msgPrefix = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPrefix;
             cfg.msgPostfix = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
         }
-
         public static void SetConnectedState(UserControl context, bool connected)
         {
-            SerialSettingsControl ctrl = context as SerialSettingsControl;
+            WebsocketClientSettingsControl ctrl = context as WebsocketClientSettingsControl;
 
             ctrl.btnConnect.Enabled = !connected;
             ctrl.btnDisconnect.Enabled = connected;
 
-            ctrl.grpBoxPort.Enabled = !connected;
+            ctrl.grpSecure.Enabled = !connected;
+            ctrl.grpBoxUri.Enabled = !connected;
             ctrl.grpBoxMessageStartStop.Enabled = !connected;
         }
 
-        public SerialSettingsControl(Action<bool> ConnectHandler)
+        public WebsocketClientSettingsControl(Action<bool> ConnectHandler)
         {
             InitializeComponent();
 
@@ -99,9 +94,9 @@ namespace Microsan
             txtMessageStopId.MouseUp += tb_MouseUp;
             txtMessageStopId.MouseMove += tb_MouseMove;
 
-            txtBaudRate.MouseDown += tb_MouseDown;
-            txtBaudRate.MouseUp += tb_MouseUp;
-            txtBaudRate.MouseMove += tb_MouseMove;
+            txtUri.MouseDown += tb_MouseDown;
+            txtUri.MouseUp += tb_MouseUp;
+            txtUri.MouseMove += tb_MouseMove;
 
         }
 
@@ -158,18 +153,6 @@ namespace Microsan
                 tb.SelectionStart = currIndex;
                 tb.SelectionLength = 0;
             }
-        }
-
-        private void btnRefreshPorts_Click(object sender, EventArgs e)
-        {
-            string[] ports = SerialPort.GetPortNames();
-            cmbPort.Items.Clear();
-            cmbPort.Items.AddRange(ports);
-        }
-
-        private void btnConnect_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 

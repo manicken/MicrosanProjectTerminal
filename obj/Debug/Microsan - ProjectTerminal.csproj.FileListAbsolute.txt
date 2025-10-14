@@ -43,3 +43,4 @@ G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.Properties.Resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.SerialSettingsControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.ConnectionSettingsForm.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.TCPSettingsControl.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.WebsocketClientSettingsControl.resources

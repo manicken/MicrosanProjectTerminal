@@ -82,10 +82,9 @@ namespace Microsan
             }
             btnConnect.Click += btnConnect_Click;
             btnDisconnect.Click += btnDisconnect_Click;
-            txtMessageStartId.MouseClick += txtMessageStartStopIds_MouseClick;
-            txtMessageStopId.MouseClick += txtMessageStartStopIds_MouseClick;
-            txtMessageStartId.Leave += txtMessageStartStopIds_Leave;
-            txtMessageStopId.Leave += txtMessageStartStopIds_Leave;
+
+            txtMessageStartId.Text = "";
+            txtMessageStopId.Text = "";
 
             txtMessageStartId.MouseDown += tb_MouseDown;
             txtMessageStartId.MouseUp += tb_MouseUp;
@@ -102,33 +101,6 @@ namespace Microsan
             txtHostPort.MouseDown += tb_MouseDown;
             txtHostPort.MouseUp += tb_MouseUp;
             txtHostPort.MouseMove += tb_MouseMove;
-        }
-        public void Show(string ip, string port, string startId, string stopId)
-        {
-            txtHostIP.Text = ip;
-            txtHostPort.Text = port;
-            txtMessageStartId.Text = startId;
-            txtMessageStopId.Text = stopId;
-        }
-
-        private void txtMessageStartStopIds_MouseClick(object sender, MouseEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            if (txt.Text == EMPTY_TEXTBOX_DEFAULT)
-            {
-                txt.Text = "";
-                txt.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtMessageStartStopIds_Leave(object sender, EventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            if (txt.Text == "")
-            {
-                txt.Text = EMPTY_TEXTBOX_DEFAULT;
-                txt.ForeColor = Color.Gray;
-            }
         }
 
         private void btnConnect_Click(object sender, EventArgs e)

@@ -24,7 +24,7 @@
     <SignAssembly>False</SignAssembly>
     <NoStdLib>False</NoStdLib>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,6 +46,7 @@
     <ErrorReport>prompt</ErrorReport>
     <DocumentationFile>Simple TCP client.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -64,6 +65,7 @@
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FastColoredTextBox">
@@ -89,6 +91,7 @@
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Web">
       <Name>System.Web</Name>
     </Reference>
@@ -131,11 +134,18 @@
     <Compile Include="ConnectionController.cs" />
     <Compile Include="ConnectionDrivers\SerialConnection.cs" />
     <Compile Include="ConnectionDrivers\TCPClientConnection.cs" />
+    <Compile Include="ConnectionDrivers\WebSocketClientConnection.cs" />
     <Compile Include="ConnectionSettingControls\SerialSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ConnectionSettingControls\SerialSettingsControl.Designer.cs">
       <DependentUpon>SerialSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionSettingControls\WebsocketClientSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConnectionSettingControls\WebsocketClientSettingsControl.Designer.cs">
+      <DependentUpon>WebsocketClientSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConnectionSettingsForm.cs">
       <SubType>Form</SubType>
@@ -144,6 +154,7 @@
       <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConnectionSettings\SerialSettings.cs" />
+    <Compile Include="ConnectionSettings\WebsocketClientSettings.cs" />
     <Compile Include="ConnectionSettings\TCPSettings.cs" />
     <Compile Include="ConnectionStructures.cs" />
     <Compile Include="DataGridViewSendForm.cs">
@@ -219,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectionSettingControls\SerialSettingsControl.resx">
       <DependentUpon>SerialSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionSettingControls\WebsocketClientSettingsControl.resx">
+      <DependentUpon>WebsocketClientSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectionSettingsForm.resx">
       <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>

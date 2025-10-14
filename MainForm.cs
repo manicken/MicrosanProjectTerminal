@@ -54,9 +54,6 @@ namespace Microsan
         /// </summary>
 		public MainForm()
 		{        
-            //execName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
-            //settingsFileName = execName + ".ini.xml";
-            
 			InitializeComponent();
 			
 			this.FormClosing += this_FormClosing;
@@ -65,18 +62,13 @@ namespace Microsan
             
             dgvSendForm = new DataGridViewSendForm(dgvSendForm_SendData);
  
-            dfi_rtxtForm = dc.Add(rtxtForm, zAllowedDock.All, rtxtForm.GetType().GUID);
-            dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
-           
+            
 
             dc.FormClosing += dc_FormClosing;
             
             Microsan.Debugger.Message = rtxtForm.rtxt.AppendText;
 
-
             connectionCtrl.DataReceived += connectionCtrl_DataReceived;
-
-            //this.Text = ".NET version:" + Environment.Version;
         }
 
         private void connectionCtrl_DataReceived(byte[] data)
@@ -113,6 +105,8 @@ namespace Microsan
         /// <param name="e"></param>
         private void this_Shown(object sender, EventArgs e)
         {
+            dfi_rtxtForm = dc.Add(rtxtForm, zAllowedDock.All, rtxtForm.GetType().GUID);
+            dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
             dfi_connectionCfgForm = dc.Add(connectionCtrl.connectionSettingsForm, zAllowedDock.All, connectionCtrl.connectionSettingsForm.GetType().GUID);
 
             rtPrg = new RuntimeProgramming(this);
@@ -170,15 +164,12 @@ namespace Microsan
             rtxtForm.MaximizeBox = false;
             dgvSendForm.MaximizeBox = false;
             
-            dc.DockForm(dfi_dgvSendForm, DockStyle.Fill, zDockMode.Inner);
             
-            dc.DockForm(dfi_connectionCfgForm, DockStyle.Left, zDockMode.None);
-            dc.DockForm(dfi_rtxtForm, dfi_connectionCfgForm, DockStyle.Bottom, zDockMode.None);
             
             //dc.DockForm(dfi_rtxtForm, DockStyle.Left, zDockMode.Outer);
             //dc.DockForm(dfi_tcpClientCfgForm, dfi_rtxtForm, DockStyle.Top, zDockMode.Outer);
 
-            //dc.GetFormsDecorator(dfi_tcpClientCfgForm).Height =  208;
+            
             //dc.GetFormsDecorator(dfi_tcpClientCfgForm).SetFormsPanelBounds();
 
             projectData.window.main.ApplyTo(this);
@@ -186,9 +177,22 @@ namespace Microsan
             projectData.window.connections.ApplyTo(connectionCtrl.connectionSettingsForm);
             projectData.window.log.ApplyTo(rtxtForm);
             projectData.window.dgvSend.ApplyTo(dgvSendForm);
+            
+            //dc.GetFormsDecorator(dfi_connectionCfgForm).Width = 310;
+            //dc.GetFormsDecorator(dfi_rtxtForm).Width = 310;
+            
+            dc.DockForm(dfi_dgvSendForm, DockStyle.Fill, zDockMode.Inner);
+
+            dc.DockForm(dfi_connectionCfgForm, DockStyle.Left, zDockMode.None);
+            dc.DockForm(dfi_rtxtForm, dfi_connectionCfgForm, DockStyle.Bottom, zDockMode.None);
+
+            
 
             dgvSendForm.SetData(projectData.sendGroups);
             connectionCtrl.SetData(projectData.connections);
+
+            //string jsonstr = JsonConvert.SerializeObject(dfi_rtxtForm.);
+            //File.WriteAllText("dctest.json", jsonstr);
         }
 
         private void SaveToProjectJson()

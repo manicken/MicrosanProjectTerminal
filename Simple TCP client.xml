@@ -244,6 +244,28 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:Microsan.WebsocketClientSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
+        <member name="F:Microsan.WebsocketClientSettingsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.WebsocketClientSettingsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.WebsocketClientSettingsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:Microsan.ConnectionSettingsForm.components">
             <summary>
             Required designer variable.

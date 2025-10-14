@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-12 16:10:23",
+  "modified":"2025-10-14 12:00:11",
   "version":1
   },
   "sendGroups": [
@@ -191,7 +191,7 @@
     "msgPostfix": "\\n"
   },
   "connections":{
-    "activeType": "TCP",
+    "activeType": "Websocket",
     "items": [
       {
         "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
@@ -208,14 +208,38 @@
         "msgPrefix": "",
         "msgPostfix": "\\n",
         "Type": "Serial"
+      },
+      {
+        "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
+        "Host": "127.0.0.1",
+        "Port": 8080,
+        "msgPrefix": "",
+        "msgPostfix": "\\r\\n",
+        "Type": "TCP"
+      },
+      {
+        "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
+        "Host": "127.0.0.1",
+        "Port": 8080,
+        "msgPrefix": "",
+        "msgPostfix": "\\r\\n",
+        "Type": "TCP"
+      },
+      {
+        "$type": "Microsan.WebsocketClientSettings, MicrosanProjectTerminal",
+        "Uri": "127.0.0.1:3000",
+        "UseSecure": false,
+        "msgPrefix": "",
+        "msgPostfix": "\\r\\n",
+        "Type": "Websocket"
       }
     ]
   },
   "window": {
-    "main": {"x":404,"y":82,"width":664,"height":906},
+    "main": {"x":388,"y":69,"width":806,"height":722},
     "socket": {"x":0,"y":0,"width":300,"height":118},
-    "connections": {"x":0,"y":0,"width":313,"height":246},
-    "dgvSend": {"x":0,"y":0,"width":364,"height":842},
-    "log": {"x":0,"y":0,"width":313,"height":610}
+    "connections": {"x":0,"y":0,"width":402,"height":334},
+    "dgvSend": {"x":0,"y":0,"width":417,"height":658},
+    "log": {"x":0,"y":0,"width":402,"height":338}
   }
 }
