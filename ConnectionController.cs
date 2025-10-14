@@ -17,9 +17,9 @@ namespace Microsan
         {
             { TCPClientConnection.TypeName, TCPClientConnection.GetConnectionBase() },
             { SerialConnection.TypeName, SerialConnection.GetConnectionBase() },
-            { WebSocketClientConnection.TypeName, WebSocketClientConnection.GetConnectionBase() }
-            
-            //{ "HTTP", new HttpSettingsControl() }
+            { WebSocketClientConnection.TypeName, WebSocketClientConnection.GetConnectionBase() },
+            { HttpRestClientConnection.TypeName, HttpRestClientConnection.GetConnectionBase() },
+            { MqttClientConnection.TypeName, MqttClientConnection.GetConnectionBase() }
         };
 
         private int selectedInterfaceIndex = 0;
@@ -114,7 +114,7 @@ namespace Microsan
         }
         public void SendToCurrentConnection(string text)
         {
-            if (currentConnection == null) {
+            if (currentConnection == null || currentConnection.IsConnected == false) {
                 _Connect(true);
             }
             currentConnection.Send(text);

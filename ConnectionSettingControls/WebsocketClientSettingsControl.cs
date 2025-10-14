@@ -46,7 +46,7 @@ namespace Microsan
 
         public static void RetrieveSettings(UserControl context, ConnectionSettingsBase data)
         {
-            if (data.Type != TCPClientConnection.TypeName) return;
+            if (data.Type != WebSocketClientConnection.TypeName) return;
 
             WebsocketClientSettingsControl ctrl = context as WebsocketClientSettingsControl;
             WebsocketClientSettings cfg = data as WebsocketClientSettings;

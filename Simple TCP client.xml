@@ -244,6 +244,50 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:Microsan.HttpRestSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
+        <member name="F:Microsan.HttpRestSettingsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.HttpRestSettingsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.HttpRestSettingsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Microsan.MqttClientSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+            <summary>
+            Fix for GetCharIndexFromPosition() not reaching end of text.
+            </summary>
+        </member>
+        <member name="F:Microsan.MqttClientSettingsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.MqttClientSettingsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.MqttClientSettingsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="M:Microsan.WebsocketClientSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
             <summary>
             Fix for GetCharIndexFromPosition() not reaching end of text.
@@ -281,11 +325,6 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:Microsan.RawProtocolSettingsBase">
-            <summary>
-            used by TCP and Serial types
             </summary>
         </member>
         <member name="T:Microsan.DataGridViewSendForm">
@@ -431,23 +470,23 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="M:Microsan.TCPSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
+        <member name="M:Microsan.TCPClientSettingsControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
             <summary>
             Fix for GetCharIndexFromPosition() not reaching end of text.
             </summary>
         </member>
-        <member name="F:Microsan.TCPSettingsControl.components">
+        <member name="F:Microsan.TCPClientSettingsControl.components">
             <summary> 
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Microsan.TCPSettingsControl.Dispose(System.Boolean)">
+        <member name="M:Microsan.TCPClientSettingsControl.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Microsan.TCPSettingsControl.InitializeComponent">
+        <member name="M:Microsan.TCPClientSettingsControl.InitializeComponent">
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.

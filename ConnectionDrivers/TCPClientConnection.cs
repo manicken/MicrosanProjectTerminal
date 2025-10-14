@@ -15,14 +15,14 @@ namespace Microsan
         {
             return new ConnectionBase
             {
-                SettingsControl = TCPSettingsControl.GetConnectionSettingsControlBase(),
+                SettingsControl = TCPClientSettingsControl.GetConnectionSettingsControlBase(),
                 GetNewConfigData = GetNewConfigData,
                 Create = CreateNew
             };
         }
         public static ConnectionSettingsBase GetNewConfigData()
         {
-            return new TCPSettings();
+            return new TCPClientSettings();
         }
         public static IConnection CreateNew()
         {
@@ -42,14 +42,14 @@ namespace Microsan
 
         private TcpClient _client;
         private NetworkStream _stream;
-        private TCPSettings _settings;
+        private TCPClientSettings _settings = new TCPClientSettings();
 
         private Thread _recvThread;
         private volatile bool _running;
 
         public void Connect(ConnectionSettingsBase cfg)
         {
-            _settings = cfg as TCPSettings;
+            _settings = cfg as TCPClientSettings;
             if (IsConnected)
                 return;
 

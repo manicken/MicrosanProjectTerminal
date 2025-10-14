@@ -74,7 +74,7 @@ namespace Microsan
             this.grpBoxMessageStartStop.Size = new System.Drawing.Size(289, 65);
             this.grpBoxMessageStartStop.TabIndex = 10;
             this.grpBoxMessageStartStop.TabStop = false;
-            this.grpBoxMessageStartStop.Text = "Message Start/Stop IDs";
+            this.grpBoxMessageStartStop.Text = "Message prefix/postfix:";
             // 
             // txtMessageStopId
             // 

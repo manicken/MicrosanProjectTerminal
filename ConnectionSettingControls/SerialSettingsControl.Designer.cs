@@ -77,8 +77,6 @@ namespace Microsan
             // 
             // grpBoxMessageStartStop
             // 
-            this.grpBoxMessageStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -87,7 +85,7 @@ namespace Microsan
             this.grpBoxMessageStartStop.Size = new System.Drawing.Size(289, 65);
             this.grpBoxMessageStartStop.TabIndex = 10;
             this.grpBoxMessageStartStop.TabStop = false;
-            this.grpBoxMessageStartStop.Text = "Message Start/Stop IDs";
+            this.grpBoxMessageStartStop.Text = "Message prefix/postfix:";
             // 
             // txtMessageStopId
             // 
@@ -113,7 +111,6 @@ namespace Microsan
             // 
             // btnDisconnect
             // 
-            this.btnDisconnect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDisconnect.Enabled = false;
             this.btnDisconnect.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDisconnect.Location = new System.Drawing.Point(152, 196);
@@ -124,7 +121,6 @@ namespace Microsan
             // 
             // btnConnect
             // 
-            this.btnConnect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnConnect.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.Location = new System.Drawing.Point(12, 196);
             this.btnConnect.Name = "btnConnect";
@@ -134,8 +130,6 @@ namespace Microsan
             // 
             // grpBaud
             // 
-            this.grpBaud.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBaud.Controls.Add(this.txtBaudRate);
             this.grpBaud.Location = new System.Drawing.Point(3, 68);
             this.grpBaud.Name = "grpBaud";

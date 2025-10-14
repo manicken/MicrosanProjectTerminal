@@ -11,16 +11,10 @@ namespace Microsan
     public abstract class ConnectionSettingsBase
     {
         public string Type { get; set; } // "TCP", "Serial", etc.
-    }
-    /// <summary>
-    /// used by TCP and Serial types
-    /// </summary>
-    public abstract class RawProtocolSettingsBase : ConnectionSettingsBase
-    {
         public string msgPrefix { get; set; } = "";
         public string msgPostfix { get; set; } = "\\r\\n";
     }
-
+    
     public class ConnectionSettingsControl
     {
         public Func<Action<bool>, UserControl> Create { get; set; }

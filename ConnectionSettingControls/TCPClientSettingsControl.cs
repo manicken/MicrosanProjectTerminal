@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Microsan
 {
-    public partial class TCPSettingsControl : UserControl
+    public partial class TCPClientSettingsControl : UserControl
     {
         private const string EMPTY_TEXTBOX_DEFAULT = "12345678";
         private readonly Action<bool> ConnectHandler;
@@ -20,24 +20,24 @@ namespace Microsan
         {
             return new ConnectionSettingsControl
             {
-                Create = TCPSettingsControl.Create,
-                ApplySettings = TCPSettingsControl.ApplySettings,
-                RetrieveSettings = TCPSettingsControl.RetrieveSettings,
-                SetConnectedState = TCPSettingsControl.SetConnectedState
+                Create = TCPClientSettingsControl.Create,
+                ApplySettings = TCPClientSettingsControl.ApplySettings,
+                RetrieveSettings = TCPClientSettingsControl.RetrieveSettings,
+                SetConnectedState = TCPClientSettingsControl.SetConnectedState
             };
         }
 
         public static UserControl Create(Action<bool> ConnectCallback)
         {
-            return new TCPSettingsControl(ConnectCallback);
+            return new TCPClientSettingsControl(ConnectCallback);
         }
 
         public static void ApplySettings(UserControl context, ConnectionSettingsBase data)
         {
             if (data.Type != TCPClientConnection.TypeName) return;
 
-            TCPSettingsControl ctrl = context as TCPSettingsControl;
-            TCPSettings cfg = data as TCPSettings;
+            TCPClientSettingsControl ctrl = context as TCPClientSettingsControl;
+            TCPClientSettings cfg = data as TCPClientSettings;
             ctrl.txtHostIP.Text = cfg.Host;
             ctrl.txtHostPort.Text = cfg.Port.ToString();
             ctrl.txtMessageStartId.Text = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT)?"": cfg.msgPrefix;
@@ -48,8 +48,8 @@ namespace Microsan
         {
             if (data.Type != TCPClientConnection.TypeName) return;
 
-            TCPSettingsControl ctrl = context as TCPSettingsControl;
-            TCPSettings cfg = data as TCPSettings;
+            TCPClientSettingsControl ctrl = context as TCPClientSettingsControl;
+            TCPClientSettings cfg = data as TCPClientSettings;
 
             cfg.Host = ctrl.txtHostIP.Text;
             cfg.Port = Convert.ToInt32(ctrl.txtHostPort.Text);
@@ -60,7 +60,7 @@ namespace Microsan
         }
         public static void SetConnectedState(UserControl context, bool connected)
         {
-            TCPSettingsControl ctrl = context as TCPSettingsControl;
+            TCPClientSettingsControl ctrl = context as TCPClientSettingsControl;
 
             ctrl.btnConnect.Enabled = !connected;
             ctrl.btnDisconnect.Enabled = connected;
@@ -69,7 +69,7 @@ namespace Microsan
             ctrl.grpBoxMessageStartStop.Enabled = !connected;
         }
 
-        public TCPSettingsControl(Action<bool> ConnectHandler)
+        public TCPClientSettingsControl(Action<bool> ConnectHandler)
         {
             InitializeComponent();
 

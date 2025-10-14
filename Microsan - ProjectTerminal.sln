@@ -7,6 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsan - ProjectTerminal"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crom.Controls", "..\Csharp_CommonSourceFiles\Crom.Controls\Crom.Controls.csproj", "{F2999C1D-BED3-4D47-A8AC-8027334ECDC1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B3F60ECB-45BA-4C66-8903-8BB89CA67998}"
+	ProjectSection(SolutionItems) = preProject
+		MQTTnet-master\.github\workflows\ci.yml = MQTTnet-master\.github\workflows\ci.yml
+		MQTTnet-master\CODE-OF-CONDUCT.md = MQTTnet-master\CODE-OF-CONDUCT.md
+		MQTTnet-master\LICENSE = MQTTnet-master\LICENSE
+		MQTTnet-master\README.md = MQTTnet-master\README.md
+		MQTTnet-master\Source\ReleaseNotes.md = MQTTnet-master\Source\ReleaseNotes.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +35,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {99F386E4-B48C-43A8-9E32-4CE80DF87BB4}
+		SolutionGuid = {07536672-5CBC-4BE3-ACE0-708A431A7894}
 	EndGlobalSection
 EndGlobal

@@ -40,7 +40,7 @@ namespace Microsan
         public event Action<bool> ConnectionStateChanged;
 
         private SerialPort _serialPort;
-        private SerialSettings _settings;
+        private SerialSettings _settings = new SerialSettings();
 
         public void Connect(ConnectionSettingsBase cfg)
         {

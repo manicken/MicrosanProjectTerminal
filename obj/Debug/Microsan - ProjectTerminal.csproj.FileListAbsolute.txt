@@ -42,5 +42,8 @@ G:\_git\__Csharp\MicrosanProjectTerminal\Crom.Controls.pdb
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.Properties.Resources.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.SerialSettingsControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.ConnectionSettingsForm.resources
-G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.TCPSettingsControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.WebsocketClientSettingsControl.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.HttpRestSettingsControl.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.MqttClientSettingsControl.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.TCPClientSettingsControl.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\MQTTnet.dll

@@ -81,7 +81,7 @@ namespace Microsan
                 {
                     try
                     {
-                        rtxtForm?.rtxt?.AppendText(LOG_RX_PREFIX + szData);
+                        rtxtForm?.rtxt?.AppendText(LOG_RX_PREFIX + szData + Environment.NewLine);
                     }
                     catch { /* ignore dispose race */ }
                 }));

@@ -2,12 +2,12 @@
   "meta": {
   "projectName":"",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-14 12:00:11",
+  "modified":"2025-10-14 16:18:25",
   "version":1
   },
   "sendGroups": [
     {"name":"Volumes","note":"","items":[
-      {"data": "hal/read/string/i2c/list", "note": null}  
+      {"data": "read/string/i2c/list", "note": null}  
     ]},
     {"name":"InputStage","note":"","items":[
       {"data": "IG0", "note": "in6ch to out6ch"},
@@ -191,55 +191,60 @@
     "msgPostfix": "\\n"
   },
   "connections":{
-    "activeType": "Websocket",
+    "activeType": "MQTT",
     "items": [
       {
-        "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
+        "$type": "Microsan.TCPClientSettings, MicrosanProjectTerminal",
         "Host": "192.168.50.235",
         "Port": 8266,
+        "Type": "TCP",
         "msgPrefix": ":",
-        "msgPostfix": "\\n",
-        "Type": "TCP"
+        "msgPostfix": "\\n"
       },
       {
         "$type": "Microsan.SerialSettings, MicrosanProjectTerminal",
         "PortName": "COM4",
         "BaudRate": 115200,
+        "Type": "Serial",
         "msgPrefix": "",
-        "msgPostfix": "\\n",
-        "Type": "Serial"
-      },
-      {
-        "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
-        "Host": "127.0.0.1",
-        "Port": 8080,
-        "msgPrefix": "",
-        "msgPostfix": "\\r\\n",
-        "Type": "TCP"
-      },
-      {
-        "$type": "Microsan.TCPSettings, MicrosanProjectTerminal",
-        "Host": "127.0.0.1",
-        "Port": 8080,
-        "msgPrefix": "",
-        "msgPostfix": "\\r\\n",
-        "Type": "TCP"
+        "msgPostfix": "\\n"
       },
       {
         "$type": "Microsan.WebsocketClientSettings, MicrosanProjectTerminal",
         "Uri": "127.0.0.1:3000",
         "UseSecure": false,
+        "Type": "Websocket",
         "msgPrefix": "",
-        "msgPostfix": "\\r\\n",
-        "Type": "Websocket"
+        "msgPostfix": "\\r\\n"
+      },
+      {
+        "$type": "Microsan.HttpRestSettings, MicrosanProjectTerminal",
+        "Uri": "192.168.50.29:82",
+        "UseSecure": false,
+        "Type": "HttpRest",
+        "msgPrefix": "",
+        "msgPostfix": ""
+      },
+      {
+        "$type": "Microsan.MqttClientSettings, MicrosanProjectTerminal",
+        "Host": "localhost",
+        "Port": 1883,
+        "ClientId": "Client2",
+        "Username": "",
+        "Password": "",
+        "Topic": "test/topic",
+        "UseTls": false,
+        "Type": "MQTT",
+        "msgPrefix": "",
+        "msgPostfix": "\\r\\n"
       }
     ]
   },
   "window": {
-    "main": {"x":388,"y":69,"width":806,"height":722},
+    "main": {"x":976,"y":76,"width":806,"height":928},
     "socket": {"x":0,"y":0,"width":300,"height":118},
-    "connections": {"x":0,"y":0,"width":402,"height":334},
-    "dgvSend": {"x":0,"y":0,"width":417,"height":658},
-    "log": {"x":0,"y":0,"width":402,"height":338}
+    "connections": {"x":0,"y":0,"width":402,"height":437},
+    "dgvSend": {"x":0,"y":0,"width":417,"height":864},
+    "log": {"x":0,"y":0,"width":402,"height":441}
   }
 }

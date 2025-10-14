@@ -1,7 +1,7 @@
 ﻿
 namespace Microsan
 {
-    partial class TCPSettingsControl
+    partial class MqttClientSettingsControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -38,8 +38,18 @@ namespace Microsan
             this.txtMessageStartId = new System.Windows.Forms.TextBox();
             this.btnDisconnect = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.grpClientID = new System.Windows.Forms.GroupBox();
+            this.txtClientID = new System.Windows.Forms.TextBox();
+            this.grpTopic = new System.Windows.Forms.GroupBox();
+            this.txtTopic = new System.Windows.Forms.TextBox();
+            this.grpUsernamePassword = new System.Windows.Forms.GroupBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.grpBoxIpPort.SuspendLayout();
             this.grpBoxMessageStartStop.SuspendLayout();
+            this.grpClientID.SuspendLayout();
+            this.grpTopic.SuspendLayout();
+            this.grpUsernamePassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpBoxIpPort
@@ -89,12 +99,12 @@ namespace Microsan
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxMessageStartStop.Location = new System.Drawing.Point(3, 63);
+            this.grpBoxMessageStartStop.Location = new System.Drawing.Point(3, 234);
             this.grpBoxMessageStartStop.Name = "grpBoxMessageStartStop";
             this.grpBoxMessageStartStop.Size = new System.Drawing.Size(289, 65);
             this.grpBoxMessageStartStop.TabIndex = 10;
             this.grpBoxMessageStartStop.TabStop = false;
-            this.grpBoxMessageStartStop.Text = "Message Start/Stop IDs";
+            this.grpBoxMessageStartStop.Text = "Message prefix/postfix:";
             // 
             // txtMessageStopId
             // 
@@ -122,7 +132,7 @@ namespace Microsan
             // 
             this.btnDisconnect.Enabled = false;
             this.btnDisconnect.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisconnect.Location = new System.Drawing.Point(152, 134);
+            this.btnDisconnect.Location = new System.Drawing.Point(153, 305);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(131, 34);
             this.btnDisconnect.TabIndex = 9;
@@ -131,26 +141,101 @@ namespace Microsan
             // btnConnect
             // 
             this.btnConnect.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.Location = new System.Drawing.Point(12, 134);
+            this.btnConnect.Location = new System.Drawing.Point(13, 305);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(131, 34);
             this.btnConnect.TabIndex = 8;
             this.btnConnect.Text = "Connect";
             // 
-            // TCPSettingsControl
+            // grpClientID
+            // 
+            this.grpClientID.Controls.Add(this.txtClientID);
+            this.grpClientID.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpClientID.Location = new System.Drawing.Point(3, 69);
+            this.grpClientID.Name = "grpClientID";
+            this.grpClientID.Size = new System.Drawing.Size(289, 49);
+            this.grpClientID.TabIndex = 12;
+            this.grpClientID.TabStop = false;
+            this.grpClientID.Text = "Client ID:";
+            // 
+            // txtClientID
+            // 
+            this.txtClientID.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientID.Location = new System.Drawing.Point(10, 20);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.Size = new System.Drawing.Size(271, 22);
+            this.txtClientID.TabIndex = 0;
+            // 
+            // grpTopic
+            // 
+            this.grpTopic.Controls.Add(this.txtTopic);
+            this.grpTopic.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpTopic.Location = new System.Drawing.Point(3, 124);
+            this.grpTopic.Name = "grpTopic";
+            this.grpTopic.Size = new System.Drawing.Size(289, 49);
+            this.grpTopic.TabIndex = 13;
+            this.grpTopic.TabStop = false;
+            this.grpTopic.Text = "Topic:";
+            // 
+            // txtTopic
+            // 
+            this.txtTopic.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTopic.Location = new System.Drawing.Point(10, 20);
+            this.txtTopic.Name = "txtTopic";
+            this.txtTopic.Size = new System.Drawing.Size(271, 22);
+            this.txtTopic.TabIndex = 0;
+            // 
+            // grpUsername
+            // 
+            this.grpUsernamePassword.Controls.Add(this.txtPassword);
+            this.grpUsernamePassword.Controls.Add(this.txtUsername);
+            this.grpUsernamePassword.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpUsernamePassword.Location = new System.Drawing.Point(3, 179);
+            this.grpUsernamePassword.Name = "grpUsername";
+            this.grpUsernamePassword.Size = new System.Drawing.Size(289, 49);
+            this.grpUsernamePassword.TabIndex = 14;
+            this.grpUsernamePassword.TabStop = false;
+            this.grpUsernamePassword.Text = "Username/Password:";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(10, 20);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(127, 22);
+            this.txtUsername.TabIndex = 0;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(150, 21);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(129, 22);
+            this.txtPassword.TabIndex = 0;
+            // 
+            // MqttClientSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grpUsernamePassword);
+            this.Controls.Add(this.grpTopic);
+            this.Controls.Add(this.grpClientID);
             this.Controls.Add(this.grpBoxIpPort);
             this.Controls.Add(this.grpBoxMessageStartStop);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnConnect);
-            this.Name = "TCPSettingsControl";
-            this.Size = new System.Drawing.Size(296, 175);
+            this.Name = "MqttClientSettingsControl";
+            this.Size = new System.Drawing.Size(296, 347);
             this.grpBoxIpPort.ResumeLayout(false);
             this.grpBoxIpPort.PerformLayout();
             this.grpBoxMessageStartStop.ResumeLayout(false);
             this.grpBoxMessageStartStop.PerformLayout();
+            this.grpClientID.ResumeLayout(false);
+            this.grpClientID.PerformLayout();
+            this.grpTopic.ResumeLayout(false);
+            this.grpTopic.PerformLayout();
+            this.grpUsernamePassword.ResumeLayout(false);
+            this.grpUsernamePassword.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -166,5 +251,12 @@ namespace Microsan
         public System.Windows.Forms.TextBox txtMessageStartId;
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.GroupBox grpClientID;
+        private System.Windows.Forms.TextBox txtClientID;
+        private System.Windows.Forms.GroupBox grpTopic;
+        private System.Windows.Forms.TextBox txtTopic;
+        private System.Windows.Forms.GroupBox grpUsernamePassword;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }

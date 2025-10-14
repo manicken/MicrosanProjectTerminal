@@ -37,7 +37,7 @@ namespace Microsan
         private Thread _receiveThread;
         private bool _running;
 
-        private WebsocketClientSettings _settings;
+        private WebsocketClientSettings _settings = new WebsocketClientSettings();
 
         public event Action<byte[]> DataReceived;
         public event Action<bool> ConnectionStateChanged;

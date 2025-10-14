@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Microsan
 {
-    public class WebsocketClientSettings : RawProtocolSettingsBase
+    public class WebsocketClientSettings : ConnectionSettingsBase
     {
         public string Uri { get; set; } = "127.0.0.1:3000";
 
         public bool UseSecure { get; set; } = false;
 
-        public WebsocketClientSettings() { Type = "Websocket"; }
+        public WebsocketClientSettings() { Type = WebSocketClientConnection.TypeName; }
     }
 }
