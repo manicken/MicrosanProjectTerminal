@@ -172,6 +172,7 @@ namespace Microsan
             this.ClientSize = new System.Drawing.Size(549, 506);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dc);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MicrosanProjectTerminal";
             this.Shown += new System.EventHandler(this.this_Shown);

@@ -255,6 +255,7 @@ namespace Microsan
 
         private void tabsContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // the following selects a tab directly when right clicked
             Point pos = tabCtrl.PointToClient(Cursor.Position);
             for (int i = 0; i < tabCtrl.TabCount; i++)
             {
@@ -264,6 +265,7 @@ namespace Microsan
                     break;
                 }
             }
+
             int idx = tabCtrl.SelectedIndex;
             tsmiMoveTabToLeft.Enabled = (idx > 0);
             tsmiMoveTabToRight.Enabled = (idx >= 0 && idx < tabCtrl.TabPages.Count - 1);
@@ -339,7 +341,7 @@ namespace Microsan
             }
         }
 
-        private void confirmToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void tsmiRemoveTabConfirm_Click(object sender, EventArgs e)
         {
             int idx = tabCtrl.SelectedIndex;
             tabCtrl.TabPages.RemoveAt(idx);

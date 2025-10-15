@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"Lumatron AMP",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-15 22:04:06",
+  "modified":"2025-10-16 00:47:35",
   "version":1
   },
   "sendGroups": [
@@ -247,7 +247,7 @@
   },
   "window": {
     "main": {"x":103,"y":80,"width":806,"height":928},
-    "codeEdit": {"x":0,"y":0,"width":600,"height":838},
+    "codeEdit": {"x":312,"y":102,"width":600,"height":838},
     "jsonEdit": {"x":908,"y":82,"width":577,"height":927},
     "socket": {"x":0,"y":0,"width":300,"height":118},
     "connections": {"x":0,"y":0,"width":402,"height":437},

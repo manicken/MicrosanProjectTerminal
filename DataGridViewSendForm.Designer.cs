@@ -50,7 +50,7 @@ namespace Microsan
             this.tabsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.confirmToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRemoveTabConfirm = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.editTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -172,17 +172,17 @@ namespace Microsan
             // removeTabToolStripMenuItem
             // 
             this.removeTabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.confirmToolStripMenuItem1});
+            this.tsmiRemoveTabConfirm});
             this.removeTabToolStripMenuItem.Name = "removeTabToolStripMenuItem";
             this.removeTabToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeTabToolStripMenuItem.Text = "Remove tab";
             // 
-            // confirmToolStripMenuItem1
+            // tsmiRemoveTabConfirm
             // 
-            this.confirmToolStripMenuItem1.Name = "confirmToolStripMenuItem1";
-            this.confirmToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.confirmToolStripMenuItem1.Text = "Confirm";
-            this.confirmToolStripMenuItem1.Click += new System.EventHandler(this.confirmToolStripMenuItem1_Click);
+            this.tsmiRemoveTabConfirm.Name = "tsmiRemoveTabConfirm";
+            this.tsmiRemoveTabConfirm.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRemoveTabConfirm.Text = "Confirm";
+            this.tsmiRemoveTabConfirm.Click += new System.EventHandler(this.tsmiRemoveTabConfirm_Click);
             // 
             // toolStripSeparator5
             // 
@@ -277,7 +277,7 @@ namespace Microsan
         private System.Windows.Forms.ContextMenuStrip tabsContextMenu;
         private System.Windows.Forms.ToolStripMenuItem addTabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeTabToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem confirmToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRemoveTabConfirm;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem editTextToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip1;

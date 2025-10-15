@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"Lumatron AMP",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-15 08:21:38",
+  "modified":"2025-10-15 22:07:12",
   "version":1
   },
   "sendGroups": [
@@ -184,12 +184,6 @@
       {"data": null, "note": null}  
     ]}
   ],
-  "socket":{
-    "ip": "192.168.50.235",
-    "port": 8266,
-    "msgPrefix": ":",
-    "msgPostfix": "\\n"
-  },
   "connections":{
     "activeType": "MQTT",
     "items": [
@@ -242,6 +236,8 @@
   },
   "window": {
     "main": {"x":148,"y":23,"width":806,"height":928},
+    "codeEdit": {"x":0,"y":0,"width":600,"height":838},
+    "jsonEdit": {"x":0,"y":0,"width":874,"height":548},
     "socket": {"x":0,"y":0,"width":300,"height":118},
     "connections": {"x":0,"y":0,"width":402,"height":437},
     "dgvSend": {"x":0,"y":0,"width":417,"height":864},
