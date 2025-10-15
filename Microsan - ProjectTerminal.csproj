@@ -141,6 +141,7 @@
     <Compile Include="ConnectionDrivers\SerialConnection.cs" />
     <Compile Include="ConnectionDrivers\TCPClientConnection.cs" />
     <Compile Include="ConnectionDrivers\WebSocketClientConnection.cs" />
+    <Compile Include="ConnectionRegistry.cs" />
     <Compile Include="ConnectionSettingControls\SerialSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

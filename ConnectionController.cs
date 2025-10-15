@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace Microsan
 {
@@ -13,17 +14,6 @@ namespace Microsan
     /// </summary>
     public class ConnectionController
     {
-        private static Dictionary<string, ConnectionBase> Types = new Dictionary<string, ConnectionBase>()
-        {
-            { TCPClientConnection.TypeName, TCPClientConnection.GetConnectionBase() },
-            { SerialConnection.TypeName, SerialConnection.GetConnectionBase() },
-            { WebSocketClientConnection.TypeName, WebSocketClientConnection.GetConnectionBase() },
-            { HttpRestClientConnection.TypeName, HttpRestClientConnection.GetConnectionBase() },
-            { MqttClientConnection.TypeName, MqttClientConnection.GetConnectionBase() }
-        };
-
-        private int selectedInterfaceIndex = 0;
-
         private ConnectionsData connections;
 
         public ConnectionSettingsForm connectionSettingsForm = null;
@@ -36,14 +26,15 @@ namespace Microsan
 
         public ConnectionController()
         {
-            connectionSettingsForm = new ConnectionSettingsForm(_ProtocolSelected, Types.Keys.ToArray());
+            ConnectionRegistry.DiscoverConnections();
+            connectionSettingsForm = new ConnectionSettingsForm(_ProtocolSelected, ConnectionRegistry.Types.Keys.ToArray());
             
         }
 
         public void SetData(ConnectionsData connections)
         {
             this.connections = connections;
-            string[] typeNames = Types.Keys.ToArray();
+            string[] typeNames = ConnectionRegistry.Types.Keys.ToArray();
             int index = -1;
             for (int i = 0; i < typeNames.Length; i++)
             {
@@ -60,12 +51,12 @@ namespace Microsan
         private void SaveCurrentSettings()
         {
             // retreive settings from current control
-            Types[connections.activeType].SettingsControl.RetrieveSettings(currentCtrl, GetCurrentOrNewSetting());
+            ConnectionRegistry.Types[connections.activeType].SettingsControl.RetrieveSettings(currentCtrl, GetCurrentOrNewSetting());
         }
 
         private void SelectSettingsControlForActiveType()
         {
-            ConnectionBase cb = Types[connections.activeType];
+            ConnectionBase cb = ConnectionRegistry.Types[connections.activeType];
             currentCtrl = cb.SettingsControl.Create(_Connect);
             cb.SettingsControl.ApplySettings(currentCtrl, GetCurrentOrNewSetting());
             connectionSettingsForm.SetControl(currentCtrl);
@@ -78,7 +69,7 @@ namespace Microsan
                 SaveCurrentSettings();
                 if (currentConnection == null)
                 {
-                    currentConnection = Types[connections.activeType].Create();
+                    currentConnection = ConnectionRegistry.Types[connections.activeType].Create();
                 }
                 else
                 {
@@ -86,7 +77,7 @@ namespace Microsan
                     {
                         currentConnection.DataReceived -= currentConnection_DataReceived;
                         currentConnection.Dispose();
-                        currentConnection = Types[connections.activeType].Create();
+                        currentConnection = ConnectionRegistry.Types[connections.activeType].Create();
                     }
                 }
                 currentConnection.DataReceived += currentConnection_DataReceived;
@@ -109,7 +100,7 @@ namespace Microsan
             currentCtrl.BeginInvoke((MethodInvoker)(() =>
             {
                 connectionSettingsForm.SetLock(state);
-                Types[connections.activeType].SettingsControl.SetConnectedState(currentCtrl, state);
+                ConnectionRegistry.Types[connections.activeType].SettingsControl.SetConnectedState(currentCtrl, state);
             }));
         }
         public void SendToCurrentConnection(string text)
@@ -133,7 +124,7 @@ namespace Microsan
             {
                 // setting did not allready existed,
                 // create new
-                data = Types[connections.activeType].GetNewConfigData();
+                data = ConnectionRegistry.Types[connections.activeType].GetNewConfigData();
                 connections.items.Add(data);
             }
             return data;
@@ -145,6 +136,38 @@ namespace Microsan
             SelectSettingsControlForActiveType();
         }
 
+        public static string DiscoverConnectionsAsString()
+        {
+            var connectionType = typeof(IConnection);
+            var foundTypes = new List<string>();
+
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type[] types = null;
+                try
+                {
+                    types = asm.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    types = ex.Types.Where(t => t != null).ToArray();
+                }
+
+                foreach (var type in types)
+                {
+                    if (connectionType.IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
+                    {
+                        try
+                        {
+                            var instance = (IConnection)Activator.CreateInstance(type);
+                            if (!string.IsNullOrEmpty(instance.Type))
+                                foundTypes.Add(instance.Type);
+                        }
+                        catch { /* ignore instantiation failures */ }
+                    }
+                }
+            }
+            return string.Join(", ", foundTypes.Distinct().OrderBy(s => s));
+        }
     }
-    
 }

@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-14 16:18:25",
+  "modified":"2025-10-15 08:00:27",
   "version":1
   },
   "sendGroups": [
@@ -191,7 +191,7 @@
     "msgPostfix": "\\n"
   },
   "connections":{
-    "activeType": "MQTT",
+    "activeType": "HttpRest",
     "items": [
       {
         "$type": "Microsan.TCPClientSettings, MicrosanProjectTerminal",
@@ -241,7 +241,7 @@
     ]
   },
   "window": {
-    "main": {"x":976,"y":76,"width":806,"height":928},
+    "main": {"x":393,"y":82,"width":806,"height":928},
     "socket": {"x":0,"y":0,"width":300,"height":118},
     "connections": {"x":0,"y":0,"width":402,"height":437},
     "dgvSend": {"x":0,"y":0,"width":417,"height":864},

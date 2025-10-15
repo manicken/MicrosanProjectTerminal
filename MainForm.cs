@@ -114,6 +114,8 @@ namespace Microsan
             LoadAndAppyProjectJson();
 
             connectionCtrl.connectionSettingsForm.Show();
+
+            rtxtForm.rtxt.AppendText(ConnectionController.DiscoverConnectionsAsString());
         }
 
         private void LoadProjectJson()
@@ -268,5 +270,7 @@ namespace Microsan
         {
             LoadDgvSenderDataOnly();
         }
+
+        
     }
 }
