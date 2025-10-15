@@ -13,6 +13,7 @@ namespace Microsan
     /// </summary>
     public class ProjectData
     {
+        public static string CurrentProjectFilePath = "";
         /// <summary>
         /// 
         /// </summary>
@@ -24,7 +25,6 @@ namespace Microsan
         /// <summary>
         /// 
         /// </summary>
-        public SocketConnectionSettings socket { get; set; } = new SocketConnectionSettings();
         public ConnectionsData connections { get; set; } = new ConnectionsData();
         /// <summary>
         /// 
@@ -33,18 +33,16 @@ namespace Microsan
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="path"></param>
-        public void Save(string path)
+        public string ToJsonString()
         {
             var sb = new StringBuilder();
             sb.AppendLine("{");
             sb.AppendLine(meta.ToJsonString("  ") + ",");
             sb.AppendLine(SendGroupsToJsonString("  ") + ",");
-            sb.AppendLine(socket.ToJsonString("  ") + ",");
             sb.AppendLine(connections.ToJsonString("  ") + ",");
             sb.AppendLine(window.ToJsonString("  "));
             sb.AppendLine("}");
-            File.WriteAllText(path, sb.ToString());
+            return sb.ToString();
         }
 
         private string SendGroupsToJsonString(string lineincr)
@@ -62,41 +60,33 @@ namespace Microsan
             sb.Append(lineincr + "]");
             return sb.ToString();
         }
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    public class SocketConnectionSettings
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string ip { get; set; } = "127.0.0.1";
-        /// <summary>
-        /// 
-        /// </summary>
-        public int port { get; set; } = 9000;
-        /// <summary>
-        /// 
-        /// </summary>
-        public string msgPrefix { get; set; } = "";
-        /// <summary>
-        /// 
-        /// </summary>
 
-        public string msgPostfix { get; set; } = "\r\n";
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="lineincr"></param>
-        /// <returns></returns>
-        public string ToJsonString(string lineincr)
+        
+        public static ProjectData LoadFromJsonString(string jsonStr, Action<List<JsonSerializeError>> onError)
         {
-            var sb = new StringBuilder();
-            sb.Append(lineincr);
-            sb.Append("\"socket\":");
-            sb.Append(JsonConvert.SerializeObject(this, Formatting.Indented).Replace("\n","\n  "));
-            return sb.ToString();
+            ProjectData pdTemp = null;
+            var errors = new List<JsonSerializeError>();
+            try
+            {
+                pdTemp = JsonConvert.DeserializeObject<ProjectData>(jsonStr, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    Error = (sender, args) => {
+                        errors.Add(new JsonSerializeError(args));
+                        args.ErrorContext.Handled = true; // skip the broken object
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                // top-level parse failure (e.g. completely invalid JSON)
+                errors.Add(new JsonSerializeError(ex.GetType().ToString(), "(file)", ex.ToString(), -1, -1));
+            }
+            if (errors.Count != 0)
+            {
+                onError?.Invoke(errors);
+            }
+            return pdTemp ?? new ProjectData();
         }
     }
     /// <summary>
@@ -244,6 +234,47 @@ namespace Microsan
             sb.Append(lineincr); sb.Append("\"version\":"); sb.AppendLine(JsonConvert.SerializeObject(version));
             sb.Append(lineincr + "}");
             return sb.ToString();
+        }
+    }
+
+    public class JsonSerializeError
+    {
+        public string Type { get; set; } = "";
+        public string Path { get; set; } = "";
+        public string Message { get; set; } = "";
+        public int Line { get; set; } = 0;
+        public int Column { get; set; } = 0;
+
+        public JsonSerializeError(string type, string path, string message, int line, int column)
+        {
+            this.Type = type; this.Path = path; this.Message = message;
+            this.Line = line; this.Column = column;
+        }
+        public JsonSerializeError(Newtonsoft.Json.Serialization.ErrorEventArgs args)
+        {
+            this.Path = args.ErrorContext.Path ?? "(unknown path)";
+            this.Message = args.ErrorContext.Error.Message;
+            this.Type = args.ErrorContext.Error.GetType().ToString();
+
+            var ex = args.ErrorContext.Error;
+            if (ex is JsonReaderException jrex)
+            {
+                this.Line = jrex.LineNumber;
+                this.Column = jrex.LinePosition;
+            }
+            else if (ex is JsonSerializationException jsex)
+            {
+                this.Line = jsex.LineNumber;
+                this.Column = jsex.LinePosition;
+            }
+            else
+            {
+                this.Line = this.Column = 0;
+            }
+        }
+        public override string ToString()
+        {
+            return $"[{Type}] Path: {Path}, Message: {Message}, Line: {Line}, Col: {Column}";
         }
     }
 }

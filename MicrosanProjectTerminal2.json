@@ -2,20 +2,12 @@
   "meta": {
   "projectName":"Lumatron AMP",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-15 21:22:29",
+  "modified":"2025-10-15 08:21:38",
   "version":1
   },
   "sendGroups": [
     {"name":"Volumes","note":"","items":[
-      {"data": "VM50", "note": "master volume 50"},
-      {"data": "VM60", "note": "master volume 60"},
-      {"data": "VM79", "note": "front volume max"},
-      {"data": "VF00", "note": "front volume min"},
-      {"data": "VF15", "note": "front volume max"},
-      {"data": "VC00", "note": "centre volume min"},
-      {"data": "VC15", "note": "centre volume max"},
-      {"data": "VW00", "note": "woofer volume min"},
-      {"data": "VW15", "note": "woofer volume max"}  
+      {"data": "read/string/i2c/list", "note": null}  
     ]},
     {"name":"InputStage","note":"","items":[
       {"data": "IG0", "note": "in6ch to out6ch"},
@@ -190,13 +182,16 @@
       {"data": "IMWT", "note": "woofer toggle mute"},
       {"data": null, "note": null},
       {"data": null, "note": null}  
-    ]},
-    {"name":"dalhal","note":"","items":[
-      {"data": "read/string/i2c/list", "note": "test"}  
     ]}
   ],
+  "socket":{
+    "ip": "192.168.50.235",
+    "port": 8266,
+    "msgPrefix": ":",
+    "msgPostfix": "\\n"
+  },
   "connections":{
-    "activeType": "TCP",
+    "activeType": "MQTT",
     "items": [
       {
         "$type": "Microsan.TCPClientSettings, MicrosanProjectTerminal",
@@ -246,7 +241,7 @@
     ]
   },
   "window": {
-    "main": {"x":992,"y":61,"width":806,"height":928},
+    "main": {"x":148,"y":23,"width":806,"height":928},
     "socket": {"x":0,"y":0,"width":300,"height":118},
     "connections": {"x":0,"y":0,"width":402,"height":437},
     "dgvSend": {"x":0,"y":0,"width":417,"height":864},

@@ -185,6 +185,12 @@
       <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataGridViewSendFormDataStructures.cs" />
+    <Compile Include="JSONEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JSONEditorForm.Designer.cs">
+      <DependentUpon>JSONEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,6 +201,12 @@
     </Compile>
     <Compile Include="ConnectionSettingControls\TCPClientSettingsControl.Designer.cs">
       <DependentUpon>TCPClientSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JSONEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JSONEditControl.Designer.cs">
+      <DependentUpon>JSONEditControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
       <Link>RuntimeProgramming\NewClass_Template.cs</Link>
@@ -267,6 +279,9 @@
     <EmbeddedResource Include="DataGridViewSendForm.resx">
       <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JSONEditorForm.resx">
+      <DependentUpon>JSONEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -277,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectionSettingControls\TCPClientSettingsControl.resx">
       <DependentUpon>TCPClientSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JSONEditControl.resx">
+      <DependentUpon>JSONEditControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

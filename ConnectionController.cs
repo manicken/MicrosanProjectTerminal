@@ -56,6 +56,10 @@ namespace Microsan
 
         private void SelectSettingsControlForActiveType()
         {
+            if (ConnectionRegistry.Types.ContainsKey(connections.activeType)==false)
+            {
+                return;
+            }
             ConnectionBase cb = ConnectionRegistry.Types[connections.activeType];
             currentCtrl = cb.SettingsControl.Create(_Connect);
             cb.SettingsControl.ApplySettings(currentCtrl, GetCurrentOrNewSetting());

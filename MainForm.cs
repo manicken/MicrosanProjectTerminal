@@ -21,19 +21,33 @@ namespace Microsan
 	/// </summary>
 	public partial class MainForm : System.Windows.Forms.Form
 	{
-        private const string JSON_PROJECT_FILENAME = "MicrosanProjectTerminal.json";
+        private const string DEFAULT_JSON_PROJECT_FILENAME = "MicrosanProjectTerminal.json";
+        
+        /** used to signal load errors so that the project is not saved back to a empty one */
+        private bool ReadOnlyMode = false; 
         private const string LOG_TX_PREFIX = ">> ";
         private const string LOG_RX_PREFIX = "<< ";
         /// <summary> The main entry point for the application. </summary>
         [STAThread]
-        static void Main() 
+        static void Main(string[] args) 
         {
+            
+            if (args.Length > 0 && File.Exists(args[0]))
+            {
+                ProjectData.CurrentProjectFilePath = args[0];
+            }
+            else
+            {
+                ProjectData.CurrentProjectFilePath = DEFAULT_JSON_PROJECT_FILENAME;
+            }
             Application.Run(new MainForm());
         }
 
         // Note here, the reason that all here is
         // public is that then they are accessable from
         // RuntimeProgramming
+
+        public JSONEditorForm jsonEditForm;
 
         public DataGridViewSendForm dgvSendForm;
         public DockableFormInfo dfi_dgvSendForm;
@@ -55,8 +69,11 @@ namespace Microsan
 		public MainForm()
 		{        
 			InitializeComponent();
-			
-			this.FormClosing += this_FormClosing;
+
+            jsonEditForm = new JSONEditorForm();
+            jsonEditForm.Save = jsonEditForm_Save;
+
+            this.FormClosing += this_FormClosing;
 
 			rtxtForm = new RichTextBoxForm("Log");
             
@@ -69,6 +86,20 @@ namespace Microsan
             Microsan.Debugger.Message = rtxtForm.rtxt.AppendText;
 
             connectionCtrl.DataReceived += connectionCtrl_DataReceived;
+        }
+        /// <summary>
+        /// note the following gets only called when the json is valid
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="pdTemp"></param>
+        private void jsonEditForm_Save(string contents, ProjectData pdTemp)
+        {
+            File.WriteAllText(ProjectData.CurrentProjectFilePath, contents);
+            projectData = pdTemp;
+            ReadOnlyMode = false;
+            tsbtnReload.Enabled = true;
+            tsbtnSave.Enabled = true;
+            ApplyProjectData();
         }
 
         private void connectionCtrl_DataReceived(byte[] data)
@@ -111,100 +142,151 @@ namespace Microsan
 
             rtPrg = new RuntimeProgramming(this);
             rtPrg.InitScriptEditor_IfNeeded();
-            LoadAndAppyProjectJson();
+            LoadAndAppyProjectJson(LoadAndAppyProjectJsonMode.FirstLoad);
 
-            connectionCtrl.connectionSettingsForm.Show();
-
-            rtxtForm.rtxt.AppendText(ConnectionController.DiscoverConnectionsAsString());
-        }
-
-        private void LoadProjectJson()
-        {
-            try
-            {
-                string jsonStr = File.ReadAllText(JSON_PROJECT_FILENAME);
-                projectData = JsonConvert.DeserializeObject<ProjectData>(jsonStr, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void LoadDgvSenderDataOnly()
-        {
-            try
-            {
-                string jsonStr = File.ReadAllText(JSON_PROJECT_FILENAME);
-                ProjectData pdTemp = JsonConvert.DeserializeObject<ProjectData>(jsonStr, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto
-                });
-                projectData.sendGroups = pdTemp.sendGroups;
-                dgvSendForm.SetData(projectData.sendGroups);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        
-        /// <summary>
-        /// init all docked forms
-        /// </summary>
-		private void LoadAndAppyProjectJson()
-		{
-            if (File.Exists(JSON_PROJECT_FILENAME))
-                LoadProjectJson();
-
-            ApplyProjectName();
-
-            rtxtForm.MaximizeBox = false;
-            dgvSendForm.MaximizeBox = false;
-            
-            
-            
-            //dc.DockForm(dfi_rtxtForm, DockStyle.Left, zDockMode.Outer);
-            //dc.DockForm(dfi_tcpClientCfgForm, dfi_rtxtForm, DockStyle.Top, zDockMode.Outer);
-
-            
-            //dc.GetFormsDecorator(dfi_tcpClientCfgForm).SetFormsPanelBounds();
-
-            projectData.window.main.ApplyTo(this);
-            
-            projectData.window.connections.ApplyTo(connectionCtrl.connectionSettingsForm);
-            projectData.window.log.ApplyTo(rtxtForm);
-            projectData.window.dgvSend.ApplyTo(dgvSendForm);
-            
-            //dc.GetFormsDecorator(dfi_connectionCfgForm).Width = 310;
-            //dc.GetFormsDecorator(dfi_rtxtForm).Width = 310;
-            
+            // have the following here,
+            // as currently restoring the dock cfg from json is not possible
             dc.DockForm(dfi_dgvSendForm, DockStyle.Fill, zDockMode.Inner);
-
             dc.DockForm(dfi_connectionCfgForm, DockStyle.Left, zDockMode.None);
             dc.DockForm(dfi_rtxtForm, dfi_connectionCfgForm, DockStyle.Bottom, zDockMode.None);
 
-            
+            rtxtForm.MaximizeBox = false;
+            dgvSendForm.MaximizeBox = false;
 
+            connectionCtrl.connectionSettingsForm.Show();
+
+            //rtxtForm.rtxt.AppendText(ConnectionController.DiscoverConnectionsAsString());
+        }
+
+        public enum LoadProjectStatus
+        {
+            Success,
+            FileNotFound,
+            FileIOError,
+            JsonSerializeError
+        };
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pdTemp">Note this allways returns a valid non null object</param>
+        /// <param name="onError"></param>
+        /// <returns></returns>
+        private LoadProjectStatus LoadProjectJson(out ProjectData pdTemp, Action<string> onError)
+        {
+            if (File.Exists(ProjectData.CurrentProjectFilePath) == false)
+            {
+                pdTemp = new ProjectData();
+                return LoadProjectStatus.FileNotFound; 
+            }
+            string jsonStr = "";
+            
+            try
+            {
+                jsonStr = File.ReadAllText(ProjectData.CurrentProjectFilePath);
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex.ToString());
+                pdTemp = new ProjectData();
+                return LoadProjectStatus.FileIOError;
+            }
+            LoadProjectStatus res = LoadProjectStatus.Success;
+            pdTemp = ProjectData.LoadFromJsonString(jsonStr, (errorList) => {
+                res = LoadProjectStatus.JsonSerializeError;
+                jsonEditForm.Show(jsonStr, errorList);
+            });
+            if (pdTemp == null)
+                pdTemp = new ProjectData();
+            return res;
+        }
+
+        private bool LoadDgvSenderDataOnly()
+        {
+            ProjectData pdTemp = null;
+            LoadProjectStatus res = LoadProjectJson(out pdTemp, (errStr) => {
+                DebugLogForm.ShowOnceWithMessageAndAckButton(errStr, "continue in readonle mode");
+            });
+            if (res != LoadProjectStatus.Success)
+            {
+                ReadOnlyMode = true;
+                tsbtnSave.Enabled = false;
+            }
+            else
+            {
+                ReadOnlyMode = false;
+                tsbtnSave.Enabled = true;
+            }
+
+            ApplyProjectName(); // this updates the title to include the read only note
+            if (res == LoadProjectStatus.Success)
+            {
+                projectData.sendGroups = pdTemp.sendGroups;
+                dgvSendForm.SetData(projectData.sendGroups);
+            }
+            return (res == LoadProjectStatus.Success);
+        }
+
+        private enum LoadAndAppyProjectJsonMode
+        {
+            FirstLoad,
+            Reload
+        }
+        /// <summary>
+        /// init all docked forms
+        /// </summary>
+        private void LoadAndAppyProjectJson(LoadAndAppyProjectJsonMode mode)
+		{
+            ProjectData pdTemp;
+            LoadProjectStatus res = LoadProjectJson(out pdTemp, (errStr) => {
+                DebugLogForm.ShowOnceWithMessageAndAckButton(errStr, "open in readonly mode");
+            });
+
+            // A missing project file is not an error — we initialize a new empty project instead
+            bool validLoad = (res == LoadProjectStatus.Success) || (res == LoadProjectStatus.FileNotFound);
+
+            if (!validLoad)
+            {
+                ReadOnlyMode = true;
+                tsbtnSave.Enabled = false;
+                tsbtnReload.Enabled = false;
+            }
+            else
+            {
+                ReadOnlyMode = false;
+                tsbtnSave.Enabled = true;
+                tsbtnReload.Enabled = true;
+            }
+
+            if (mode == LoadAndAppyProjectJsonMode.FirstLoad || validLoad)
+            {
+                projectData = pdTemp;
+            }
+
+            ApplyProjectData();
+        }
+
+        private void ApplyProjectData()
+        {
+            ApplyProjectName();
+            projectData.window.main.ApplyTo(this);
+            projectData.window.connections.ApplyTo(connectionCtrl.connectionSettingsForm);
+            projectData.window.log.ApplyTo(rtxtForm);
+            projectData.window.dgvSend.ApplyTo(dgvSendForm);
             dgvSendForm.SetData(projectData.sendGroups);
             connectionCtrl.SetData(projectData.connections);
-
-            //string jsonstr = JsonConvert.SerializeObject(dfi_rtxtForm.);
-            //File.WriteAllText("dctest.json", jsonstr);
         }
 
         private void SaveToProjectJson()
         {
+            if (ReadOnlyMode) return; // just ignore to avoid loosing data
+
             projectData.window.main.GetFrom(this);
             projectData.window.connections.GetFrom(connectionCtrl.connectionSettingsForm);
             projectData.window.log.GetFrom(rtxtForm);
             projectData.window.dgvSend.GetFrom(dgvSendForm);
 
-            projectData.Save(JSON_PROJECT_FILENAME);
+            string jsonStr = projectData.ToJsonString();
+            File.WriteAllText(ProjectData.CurrentProjectFilePath, jsonStr);
         }
 		
         /// <summary>
@@ -217,19 +299,9 @@ namespace Microsan
             connectionCtrl.SendToCurrentConnection(data);
 		}
 		
-        /// <summary>
-        /// before this form closes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 		private void this_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveToProjectJson();
-        }
-        
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
         }
 
         private void tsbtnShowCodeEditor_Click(object sender, EventArgs e)
@@ -255,10 +327,13 @@ namespace Microsan
         {
             string exePath = Assembly.GetExecutingAssembly().Location;
             string exeNameWithoutExt = Path.GetFileNameWithoutExtension(exePath);
-            if ( projectData.meta.projectName.Trim().Length != 0) 
-                this.Text = $"{exeNameWithoutExt} - {projectData.meta.projectName}";
-            else
-                this.Text = $"{exeNameWithoutExt}";
+            string newTitle = exeNameWithoutExt;
+            if ( projectData.meta.projectName.Trim().Length != 0)
+                newTitle += $" - {projectData.meta.projectName}";
+
+            if (ReadOnlyMode) newTitle += " (*** READ ONLY MODE ***)";
+
+            this.Text = newTitle;
         }
 
         private void tsbtnSave_Click(object sender, EventArgs e)
@@ -271,6 +346,18 @@ namespace Microsan
             LoadDgvSenderDataOnly();
         }
 
-        
+        private void tsbtnShowJsonEditor_Click(object sender, EventArgs e)
+        {
+            string jsonStr = "";
+            if (ReadOnlyMode)
+            {
+                jsonStr = File.ReadAllText(ProjectData.CurrentProjectFilePath);
+            } 
+            else // allways get from current state when in normal mode
+            {
+                jsonStr = projectData.ToJsonString();
+            }
+            jsonEditForm.Show(jsonStr);
+        }
     }
 }

@@ -52,6 +52,8 @@ namespace Microsan
             this.tsbtnShowCodeEditor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnProjectNameEdit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnShowJsonEditor = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +65,7 @@ namespace Microsan
             this.dc.BackColor = System.Drawing.Color.Gray;
             this.dc.Location = new System.Drawing.Point(0, 42);
             this.dc.Name = "dc";
-            this.dc.Size = new System.Drawing.Size(536, 464);
+            this.dc.Size = new System.Drawing.Size(549, 464);
             this.dc.TabIndex = 13;
             // 
             // toolStrip1
@@ -82,10 +84,12 @@ namespace Microsan
             this.toolStripSeparator4,
             this.tsbtnShowCodeEditor,
             this.toolStripSeparator1,
-            this.tsBtnProjectNameEdit});
+            this.tsBtnProjectNameEdit,
+            this.toolStripSeparator5,
+            this.tsbtnShowJsonEditor});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(536, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(549, 36);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -147,16 +151,29 @@ namespace Microsan
             this.tsBtnProjectNameEdit.Text = "Change Projectname";
             this.tsBtnProjectNameEdit.Click += new System.EventHandler(this.tsBtnProjectNameEdit_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 36);
+            // 
+            // tsbtnShowJsonEditor
+            // 
+            this.tsbtnShowJsonEditor.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowJsonEditor.Image")));
+            this.tsbtnShowJsonEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnShowJsonEditor.Name = "tsbtnShowJsonEditor";
+            this.tsbtnShowJsonEditor.Size = new System.Drawing.Size(94, 33);
+            this.tsbtnShowJsonEditor.Text = "Edit JSON";
+            this.tsbtnShowJsonEditor.Click += new System.EventHandler(this.tsbtnShowJsonEditor_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(536, 506);
+            this.ClientSize = new System.Drawing.Size(549, 506);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dc);
             this.Name = "MainForm";
             this.Text = "MicrosanProjectTerminal";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.this_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -174,5 +191,7 @@ namespace Microsan
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbtnReload;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton tsbtnShowJsonEditor;
     }
 }

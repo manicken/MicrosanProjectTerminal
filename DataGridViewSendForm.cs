@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.VisualBasic;
+using System.ComponentModel;
 
 namespace Microsan
 {
@@ -79,9 +80,21 @@ namespace Microsan
             }
             if (sendGroups.Count != 0)
             {
-                dgv.DataSource = sendGroups[0].items;
-                btnColumn.DisplayIndex = 1;
+                SetDgvDataSourceSafe(sendGroups[0].items);
             }
+        }
+
+        private void SetDgvDataSourceSafe(BindingList<SendDataItem> items)
+        {
+            dgv.CellClick -= dgv_CellClick;
+            dgv.CellEnter -= dgv_CellEnter;
+
+            dgv.DataSource = null;
+            dgv.DataSource = items;
+            btnColumn.DisplayIndex = 1;
+
+            dgv.CellClick += dgv_CellClick;
+            dgv.CellEnter += dgv_CellEnter;
         }
 
         private void tabCtrl_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,15 +104,7 @@ namespace Microsan
 
             currentSelectedTabIndex = idx;
 
-            dgv.CellClick -= dgv_CellClick;
-            dgv.CellEnter -= dgv_CellEnter;
-
-            dgv.DataSource = null;
-            dgv.DataSource = sendGroups[idx].items;
-            btnColumn.DisplayIndex = 1;
-
-            dgv.CellClick += dgv_CellClick;
-            dgv.CellEnter += dgv_CellEnter;
+            SetDgvDataSourceSafe(sendGroups[idx].items);
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)

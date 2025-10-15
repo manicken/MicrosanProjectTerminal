@@ -23,7 +23,6 @@ B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Newtonsoft.Json.pdb
 B:\USB3_32G2\_Projects\_Software\Simple TCP Client\Newtonsoft.Json.xml
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan - ProjectTerminal.csproj.AssemblyReference.cache
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.DataGridViewSendForm.resources
-G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\RoboRemoPC.DebugLogForm.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.RichTextBoxForm.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.SourceCodeEditControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.TCPClientSettingForm.resources
@@ -47,3 +46,6 @@ G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.HttpRestSettingsCont
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.MqttClientSettingsControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.TCPClientSettingsControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\MQTTnet.dll
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.DebugLogForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.JSONEditorForm.resources
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.JSONEditControl.resources

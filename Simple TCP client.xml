@@ -4,18 +4,18 @@
         <name>MicrosanProjectTerminal</name>
     </assembly>
     <members>
-        <member name="F:RoboRemoPC.DebugLogForm.components">
+        <member name="F:Microsan.DebugLogForm.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:RoboRemoPC.DebugLogForm.Dispose(System.Boolean)">
+        <member name="M:Microsan.DebugLogForm.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:RoboRemoPC.DebugLogForm.InitializeComponent">
+        <member name="M:Microsan.DebugLogForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -454,6 +454,23 @@
         <member name="M:Microsan.SendDataItem.ToJsonString">
             
         </member>
+        <member name="F:Microsan.JSONEditorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsan.JSONEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.JSONEditorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:Microsan.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -490,6 +507,29 @@
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Microsan.JSONEditControl">
+            <summary>
+            Description of SourceCodeEditControl.
+            </summary>
+        </member>
+        <member name="F:Microsan.JSONEditControl.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.JSONEditControl.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the control.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.JSONEditControl.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
             </summary>
         </member>
         <member name="T:Microsan.RuntimeProgramming">
@@ -579,13 +619,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:Microsan.MainForm.Main">
+        <member name="F:Microsan.MainForm.ReadOnlyMode">
+            used to signal load errors so that the project is not saved back to a empty one 
+        </member>
+        <member name="M:Microsan.MainForm.Main(System.String[])">
             <summary> The main entry point for the application. </summary>
         </member>
         <member name="M:Microsan.MainForm.#ctor">
             <summary>
             main form constructor
             </summary>
+        </member>
+        <member name="M:Microsan.MainForm.jsonEditForm_Save(System.String,Microsan.ProjectData)">
+            <summary>
+            note the following gets only called when the json is valid
+            </summary>
+            <param name="contents"></param>
+            <param name="pdTemp"></param>
         </member>
         <member name="M:Microsan.MainForm.dc_FormClosing(System.Object,Crom.Controls.Docking.DockableFormClosingEventArgs)">
             <summary>
@@ -601,7 +651,15 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Microsan.MainForm.LoadAndAppyProjectJson">
+        <member name="M:Microsan.MainForm.LoadProjectJson(Microsan.ProjectData@,System.Action{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="pdTemp">Note this allways returns a valid non null object</param>
+            <param name="onError"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsan.MainForm.LoadAndAppyProjectJson(Microsan.MainForm.LoadAndAppyProjectJsonMode)">
             <summary>
             init all docked forms
             </summary>
@@ -611,13 +669,6 @@
             the handler method for DataGridView SendForm
             </summary>
             <param name="data"></param>
-        </member>
-        <member name="M:Microsan.MainForm.this_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
-            <summary>
-            before this form closes
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="T:Microsan.MultiInputDialog">
             <summary>
@@ -647,7 +698,7 @@
             
             </summary>
         </member>
-        <member name="P:Microsan.ProjectData.socket">
+        <member name="P:Microsan.ProjectData.connections">
             <summary>
             
             </summary>
@@ -657,43 +708,10 @@
             
             </summary>
         </member>
-        <member name="M:Microsan.ProjectData.Save(System.String)">
+        <member name="M:Microsan.ProjectData.ToJsonString">
             <summary>
             
             </summary>
-            <param name="path"></param>
-        </member>
-        <member name="T:Microsan.SocketConnectionSettings">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.SocketConnectionSettings.ip">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.SocketConnectionSettings.port">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.SocketConnectionSettings.msgPrefix">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.SocketConnectionSettings.msgPostfix">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Microsan.SocketConnectionSettings.ToJsonString(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="lineincr"></param>
-            <returns></returns>
         </member>
         <member name="T:Microsan.RectData">
             <summary>
