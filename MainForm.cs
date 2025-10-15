@@ -269,6 +269,8 @@ namespace Microsan
         {
             ApplyProjectName();
             projectData.window.main.ApplyTo(this);
+            projectData.window.codeEdit.ApplyTo(rtPrg.srcEditContainerForm);
+            projectData.window.jsonEdit.ApplyTo(jsonEditForm);
             projectData.window.connections.ApplyTo(connectionCtrl.connectionSettingsForm);
             projectData.window.log.ApplyTo(rtxtForm);
             projectData.window.dgvSend.ApplyTo(dgvSendForm);
@@ -281,6 +283,8 @@ namespace Microsan
             if (ReadOnlyMode) return; // just ignore to avoid loosing data
 
             projectData.window.main.GetFrom(this);
+            projectData.window.codeEdit.GetFrom(rtPrg.srcEditContainerForm);
+            projectData.window.jsonEdit.GetFrom(jsonEditForm);
             projectData.window.connections.GetFrom(connectionCtrl.connectionSettingsForm);
             projectData.window.log.GetFrom(rtxtForm);
             projectData.window.dgvSend.GetFrom(dgvSendForm);
@@ -303,10 +307,15 @@ namespace Microsan
         {
             SaveToProjectJson();
         }
-
+        bool codeEditorHasBeenShown = false;
         private void tsbtnShowCodeEditor_Click(object sender, EventArgs e)
         {
             rtPrg.ShowScriptEditor();
+            if (codeEditorHasBeenShown == false) // have this guard to avoid it to reset when reopen in same instance
+            {
+                codeEditorHasBeenShown = true;
+                projectData.window.codeEdit.ApplyTo(rtPrg.srcEditContainerForm);
+            }
         }
 
         private void tsBtnProjectNameEdit_Click(object sender, EventArgs e)
@@ -346,6 +355,7 @@ namespace Microsan
             LoadDgvSenderDataOnly();
         }
 
+        bool jsonEditorShownOnce = false;
         private void tsbtnShowJsonEditor_Click(object sender, EventArgs e)
         {
             string jsonStr = "";
@@ -357,7 +367,13 @@ namespace Microsan
             {
                 jsonStr = projectData.ToJsonString();
             }
+
             jsonEditForm.Show(jsonStr);
+            if (jsonEditorShownOnce == false) // have this guard to avoid it to reset when reopen in same instance
+            {
+                jsonEditorShownOnce = true;
+                projectData.window.jsonEdit.ApplyTo(jsonEditForm);
+            }
         }
     }
 }

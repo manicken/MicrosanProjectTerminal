@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Microsan
 {
     public partial class JSONEditorForm : Form
-    {
+    { 
 
         public Action<string, ProjectData> Save;
         public JSONEditorForm()

@@ -164,6 +164,10 @@ namespace Microsan
         /// </summary>
         public RectData main { get; set; } = new RectData();
 
+        public RectData codeEdit { get; set; } = new RectData();
+
+        public RectData jsonEdit { get; set; } = new RectData();
+
         /// <summary>
         /// 
         /// </summary>
@@ -187,6 +191,8 @@ namespace Microsan
             var sb = new StringBuilder();
             sb.Append(lineincr); sb.AppendLine("\"window\": {");
             sb.Append(lineincr); sb.Append("  \"main\": "); sb.AppendLine(JsonConvert.SerializeObject(main) + ",");
+            sb.Append(lineincr); sb.Append("  \"codeEdit\": "); sb.AppendLine(JsonConvert.SerializeObject(codeEdit) + ",");
+            sb.Append(lineincr); sb.Append("  \"jsonEdit\": "); sb.AppendLine(JsonConvert.SerializeObject(jsonEdit) + ",");
             sb.Append(lineincr); sb.Append("  \"socket\": ");  sb.AppendLine(JsonConvert.SerializeObject(socket) + ",");
             sb.Append(lineincr); sb.Append("  \"connections\": "); sb.AppendLine(JsonConvert.SerializeObject(connections) + ",");
             sb.Append(lineincr); sb.Append("  \"dgvSend\": "); sb.AppendLine(JsonConvert.SerializeObject(dgvSend) + ",");
