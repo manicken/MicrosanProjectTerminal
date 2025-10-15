@@ -29,13 +29,13 @@ namespace Microsan
         public Action SaveAll = null;
         public Action Execute = null;
 
-        TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
+        /*TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
         TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
         TextStyle MagentaStyle = new TextStyle(Brushes.Magenta, null, FontStyle.Regular);
         TextStyle GreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
         TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
-        TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
+        TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);*/
         MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
         TextStyle KeyStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         TextStyle StringStyle = new TextStyle(Brushes.Brown, null, FontStyle.Regular);
@@ -56,11 +56,7 @@ namespace Microsan
 
         public bool docked = false;
         
-        private bool init = false;
-        
         private List<SourceFile> sourceFilesRef;
-
-       // public Autocomplete ac;
         
         public JSONEditControl() : this(Language.Custom)
 		{
@@ -87,9 +83,6 @@ namespace Microsan
             dgv.CellClick += dgv_CellClick;
 
             fctb.TextChanged += fastColoredTextBox_TextChanged;
-
-            //ac = new Autocomplete(fctb);
-            // ac.Debug = ac_Debug;
 
         }
 
@@ -121,71 +114,20 @@ namespace Microsan
             }
         }
 
-        private void ac_Debug(string text)
-        {
-            //rtxtLog.AppendLine_ThreadSafe(text, true);
-        }
-		
-		private ContextMenu GetTabPageCM(string title, int index)
-        {
-            ContextMenu cm = new ContextMenu();
-           // MenuItem mi = new MenuItem("close file", tcContextMenuCloseFile_Click);
-          //  mi.Tag = index;
-          //  cm.MenuItems.Add(mi);
-            return cm;
-        }
-
-
         public void ClearLog()
         {
             splitContainer1.Panel2Collapsed = true;
             dtLog.Rows.Clear();
             rtxtLog.Clear();
             ResetSelections();
+            
         }
 
-        public void SelectCharAtPos(int linePos, int colPos)
-        {
-            try
-            {
-                FastColoredTextBoxNS.Range range = fctb.GetLine(linePos);
-                range.Start = new FastColoredTextBoxNS.Place(colPos - 1, linePos - 1);
-                range.End = new FastColoredTextBoxNS.Place(colPos, linePos - 1);
-                fctb.Selection = range;
-
-                fctb.DoSelectionVisible(); // scroll to selection
-            }
-            catch (Exception ex)
-            {
-                rtxtLog.AppendText("exception @ SelectCharAtPos: line=" + linePos + ", col=" + colPos + "\r\n");
-                //rtxtLog.AppendText(ex.ToString() + "\r\n");
-            }
-        }
+        
 
         public void ResetSelections()
         {
             fctb.Selection = new Range(fctb, Place.Empty, Place.Empty);
-        }
-
-        public void AppendLineToLog(string logMessage)
-        {
-            rtxtLog.AppendText(logMessage + "\n");
-        }
-
-        private void tsBtnSave_Click(object sender, EventArgs e)
-        {
-            
-        }
-        
-        public void AppendText(string text)
-        {
-            fctb.SelectedText = text;
-        }
-
-        private void btnClearLog_Click(object sender, EventArgs e)
-        {
-            rtxtLog.Clear();
-            rtxtLog.ClearUndo();
         }
 
         private void fastColoredTextBox_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
@@ -224,13 +166,6 @@ namespace Microsan
             e.ChangedRange.SetFoldingMarkers("{", "}");
             e.ChangedRange.SetFoldingMarkers(@"\[", @"\]");
         }
-
-        private void JsonSyntaxHighlight(TextChangedEventArgs e)
-        {
-            
-        }
-
-
 
         private void fastColoredTextBox_setRightClickContextMenu()
         {
@@ -281,26 +216,6 @@ namespace Microsan
 		{
 			menuItemPaste.Enabled = Clipboard.ContainsText();
 		}
-       
-        
-
-        private void fastColoredTextBox_SelectionChangedDelayed(object sender, EventArgs e)
-        {
-            fctb.VisibleRange.ClearStyle(SameWordsStyle);
-            if (!fctb.Selection.IsEmpty)
-                return;//user selected diapason
-
-            //get fragment around caret
-            var fragment = fctb.Selection.GetFragment(@"\w");
-            string text = fragment.Text;
-            if (text.Length == 0)
-                return;
-            //highlight same words
-            var ranges = fctb.VisibleRange.GetRanges("\\b" + text + "\\b").ToArray();
-            if (ranges.Length > 1)
-                foreach (var r in ranges)
-                    r.SetStyle(SameWordsStyle);
-        }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -317,52 +232,23 @@ namespace Microsan
 
             SelectCharAtPos(textRow, textCol);
         }
-        
-        
-   
-        private void SelectFile(string fileName)
+
+        public void SelectCharAtPos(int linePos, int colPos)
         {
-            fileName = fileName.ToLower();
-            for (int i = 0; i < sourceFilesRef.Count; i++)
+            try
             {
-                if (sourceFilesRef[i].FileName.ToLower() == fileName)
-                {
+                FastColoredTextBoxNS.Range range = fctb.GetLine(linePos);
+                range.Start = new FastColoredTextBoxNS.Place(colPos - 1, linePos - 1);
+                range.End = new FastColoredTextBoxNS.Place(colPos, linePos - 1);
+                fctb.Selection = range;
 
-                    if (fctb.Tag != null)
-                    {
-                        SourceFile sf = (SourceFile)fctb.Tag;
-                        sf.Contents = fctb.Text;
-
-                        sf.editorSelectionStart = fctb.SelectionStart;
-                        sf.editorSelectionLength = fctb.SelectionLength;
-
-                        sf.editorVerticalScrollValue = fctb.VerticalScroll.Value;
-                        sf.editorHorizontalScrollValue = fctb.HorizontalScroll.Value;
-                        
-                    }
-                    
-                    fctb.Text = sourceFilesRef[i].Contents;
-                    fctb.Tag = sourceFilesRef[i];
-                    fctb.SelectionStart = sourceFilesRef[i].editorSelectionStart;
-                    fctb.SelectionLength = sourceFilesRef[i].editorSelectionLength;
-                    
-                    fctb.HorizontalScroll.Value = sourceFilesRef[i].editorHorizontalScrollValue;
-                    fctb.VerticalScroll.Value = sourceFilesRef[i].editorVerticalScrollValue;
-                    fctb.UpdateScrollbars();
-
-                    
-                    //rtxtLog.AppendText("ok @ SelectFile: fileName=" + fileName + "\r\n");
-                    return;
-                }
+                fctb.DoSelectionVisible(); // scroll to selection
             }
-            rtxtLog.AppendText("error @ SelectFile: fileName=" + fileName + "\r\n");
+            catch (Exception ex)
+            {
+                rtxtLog.AppendText("exception @ SelectCharAtPos: line=" + linePos + ", col=" + colPos + "\r\n");
+                //rtxtLog.AppendText(ex.ToString() + "\r\n");
+            }
         }
-        private void fastColoredTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //tc.Enabled = false;
-            //tsslblMain.Text =  "(text changed, you need to save before switch tabs)";
-        }
-        
-        
     }
 }
