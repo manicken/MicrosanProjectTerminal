@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"Lumatron AMP",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-16 00:47:35",
+  "modified":"2025-10-17 15:44:58",
   "version":1
   },
   "sendGroups": [
@@ -245,9 +245,29 @@
       }
     ]
   },
+  "sourceFiles": [
+    {
+      "fileName": "RootClass.cs",
+      "contents": "using System;\r\nusing System.Text;\r\nusing System.Windows.Forms;\r\nusing Microsan;\r\n\r\n//using OxyPlot;\r\n//using OxyPlot.Series;\r\n//using OxyPlot.WindowsForms;\r\n//using System.Collections.Generic;\r\n//using System.Drawing;\r\n//using System.IO.Ports;\r\n\r\nnamespace MyNamespace\r\n{ \r\n    public class RootClass\r\n    {\r\n        private static object RootObject = null;\r\n        \r\n        /// <summary> The main entry point for the runtime compile code. </summary>\r\n        public static void RootMain(object rootObject)\r\n        {\r\n            RootObject = rootObject;\r\n        }\r\n    }\r\n}",
+      "editorSelectionStart": 0,
+      "editorSelectionLength": 0,
+      "editorVerticalScrollValue": 0,
+      "editorHorizontalScrollValue": 0
+    }
+,
+    {
+      "fileName": "Test.cs",
+      "contents": "using System;\r\nusing System.Text;\r\nusing System.Windows.Forms;\r\nusing Microsan;\r\n\r\n//using OxyPlot;\r\n//using OxyPlot.Series;\r\n//using OxyPlot.WindowsForms;\r\n//using System.Collections.Generic;\r\n//using System.Drawing;\r\n//using System.IO.Ports;\r\n\r\nnamespace MyNamespace\r\n{ \r\n    public class Test\r\n    {\r\n\t\tprivate static object RootObject = null;\r\n\t\t\r\n        public static void NewMethod(object rootObject)\r\n        {\r\n            RootObject = rootObject;\r\n        }\r\n    }\r\n}",
+      "editorSelectionStart": 0,
+      "editorSelectionLength": 0,
+      "editorVerticalScrollValue": 0,
+      "editorHorizontalScrollValue": 0
+    }
+
+  ],
   "window": {
     "main": {"x":103,"y":80,"width":806,"height":928},
-    "codeEdit": {"x":312,"y":102,"width":600,"height":838},
+    "codeEdit": {"x":269,"y":110,"width":600,"height":838},
     "jsonEdit": {"x":908,"y":82,"width":577,"height":927},
     "socket": {"x":0,"y":0,"width":300,"height":118},
     "connections": {"x":0,"y":0,"width":402,"height":437},

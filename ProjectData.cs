@@ -30,6 +30,8 @@ namespace Microsan
         /// 
         /// </summary>
         public WindowSettings window { get; set; } = new WindowSettings();
+
+        public List<SourceFile> sourceFiles { get; set; } = new List<SourceFile>();
         /// <summary>
         /// 
         /// </summary>
@@ -40,7 +42,9 @@ namespace Microsan
             sb.AppendLine(meta.ToJsonString("  ") + ",");
             sb.AppendLine(SendGroupsToJsonString("  ") + ",");
             sb.AppendLine(connections.ToJsonString("  ") + ",");
+            sb.AppendLine(SourceFilesToJsonString("  ") + ",");
             sb.AppendLine(window.ToJsonString("  "));
+
             sb.AppendLine("}");
             return sb.ToString();
         }
@@ -61,7 +65,23 @@ namespace Microsan
             return sb.ToString();
         }
 
-        
+        private string SourceFilesToJsonString(string lineincr)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(lineincr + "\"sourceFiles\": [");
+            for (int i = 0; i < sourceFiles.Count; i++)
+            {
+                sb.Append(sourceFiles[i].ToJsonString(lineincr));
+                if (i < sourceFiles.Count - 1)
+                    sb.AppendLine(",");
+                else
+                    sb.AppendLine();
+            }
+            sb.Append(lineincr + "]");
+            return sb.ToString();
+        }
+
+
         public static ProjectData LoadFromJsonString(string jsonStr, Action<List<JsonSerializeError>> onError)
         {
             ProjectData pdTemp = null;

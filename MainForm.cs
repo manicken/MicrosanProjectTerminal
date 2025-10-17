@@ -310,7 +310,7 @@ namespace Microsan
         bool codeEditorHasBeenShown = false;
         private void tsbtnShowCodeEditor_Click(object sender, EventArgs e)
         {
-            rtPrg.ShowScriptEditor();
+            rtPrg.ShowScriptEditor(projectData.sourceFiles);
             if (codeEditorHasBeenShown == false) // have this guard to avoid it to reset when reopen in same instance
             {
                 codeEditorHasBeenShown = true;

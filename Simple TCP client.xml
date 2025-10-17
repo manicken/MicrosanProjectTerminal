@@ -178,6 +178,19 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="T:Microsan.MultiInputDialog">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsan.MultiInputDialog.Show(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="fields"></param>
+            <returns></returns>
+        </member>
         <member name="T:Microsan.QuickDialogs">
             <summary>
             Description of QuickFileAndFolderDialogs.
@@ -669,19 +682,6 @@
             the handler method for DataGridView SendForm
             </summary>
             <param name="data"></param>
-        </member>
-        <member name="T:Microsan.MultiInputDialog">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Microsan.MultiInputDialog.Show(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            
-            </summary>
-            <param name="title"></param>
-            <param name="fields"></param>
-            <returns></returns>
         </member>
         <member name="T:Microsan.ProjectData">
             <summary>

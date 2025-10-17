@@ -139,6 +139,9 @@
     <Compile Include="..\Csharp_CommonSourceFiles\MicrosanExtensions.cs">
       <Link>MicrosanExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Csharp_CommonSourceFiles\MultiInputDialog.cs">
+      <Link>MultiInputDialog.cs</Link>
+    </Compile>
     <Compile Include="..\Csharp_CommonSourceFiles\QuickFileAndFolderDialogs.cs">
       <Link>QuickFileAndFolderDialogs.cs</Link>
     </Compile>
@@ -256,7 +259,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultiInputDialog.cs" />
     <Compile Include="ProjectData.cs" />
     <Content Include="App.ico" />
     <Compile Include="AssemblyInfo.cs">
