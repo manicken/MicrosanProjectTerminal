@@ -14,11 +14,6 @@ namespace MyNamespace
 { 
     public class Test
     {
-		private static object RootObject = null;
-		
-        public static void NewMethod(object rootObject)
-        {
-            RootObject = rootObject;
-        }
+        
     }
 }

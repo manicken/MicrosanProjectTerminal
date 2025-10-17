@@ -10,7 +10,7 @@ using Microsan;
 //using System.Drawing;
 //using System.IO.Ports;
 
-namespace MyNamespace
+namespace Microsan
 { 
     public class RootClass
     {

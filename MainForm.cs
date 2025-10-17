@@ -141,6 +141,7 @@ namespace Microsan
             dfi_connectionCfgForm = dc.Add(connectionCtrl.connectionSettingsForm, zAllowedDock.All, connectionCtrl.connectionSettingsForm.GetType().GUID);
 
             rtPrg = new RuntimeProgramming(this);
+            rtPrg.SaveAll = rtProg_SaveAll;
             rtPrg.InitScriptEditor_IfNeeded();
             LoadAndAppyProjectJson(LoadAndAppyProjectJsonMode.FirstLoad);
 
@@ -156,6 +157,11 @@ namespace Microsan
             connectionCtrl.connectionSettingsForm.Show();
 
             //rtxtForm.rtxt.AppendText(ConnectionController.DiscoverConnectionsAsString());
+        }
+
+        public void rtProg_SaveAll()
+        {
+            SaveToProjectJson();
         }
 
         public enum LoadProjectStatus
