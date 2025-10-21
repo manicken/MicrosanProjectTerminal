@@ -20,8 +20,8 @@ namespace RuntimeProgrammingNamespace
         {
             RootObject = rootObject;
             
-            int i = 0;
-            MessageBox.Show("hello" + 5/i);
+            //int i = 0;
+            MessageBox.Show("hello" + 5);
         }
     }
 }

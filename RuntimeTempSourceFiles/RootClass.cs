@@ -17,11 +17,28 @@ namespace RuntimeProgrammingNamespace
         private static object RootObject = null;
         
         /// <summary> The main entry point for the runtime compile code. </summary>
-        public static void RootMain(object rootObject)
+
+        public static void Main(object rootObject)
         {
             RootObject = rootObject;
             
             NewClass.NewMethod(RootObject);
+        }
+        
+        [Shortcut("Start Test1","start")]
+        public static void Test1()
+        {
+            MessageBox.Show("Test1");
+        }
+        [Shortcut("Start Test2","start2")]
+        public static void Test2()
+        {
+            MessageBox.Show("Test2");
+        }
+        [Shortcut("Start Test3","stop")]
+        public static void Test3()
+        {
+            MessageBox.Show("Test3");
         }
     }
 }

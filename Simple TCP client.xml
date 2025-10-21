@@ -556,6 +556,13 @@
             <para>And initialize it.</para>
             </summary>
         </member>
+        <member name="M:Microsan.RuntimeProgramming.SetSourceFiles(System.Collections.Generic.List{Microsan.SourceFile})">
+            <summary>
+            This is only used when using virtual files,
+            note this method sets virtualFiles = true
+            </summary>
+            <param name="sourceFiles"></param>
+        </member>
         <member name="M:Microsan.SourceFile.#ctor(System.String)">
             <summary>
             Creates new empty source file, it also creates an empty file on the disk 

@@ -49,11 +49,18 @@ namespace Microsan
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnReload = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbtnShowCodeEditor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnProjectNameEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnShowJsonEditor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.showCodeEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runDefaultEntryPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRuntimeProgrammingRunDefault = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCustomEntryPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +72,7 @@ namespace Microsan
             this.dc.BackColor = System.Drawing.Color.Gray;
             this.dc.Location = new System.Drawing.Point(0, 42);
             this.dc.Name = "dc";
-            this.dc.Size = new System.Drawing.Size(549, 464);
+            this.dc.Size = new System.Drawing.Size(590, 464);
             this.dc.TabIndex = 13;
             // 
             // toolStrip1
@@ -82,14 +89,15 @@ namespace Microsan
             this.toolStripSeparator2,
             this.tsbtnReload,
             this.toolStripSeparator4,
-            this.tsbtnShowCodeEditor,
+            this.toolStripDropDownButton1,
             this.toolStripSeparator1,
             this.tsBtnProjectNameEdit,
             this.toolStripSeparator5,
-            this.tsbtnShowJsonEditor});
+            this.tsbtnShowJsonEditor,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(549, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(590, 36);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -128,15 +136,6 @@ namespace Microsan
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 36);
             // 
-            // tsbtnShowCodeEditor
-            // 
-            this.tsbtnShowCodeEditor.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowCodeEditor.Image")));
-            this.tsbtnShowCodeEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnShowCodeEditor.Name = "tsbtnShowCodeEditor";
-            this.tsbtnShowCodeEditor.Size = new System.Drawing.Size(137, 33);
-            this.tsbtnShowCodeEditor.Text = "Show Code Editor";
-            this.tsbtnShowCodeEditor.Click += new System.EventHandler(this.tsbtnShowCodeEditor_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -165,11 +164,76 @@ namespace Microsan
             this.tsbtnShowJsonEditor.Text = "Edit JSON";
             this.tsbtnShowJsonEditor.Click += new System.EventHandler(this.tsbtnShowJsonEditor_Click);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showCodeEditorToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.runDefaultEntryPointToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.tsmiCustomEntryPoints});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(171, 33);
+            this.toolStripDropDownButton1.Text = "RuntimeProgramming";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 33);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // showCodeEditorToolStripMenuItem
+            // 
+            this.showCodeEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showCodeEditorToolStripMenuItem.Image")));
+            this.showCodeEditorToolStripMenuItem.Name = "showCodeEditorToolStripMenuItem";
+            this.showCodeEditorToolStripMenuItem.Size = new System.Drawing.Size(215, 38);
+            this.showCodeEditorToolStripMenuItem.Text = "Show Code Editor";
+            this.showCodeEditorToolStripMenuItem.Click += new System.EventHandler(this.tsbtnShowCodeEditor_Click);
+            // 
+            // runDefaultEntryPointToolStripMenuItem
+            // 
+            this.runDefaultEntryPointToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRuntimeProgrammingRunDefault});
+            this.runDefaultEntryPointToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("runDefaultEntryPointToolStripMenuItem.Image")));
+            this.runDefaultEntryPointToolStripMenuItem.Name = "runDefaultEntryPointToolStripMenuItem";
+            this.runDefaultEntryPointToolStripMenuItem.Size = new System.Drawing.Size(215, 38);
+            this.runDefaultEntryPointToolStripMenuItem.Text = "Compile And Run Code";
+            // 
+            // tsmiRuntimeProgrammingRunDefault
+            // 
+            this.tsmiRuntimeProgrammingRunDefault.Image = ((System.Drawing.Image)(resources.GetObject("tsmiRuntimeProgrammingRunDefault.Image")));
+            this.tsmiRuntimeProgrammingRunDefault.Name = "tsmiRuntimeProgrammingRunDefault";
+            this.tsmiRuntimeProgrammingRunDefault.Size = new System.Drawing.Size(196, 38);
+            this.tsmiRuntimeProgrammingRunDefault.Text = "Confirm";
+            this.tsmiRuntimeProgrammingRunDefault.Click += new System.EventHandler(this.tsmiRuntimeProgrammingRunDefault_Click);
+            // 
+            // tsmiCustomEntryPoints
+            // 
+            this.tsmiCustomEntryPoints.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCustomEntryPoints.Image")));
+            this.tsmiCustomEntryPoints.Name = "tsmiCustomEntryPoints";
+            this.tsmiCustomEntryPoints.Size = new System.Drawing.Size(215, 38);
+            this.tsmiCustomEntryPoints.Text = "Custom Entry Points";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(212, 6);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(212, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(549, 506);
+            this.ClientSize = new System.Drawing.Size(590, 506);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dc);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -184,7 +248,6 @@ namespace Microsan
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsbtnShowCodeEditor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsBtnProjectNameEdit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -194,5 +257,13 @@ namespace Microsan
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton tsbtnShowJsonEditor;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem showCodeEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runDefaultEntryPointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRuntimeProgrammingRunDefault;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCustomEntryPoints;
     }
 }

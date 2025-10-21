@@ -229,8 +229,13 @@
     <Compile Include="JSONEditControl.Designer.cs">
       <DependentUpon>JSONEditControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="icons\load.png" />
+    <EmbeddedResource Include="icons\start.png" />
+    <EmbeddedResource Include="icons\start2.png" />
+    <EmbeddedResource Include="icons\stop.png" />
     <Content Include="micro phone2.ico" />
     <Content Include="shell32_179.ico" />
+    <Content Include="start.png" />
     <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\NewClass_Template.cs">
       <Link>RuntimeProgramming\NewClass_Template.cs</Link>
     </EmbeddedResource>
@@ -341,6 +346,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -142,6 +142,7 @@ namespace Microsan
 
             rtPrg = new RuntimeProgramming(this);
             rtPrg.SaveAll = rtProg_SaveAll;
+            rtPrg.CompiledAndRunning = rtProg_CompiledAndRunning;
             rtPrg.InitScriptEditor_IfNeeded();
             LoadAndAppyProjectJson(LoadAndAppyProjectJsonMode.FirstLoad);
 
@@ -156,7 +157,51 @@ namespace Microsan
 
             connectionCtrl.connectionSettingsForm.Show();
 
+            GenerateIconMap();
+            //listEmbeddedResources();
             //rtxtForm.rtxt.AppendText(ConnectionController.DiscoverConnectionsAsString());
+        }
+
+        private void listEmbeddedResources()
+        {
+            Assembly asm = Assembly.GetExecutingAssembly();
+            string[] resourceNames = asm.GetManifestResourceNames();
+
+            foreach (var name in resourceNames)
+                rtxtForm.rtxt.AppendText(name+"\n");
+            
+        }
+
+        Dictionary<string, Image> iconMap = new Dictionary<string, Image>();
+
+        private void GenerateIconMap()
+        {
+            Assembly asm = Assembly.GetExecutingAssembly();
+
+            foreach (var resName in asm.GetManifestResourceNames())
+            {
+                if (resName.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    using (var stream = asm.GetManifestResourceStream(resName))
+                    {
+                        if (stream != null)
+                        {
+                            Image img = Image.FromStream(stream);
+                            // Use the short name as key (e.g., "start" instead of full path)
+                            string key = Path.GetFileNameWithoutExtension(resName);
+                            key = key.Substring(key.LastIndexOf(".")+1);
+                            rtxtForm.rtxt.AppendText(key + "\n");
+                            iconMap[key] = img;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        private void rtProg_CompiledAndRunning()
+        {
+            SetCodeEntryShortcuts();
         }
 
         public void rtProg_SaveAll()
@@ -324,6 +369,8 @@ namespace Microsan
             }
         }
 
+
+
         private void tsBtnProjectNameEdit_Click(object sender, EventArgs e)
         {
             var projectMeta = new Dictionary<string, string>()
@@ -381,5 +428,36 @@ namespace Microsan
                 projectData.window.jsonEdit.ApplyTo(jsonEditForm);
             }
         }
+
+        private void tsmiRuntimeProgrammingRunDefault_Click(object sender, EventArgs ea)
+        {
+            rtPrg.SetSourceFiles(projectData.sourceFiles);
+            rtPrg.ExecuteDefaultCode();
+            SetCodeEntryShortcuts();
+        }
+
+        private void SetCodeEntryShortcuts()
+        {
+            List<MethodExecShortcutEntry> entries = rtPrg.GenerateShortcutsFromCompiledAssembly();
+            if (entries.Count != 0)
+                tsmiCustomEntryPoints.DropDownItems.Clear();
+
+            for (int i = 0; i < entries.Count; i++)
+            {
+                MethodExecShortcutEntry ue = entries[i];
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(ue.DisplayName);
+
+                if (!string.IsNullOrEmpty(ue.IconName) && iconMap.TryGetValue(ue.IconName, out var img))
+                {
+                    tsmi.Image = img;
+                    tsmi.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+                }
+                tsmi.Click += (s, e2) => { ue.Execute(); };
+                tsmiCustomEntryPoints.DropDownItems.Add(tsmi);
+
+            }
+        }
+
+     
     }
 }
