@@ -43,8 +43,8 @@ namespace Microsan
             this.grpTopic = new System.Windows.Forms.GroupBox();
             this.txtTopic = new System.Windows.Forms.TextBox();
             this.grpUsernamePassword = new System.Windows.Forms.GroupBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.grpBoxIpPort.SuspendLayout();
             this.grpBoxMessageStartStop.SuspendLayout();
             this.grpClientID.SuspendLayout();
@@ -54,6 +54,8 @@ namespace Microsan
             // 
             // grpBoxIpPort
             // 
+            this.grpBoxIpPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxIpPort.Controls.Add(this.txtHostIP);
             this.grpBoxIpPort.Controls.Add(this.txtHostPort);
             this.grpBoxIpPort.Controls.Add(this.label2);
@@ -96,6 +98,8 @@ namespace Microsan
             // 
             // grpBoxMessageStartStop
             // 
+            this.grpBoxMessageStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,6 +153,8 @@ namespace Microsan
             // 
             // grpClientID
             // 
+            this.grpClientID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpClientID.Controls.Add(this.txtClientID);
             this.grpClientID.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpClientID.Location = new System.Drawing.Point(3, 69);
@@ -160,6 +166,8 @@ namespace Microsan
             // 
             // txtClientID
             // 
+            this.txtClientID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClientID.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClientID.Location = new System.Drawing.Point(10, 20);
             this.txtClientID.Name = "txtClientID";
@@ -168,6 +176,8 @@ namespace Microsan
             // 
             // grpTopic
             // 
+            this.grpTopic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpTopic.Controls.Add(this.txtTopic);
             this.grpTopic.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpTopic.Location = new System.Drawing.Point(3, 124);
@@ -179,31 +189,27 @@ namespace Microsan
             // 
             // txtTopic
             // 
+            this.txtTopic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTopic.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTopic.Location = new System.Drawing.Point(10, 20);
             this.txtTopic.Name = "txtTopic";
             this.txtTopic.Size = new System.Drawing.Size(271, 22);
             this.txtTopic.TabIndex = 0;
             // 
-            // grpUsername
+            // grpUsernamePassword
             // 
+            this.grpUsernamePassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpUsernamePassword.Controls.Add(this.txtPassword);
             this.grpUsernamePassword.Controls.Add(this.txtUsername);
             this.grpUsernamePassword.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpUsernamePassword.Location = new System.Drawing.Point(3, 179);
-            this.grpUsernamePassword.Name = "grpUsername";
+            this.grpUsernamePassword.Name = "grpUsernamePassword";
             this.grpUsernamePassword.Size = new System.Drawing.Size(289, 49);
             this.grpUsernamePassword.TabIndex = 14;
             this.grpUsernamePassword.TabStop = false;
             this.grpUsernamePassword.Text = "Username/Password:";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(10, 20);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(127, 22);
-            this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
@@ -212,6 +218,14 @@ namespace Microsan
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(129, 22);
             this.txtPassword.TabIndex = 0;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(10, 20);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(127, 22);
+            this.txtUsername.TabIndex = 0;
             // 
             // MqttClientSettingsControl
             // 

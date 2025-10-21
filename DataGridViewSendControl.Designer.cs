@@ -8,7 +8,7 @@
  */
 namespace Microsan
 {
-    partial class DataGridViewSendForm
+    partial class DataGridViewSendControl
     {
         /// <summary>
         /// Designer variable used to keep track of non-visual components.
@@ -38,11 +38,13 @@ namespace Microsan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridViewSendForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridViewSendControl));
             this.dgv = new System.Windows.Forms.DataGridView();
             this.dgwContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addNewRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertNewRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiInsertDelimiterRow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.confirmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,24 +86,24 @@ namespace Microsan
             this.dgv.RowHeadersVisible = false;
             this.dgv.Size = new System.Drawing.Size(434, 389);
             this.dgv.TabIndex = 0;
-            this.dgv.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
-            this.dgv.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_EditingControlShowing);
             // 
             // dgwContextMenu
             // 
             this.dgwContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewRowToolStripMenuItem,
             this.insertNewRowToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.tsmiInsertDelimiterRow,
             this.toolStripMenuItem1,
             this.deleteRowToolStripMenuItem});
             this.dgwContextMenu.Name = "dgwContextMenu";
-            this.dgwContextMenu.Size = new System.Drawing.Size(152, 76);
+            this.dgwContextMenu.Size = new System.Drawing.Size(177, 104);
             // 
             // addNewRowToolStripMenuItem
             // 
             this.addNewRowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addNewRowToolStripMenuItem.Image")));
             this.addNewRowToolStripMenuItem.Name = "addNewRowToolStripMenuItem";
-            this.addNewRowToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.addNewRowToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.addNewRowToolStripMenuItem.Text = "Add new row";
             this.addNewRowToolStripMenuItem.Click += new System.EventHandler(this.addNewRowToolStripMenuItem_Click);
             // 
@@ -109,14 +111,26 @@ namespace Microsan
             // 
             this.insertNewRowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("insertNewRowToolStripMenuItem.Image")));
             this.insertNewRowToolStripMenuItem.Name = "insertNewRowToolStripMenuItem";
-            this.insertNewRowToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.insertNewRowToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.insertNewRowToolStripMenuItem.Text = "Insert new row";
             this.insertNewRowToolStripMenuItem.Click += new System.EventHandler(this.insertNewRowToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
+            // 
+            // tsmiInsertDelimiterRow
+            // 
+            this.tsmiInsertDelimiterRow.Name = "tsmiInsertDelimiterRow";
+            this.tsmiInsertDelimiterRow.Size = new System.Drawing.Size(176, 22);
+            this.tsmiInsertDelimiterRow.Text = "Insert delimiter row";
+            this.tsmiInsertDelimiterRow.Click += new System.EventHandler(this.tsmiInsertDelimiterRow_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(148, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(173, 6);
             // 
             // deleteRowToolStripMenuItem
             // 
@@ -124,7 +138,7 @@ namespace Microsan
             this.confirmToolStripMenuItem});
             this.deleteRowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteRowToolStripMenuItem.Image")));
             this.deleteRowToolStripMenuItem.Name = "deleteRowToolStripMenuItem";
-            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.deleteRowToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.deleteRowToolStripMenuItem.Text = "Delete row";
             // 
             // confirmToolStripMenuItem
@@ -159,13 +173,13 @@ namespace Microsan
             this.editTextToolStripMenuItem,
             this.moveToolStripMenuItem});
             this.tabsContextMenu.Name = "tabsContextMenu";
-            this.tabsContextMenu.Size = new System.Drawing.Size(181, 120);
+            this.tabsContextMenu.Size = new System.Drawing.Size(151, 98);
             this.tabsContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.tabsContextMenu_Opening);
             // 
             // addTabToolStripMenuItem
             // 
             this.addTabToolStripMenuItem.Name = "addTabToolStripMenuItem";
-            this.addTabToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addTabToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.addTabToolStripMenuItem.Text = "Add tab";
             this.addTabToolStripMenuItem.Click += new System.EventHandler(this.addTabToolStripMenuItem_Click);
             // 
@@ -174,25 +188,25 @@ namespace Microsan
             this.removeTabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRemoveTabConfirm});
             this.removeTabToolStripMenuItem.Name = "removeTabToolStripMenuItem";
-            this.removeTabToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeTabToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.removeTabToolStripMenuItem.Text = "Remove tab";
             // 
             // tsmiRemoveTabConfirm
             // 
             this.tsmiRemoveTabConfirm.Name = "tsmiRemoveTabConfirm";
-            this.tsmiRemoveTabConfirm.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRemoveTabConfirm.Size = new System.Drawing.Size(118, 22);
             this.tsmiRemoveTabConfirm.Text = "Confirm";
             this.tsmiRemoveTabConfirm.Click += new System.EventHandler(this.tsmiRemoveTabConfirm_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(147, 6);
             // 
             // editTextToolStripMenuItem
             // 
             this.editTextToolStripMenuItem.Name = "editTextToolStripMenuItem";
-            this.editTextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editTextToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.editTextToolStripMenuItem.Text = "Change Name";
             this.editTextToolStripMenuItem.Click += new System.EventHandler(this.editTextToolStripMenuItem_Click);
             // 
@@ -202,7 +216,7 @@ namespace Microsan
             this.tsmiMoveTabToLeft,
             this.tsmiMoveTabToRight});
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.moveToolStripMenuItem.Text = "Move";
             // 
             // tsmiMoveTabToLeft
@@ -251,12 +265,12 @@ namespace Microsan
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(434, 412);
-            this.ControlBox = false;
+            //this.ControlBox = false;
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.tabCtrl);
             this.Name = "DataGridViewSendForm";
             this.Text = "DataGridViewSendForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.this_FormClosing);
+            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.this_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.dgwContextMenu.ResumeLayout(false);
             this.tabCtrl.ResumeLayout(false);
@@ -284,5 +298,7 @@ namespace Microsan
         private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiMoveTabToLeft;
         private System.Windows.Forms.ToolStripMenuItem tsmiMoveTabToRight;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem tsmiInsertDelimiterRow;
     }
 }

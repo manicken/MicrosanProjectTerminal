@@ -1,7 +1,7 @@
 ﻿
 namespace Microsan
 {
-    partial class ConnectionSettingsForm
+    partial class ConnectionSettingsControl
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@ namespace Microsan
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionSettingsForm));
             this.grpBoxProtocolSelect = new System.Windows.Forms.GroupBox();
             this.cmbProtocol = new System.Windows.Forms.ComboBox();
             this.panel = new System.Windows.Forms.Panel();
@@ -38,12 +37,11 @@ namespace Microsan
             // 
             // grpBoxProtocolSelect
             // 
-            this.grpBoxProtocolSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpBoxProtocolSelect.AutoSize = true;
             this.grpBoxProtocolSelect.Controls.Add(this.cmbProtocol);
             this.grpBoxProtocolSelect.Location = new System.Drawing.Point(3, 2);
             this.grpBoxProtocolSelect.Name = "grpBoxProtocolSelect";
-            this.grpBoxProtocolSelect.Size = new System.Drawing.Size(364, 42);
+            this.grpBoxProtocolSelect.Size = new System.Drawing.Size(115, 54);
             this.grpBoxProtocolSelect.TabIndex = 0;
             this.grpBoxProtocolSelect.TabStop = false;
             this.grpBoxProtocolSelect.Text = "Protocol:";
@@ -56,7 +54,7 @@ namespace Microsan
             this.cmbProtocol.FormattingEnabled = true;
             this.cmbProtocol.Location = new System.Drawing.Point(6, 14);
             this.cmbProtocol.Name = "cmbProtocol";
-            this.cmbProtocol.Size = new System.Drawing.Size(352, 21);
+            this.cmbProtocol.Size = new System.Drawing.Size(103, 21);
             this.cmbProtocol.TabIndex = 0;
             // 
             // panel
@@ -66,21 +64,20 @@ namespace Microsan
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.Location = new System.Drawing.Point(0, 43);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(370, 237);
+            this.panel.Size = new System.Drawing.Size(307, 308);
             this.panel.TabIndex = 1;
             // 
-            // ConnectionSettingsForm
+            // ConnectionSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 280);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.grpBoxProtocolSelect);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ConnectionSettingsForm";
-            this.Text = "Connection Settings";
+            this.Name = "ConnectionSettingsControl";
+            this.Size = new System.Drawing.Size(307, 351);
             this.grpBoxProtocolSelect.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

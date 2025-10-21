@@ -16,7 +16,7 @@ namespace Microsan
     {
         private ConnectionsData connections;
 
-        public ConnectionSettingsForm connectionSettingsForm = null;
+        public ConnectionSettingsControl connectionSettingsCtrl = null;
 
         private UserControl currentCtrl;
 
@@ -27,7 +27,7 @@ namespace Microsan
         public ConnectionController()
         {
             ConnectionRegistry.DiscoverConnections();
-            connectionSettingsForm = new ConnectionSettingsForm(_ProtocolSelected, ConnectionRegistry.Types.Keys.ToArray());
+            connectionSettingsCtrl = new ConnectionSettingsControl(_ProtocolSelected, ConnectionRegistry.Types.Keys.ToArray());
             
         }
 
@@ -44,7 +44,7 @@ namespace Microsan
                     break;
                 }
             }
-            connectionSettingsForm.SelectProtocolByIndex(index);
+            connectionSettingsCtrl.SelectProtocolByIndex(index);
             SelectSettingsControlForActiveType();
         }
 
@@ -63,7 +63,7 @@ namespace Microsan
             ConnectionBase cb = ConnectionRegistry.Types[connections.activeType];
             currentCtrl = cb.SettingsControl.Create(_Connect);
             cb.SettingsControl.ApplySettings(currentCtrl, GetCurrentOrNewSetting());
-            connectionSettingsForm.SetControl(currentCtrl);
+            connectionSettingsCtrl.SetControl(currentCtrl);
         }
 
         private void _Connect(bool connectState)
@@ -103,7 +103,7 @@ namespace Microsan
         {
             currentCtrl.BeginInvoke((MethodInvoker)(() =>
             {
-                connectionSettingsForm.SetLock(state);
+                connectionSettingsCtrl.SetLock(state);
                 ConnectionRegistry.Types[connections.activeType].SettingsControl.SetConnectedState(currentCtrl, state);
             }));
         }

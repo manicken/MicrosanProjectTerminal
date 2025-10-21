@@ -126,6 +126,9 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.1.6643.41644, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WeifenLuo.WinFormsUI.Docking.2.1.0\lib\net20\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Csharp_CommonSourceFiles\DebugLogForm.cs">
@@ -144,14 +147,6 @@
     </Compile>
     <Compile Include="..\Csharp_CommonSourceFiles\QuickFileAndFolderDialogs.cs">
       <Link>QuickFileAndFolderDialogs.cs</Link>
-    </Compile>
-    <Compile Include="..\Csharp_CommonSourceFiles\RichTextBoxForm.cs">
-      <Link>RichTextBoxForm.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\Csharp_CommonSourceFiles\RichTextBoxForm.designer.cs">
-      <Link>RichTextBoxForm.designer.cs</Link>
-      <DependentUpon>RichTextBoxForm.cs</DependentUpon>
     </Compile>
     <Compile Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\Autocomplete.cs">
       <Link>RuntimeProgramming\Autocomplete.cs</Link>
@@ -187,11 +182,11 @@
     <Compile Include="ConnectionSettingControls\WebsocketClientSettingsControl.Designer.cs">
       <DependentUpon>WebsocketClientSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConnectionSettingsForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="ConnectionSettingsControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConnectionSettingsForm.Designer.cs">
-      <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>
+    <Compile Include="ConnectionSettingsControl.Designer.cs">
+      <DependentUpon>ConnectionSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConnectionSettings\MqttClientSettings.cs" />
     <Compile Include="ConnectionSettings\SerialSettings.cs" />
@@ -199,13 +194,13 @@
     <Compile Include="ConnectionSettings\WebsocketClientSettings.cs" />
     <Compile Include="ConnectionSettings\TCPClientSettings.cs" />
     <Compile Include="ConnectionStructures.cs" />
-    <Compile Include="DataGridViewSendForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="DataGridViewSendControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DataGridViewSendForm.Designer.cs">
-      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
+    <Compile Include="DataGridViewSendControl.Designer.cs">
+      <DependentUpon>DataGridViewSendControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataGridViewSendFormDataStructures.cs" />
+    <Compile Include="DataGridViewSendControlDataStructures.cs" />
     <Compile Include="JSONEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +223,15 @@
     </Compile>
     <Compile Include="JSONEditControl.Designer.cs">
       <DependentUpon>JSONEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RichTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RichTextBoxControl.Designer.cs">
+      <DependentUpon>RichTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeifenLuo_WinFormsUI_Docking_Wrappers.cs">
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="icons\load.png" />
     <EmbeddedResource Include="icons\start.png" />
@@ -276,10 +280,6 @@
       <Link>DebugLogForm.resx</Link>
       <DependentUpon>DebugLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RichTextBoxForm.resx">
-      <Link>RichTextBoxForm.resx</Link>
-      <DependentUpon>RichTextBoxForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\Csharp_CommonSourceFiles\RuntimeProgramming\SourceCodeEditControl.resx">
       <Link>RuntimeProgramming\SourceCodeEditControl.resx</Link>
       <DependentUpon>SourceCodeEditControl.cs</DependentUpon>
@@ -300,11 +300,11 @@
     <EmbeddedResource Include="ConnectionSettingControls\WebsocketClientSettingsControl.resx">
       <DependentUpon>WebsocketClientSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConnectionSettingsForm.resx">
-      <DependentUpon>ConnectionSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConnectionSettingsControl.resx">
+      <DependentUpon>ConnectionSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataGridViewSendForm.resx">
-      <DependentUpon>DataGridViewSendForm.cs</DependentUpon>
+    <EmbeddedResource Include="DataGridViewSendControl.resx">
+      <DependentUpon>DataGridViewSendControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JSONEditorForm.resx">
       <DependentUpon>JSONEditorForm.cs</DependentUpon>
@@ -322,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JSONEditControl.resx">
       <DependentUpon>JSONEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RichTextBoxControl.resx">
+      <DependentUpon>RichTextBoxControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

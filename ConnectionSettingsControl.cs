@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace Microsan
 {
-    public partial class ConnectionSettingsForm : Form
+    public partial class ConnectionSettingsControl : UserControl
     {
         private Action<string> ConnectionTypeSelectedHandler;
         int widthOffset = 0;
         int heightOffset = 0;
 
-        public ConnectionSettingsForm(Action<string> ConnectionTypeSelectedHandler, string[] items)
+        public ConnectionSettingsControl(Action<string> ConnectionTypeSelectedHandler, string[] items)
         {
             InitializeComponent();
 
@@ -25,7 +25,7 @@ namespace Microsan
             cmbProtocol.Items.AddRange(items);
 
             this.ConnectionTypeSelectedHandler = ConnectionTypeSelectedHandler;
-            this.FormClosing += connectionSettingsForm_FormClosing;
+            //this.FormClosing += connectionSettingsForm_FormClosing;
             cmbProtocol.SelectedIndexChanged += cmbProtocol_SelectedIndexChanged;
 
             //this.SizeChanged += ConnectionSettingsForm_SizeChanged;

@@ -18,9 +18,9 @@ namespace Microsan
 
         private readonly Action<bool> ConnectHandler;
 
-        public static ConnectionSettingsControl GetConnectionSettingsControlBase()
+        public static ConnectionSettingsControlBase GetConnectionSettingsControlBase()
         {
-            return new ConnectionSettingsControl
+            return new ConnectionSettingsControlBase
             {
                 Create = SerialSettingsControl.Create,
                 ApplySettings = SerialSettingsControl.ApplySettings,

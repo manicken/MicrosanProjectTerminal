@@ -16,8 +16,6 @@ namespace Microsan
     partial class MainForm
     {
         private System.ComponentModel.IContainer components;
-        
-         public Crom.Controls.Docking.DockContainer dc;
          
          /// <summary>
         /// Clean up any resources being used.
@@ -42,7 +40,6 @@ namespace Microsan
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.dc = new Crom.Controls.Docking.DockContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
@@ -60,19 +57,9 @@ namespace Microsan
             this.tsBtnProjectNameEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnShowJsonEditor = new System.Windows.Forms.ToolStripButton();
+            this.panelContent = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dc
-            // 
-            this.dc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dc.BackColor = System.Drawing.Color.Gray;
-            this.dc.Location = new System.Drawing.Point(0, 42);
-            this.dc.Name = "dc";
-            this.dc.Size = new System.Drawing.Size(590, 464);
-            this.dc.TabIndex = 13;
             // 
             // toolStrip1
             // 
@@ -218,13 +205,23 @@ namespace Microsan
             this.tsbtnShowJsonEditor.Text = "Edit JSON";
             this.tsbtnShowJsonEditor.Click += new System.EventHandler(this.tsbtnShowJsonEditor_Click);
             // 
+            // panelContent
+            // 
+            this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContent.Location = new System.Drawing.Point(0, 42);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(590, 464);
+            this.panelContent.TabIndex = 15;
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(590, 506);
+            this.Controls.Add(this.panelContent);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.dc);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MicrosanProjectTerminal";
@@ -253,5 +250,6 @@ namespace Microsan
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tsmiCustomEntryPoints;
+        private System.Windows.Forms.Panel panelContent;
     }
 }

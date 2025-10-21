@@ -16,9 +16,9 @@ namespace Microsan
         private const string EMPTY_TEXTBOX_DEFAULT = "12345678";
         private readonly Action<bool> ConnectHandler;
 
-        public static ConnectionSettingsControl GetConnectionSettingsControlBase()
+        public static ConnectionSettingsControlBase GetConnectionSettingsControlBase()
         {
-            return new ConnectionSettingsControl
+            return new ConnectionSettingsControlBase
             {
                 Create = HttpRestSettingsControl.Create,
                 ApplySettings = HttpRestSettingsControl.ApplySettings,

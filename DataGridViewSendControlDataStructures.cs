@@ -149,11 +149,19 @@ namespace Microsan
         /** */
         public string Note { get; set; }
 
+        public bool IsDelimiter { get; set; }
+
         /** */
         public string ToJsonString()
         {
+            if (IsDelimiter)
+            {
+                return $"{{\"IsDelimiter\":true}}";
+            }
+            string dataJsonStr = $"\"data\": {JsonConvert.SerializeObject(Data != null ? Data : "")}";
+            string noteJsonStr = $"\"note\": {JsonConvert.SerializeObject(Note != null ? Note : "")}";
             // Use JsonSerializer to escape strings properly
-            return $"{{\"data\": {JsonConvert.SerializeObject(Data)}, \"note\": {JsonConvert.SerializeObject(Note)}}}";
+            return $"{{{dataJsonStr}, {noteJsonStr}}}";
         }
     }
 }

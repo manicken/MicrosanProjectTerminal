@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"Lumatron AMP",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-10-21 16:42:56",
+  "modified":"2025-10-21 20:32:54",
   "version":1
   },
   "sendGroups": [
@@ -10,12 +10,16 @@
       {"data": "VM50", "note": "master volume 50"},
       {"data": "VM60", "note": "master volume 60"},
       {"data": "VM79", "note": "front volume max"},
+      {"IsDelimiter":true},
       {"data": "VF00", "note": "front volume min"},
       {"data": "VF15", "note": "front volume max"},
+      {"IsDelimiter":true},
       {"data": "VC00", "note": "centre volume min"},
       {"data": "VC15", "note": "centre volume max"},
+      {"IsDelimiter":true},
       {"data": "VW00", "note": "woofer volume min"},
-      {"data": "VW15", "note": "woofer volume max"}  
+      {"data": "VW15", "note": "woofer volume max"},
+      {"data": "", "note": ""}  
     ]},
     {"name":"InputStage","note":"","items":[
       {"data": "IG0", "note": "in6ch to out6ch"},
@@ -23,11 +27,14 @@
       {"data": "IG2", "note": "AUX1"},
       {"data": "IG3", "note": "RADIO"},
       {"data": "IG4", "note": "in2ch to out6ch"},
+      {"IsDelimiter":true},
       {"data": "IM3F", "note": "in stage ch mute"},
       {"data": "IS0", "note": "enhanced surr. off"},
       {"data": "IS1", "note": "enhanced surr. on"},
+      {"IsDelimiter":true},
       {"data": "II", "note": "input stage init."},
       {"data": "I?", "note": ""},
+      {"IsDelimiter":true},
       {"data": "IMF*1", "note": "front mute"},
       {"data": "IMF*0", "note": "front unmute"},
       {"data": "IMR*1", "note": "rear mute"},
@@ -64,7 +71,7 @@
       {"data": "PA0", "note": "amp stage off"},
       {"data": "PA1", "note": "amp stage on"},
       {"data": "IM3F", "note": "in stage ch mute"},
-      {"data": "VM50", "note": null},
+      {"data": "VM50", "note": ""},
       {"data": "VM60", "note": "master volume (0-79)"},
       {"data": "VM79", "note": "front volume (0-15)"},
       {"data": "VF00", "note": "rear volume (0-15)"},
@@ -188,8 +195,8 @@
       {"data": "IMRRT", "note": "rear right toggle mute"},
       {"data": "IMCT", "note": "centre toggle mute"},
       {"data": "IMWT", "note": "woofer toggle mute"},
-      {"data": null, "note": null},
-      {"data": null, "note": null}  
+      {"data": "", "note": ""},
+      {"data": "", "note": ""}  
     ]},
     {"name":"dalhal","note":"","items":[
       {"data": "read/string/i2c/list", "note": "test"}  
@@ -266,12 +273,12 @@
 
   ],
   "window": {
-    "main": {"x":101,"y":91,"width":806,"height":928},
+    "main": {"x":644,"y":65,"width":811,"height":928},
     "codeEdit": {"x":924,"y":130,"width":830,"height":838},
     "jsonEdit": {"x":908,"y":82,"width":577,"height":927},
     "socket": {"x":0,"y":0,"width":300,"height":118},
-    "connections": {"x":0,"y":0,"width":402,"height":437},
-    "dgvSend": {"x":0,"y":0,"width":417,"height":864},
-    "log": {"x":0,"y":0,"width":402,"height":441}
+    "connections": {"x":0,"y":0,"width":316,"height":437},
+    "dgvSend": {"x":0,"y":0,"width":503,"height":864},
+    "log": {"x":0,"y":0,"width":316,"height":441}
   }
 }

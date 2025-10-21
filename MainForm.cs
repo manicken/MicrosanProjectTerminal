@@ -13,6 +13,7 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 using Newtonsoft.Json;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Microsan
 {
@@ -49,10 +50,10 @@ namespace Microsan
 
         public JSONEditorForm jsonEditForm;
 
-        public DataGridViewSendForm dgvSendForm;
+        public DataGridViewSendControl dgvSendCtrl;
         public DockableFormInfo dfi_dgvSendForm;
         
-        public RichTextBoxForm rtxtForm;
+        public RichTextBoxControl rtxtCtrl;
         public DockableFormInfo dfi_rtxtForm;
 
         public DockableFormInfo dfi_connectionCfgForm;
@@ -62,6 +63,10 @@ namespace Microsan
         public ProjectData projectData = new ProjectData();
 
         public ConnectionController connectionCtrl = new ConnectionController();
+
+        //public Crom.Controls.Docking.DockContainer dc;
+
+        private DockPanel dockPanel;
 
         /// <summary>
         /// main form constructor
@@ -75,15 +80,25 @@ namespace Microsan
 
             this.FormClosing += this_FormClosing;
 
-			rtxtForm = new RichTextBoxForm("Log");
+			rtxtCtrl = new RichTextBoxControl("Log");
             
-            dgvSendForm = new DataGridViewSendForm(dgvSendForm_SendData);
- 
-            
+            dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
 
-            dc.FormClosing += dc_FormClosing;
-            
-            Microsan.Debugger.Message = rtxtForm.rtxt.AppendText;
+
+            //dc = new Crom.Controls.Docking.DockContainer();
+            //dc.FormClosing += dc_FormClosing;
+            //dc.Dock = DockStyle.Fill;
+            //dc.BackColor = System.Drawing.Color.Gray;
+            //panelContent.Controls.Add(dc);
+
+            dockPanel = new DockPanel
+            {
+                Dock = DockStyle.Fill//,
+               // Theme = new VS2015DarkTheme()  // or VS2015BlueTheme, etc.
+            };
+            panelContent.Controls.Add(dockPanel);
+
+            Microsan.Debugger.Message = rtxtCtrl.rtxt.AppendText;
 
             connectionCtrl.DataReceived += connectionCtrl_DataReceived;
         }
@@ -112,7 +127,7 @@ namespace Microsan
                 {
                     try
                     {
-                        rtxtForm?.rtxt?.AppendText(LOG_RX_PREFIX + szData + Environment.NewLine);
+                        rtxtCtrl?.rtxt?.AppendText(LOG_RX_PREFIX + szData + Environment.NewLine);
                     }
                     catch { /* ignore dispose race */ }
                 }));
@@ -128,7 +143,10 @@ namespace Microsan
         {
             e.Cancel = true;
         }
-        
+       // Form rtxtForm = new Form();
+        //Form dgvSendForm = new Form();
+        //Form connSettingForm = new Form();
+
         /// <summary>
         /// when the form is first shown 
         /// </summary>
@@ -136,9 +154,37 @@ namespace Microsan
         /// <param name="e"></param>
         private void this_Shown(object sender, EventArgs e)
         {
-            dfi_rtxtForm = dc.Add(rtxtForm, zAllowedDock.All, rtxtForm.GetType().GUID);
-            dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
-            dfi_connectionCfgForm = dc.Add(connectionCtrl.connectionSettingsForm, zAllowedDock.All, connectionCtrl.connectionSettingsForm.GetType().GUID);
+            rtxtCtrl.Dock = DockStyle.Fill;
+            dgvSendCtrl.Dock = DockStyle.Fill;
+            connectionCtrl.connectionSettingsCtrl.Dock = DockStyle.Fill;
+            //rtxtForm.Text = "Log";
+            //dgvSendForm.Text = "DGV sender";
+            //connSettingForm.Text = "Connection Settings";
+            //rtxtForm.Controls.Add(rtxtCtrl);
+            //dgvSendForm.Controls.Add(dgvSendCtrl);
+            //connSettingForm.Controls.Add(connectionCtrl.connectionSettingsCtrl);
+
+            var logDock = new LogDockContent(rtxtCtrl);
+            var senderDock = new DgvSendDockContent(dgvSendCtrl);
+            var connDock = new ConnSettingsDockContent(connectionCtrl.connectionSettingsCtrl);
+            dockPanel.DocumentStyle = DocumentStyle.DockingWindow;
+
+            // show them docked
+            connDock.Show(dockPanel, DockState.DockLeft);
+            /*connDock.DockHandler.Form.BeginInvoke(new Action(() =>
+            {
+                if (connDock.Pane != null)
+                {
+                    connDock.Pane.Width = connectionCtrl.connectionSettingsCtrl.Width;
+                }
+            }));*/
+            logDock.Show(connDock.Pane, DockAlignment.Bottom, 0.5);
+            senderDock.Show(dockPanel);
+            // connectionCtrl.connectionSettingsCtrl.Width;
+
+            //dfi_rtxtForm = dc.Add(rtxtForm, zAllowedDock.All, rtxtForm.GetType().GUID);
+            //dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
+            //dfi_connectionCfgForm = dc.Add(connSettingForm, zAllowedDock.All, connSettingForm.GetType().GUID);
 
             rtPrg = new RuntimeProgramming(this);
             rtPrg.SaveAll = rtProg_SaveAll;
@@ -148,14 +194,15 @@ namespace Microsan
 
             // have the following here,
             // as currently restoring the dock cfg from json is not possible
-            dc.DockForm(dfi_dgvSendForm, DockStyle.Fill, zDockMode.Inner);
-            dc.DockForm(dfi_connectionCfgForm, DockStyle.Left, zDockMode.None);
-            dc.DockForm(dfi_rtxtForm, dfi_connectionCfgForm, DockStyle.Bottom, zDockMode.None);
+            //dc.DockForm(dfi_dgvSendForm, DockStyle.Fill, zDockMode.Inner);
+            //dc.DockForm(dfi_connectionCfgForm, DockStyle.Left, zDockMode.None);
+            //dc.DockForm(dfi_rtxtForm, dfi_connectionCfgForm, DockStyle.Bottom, zDockMode.None);
 
-            rtxtForm.MaximizeBox = false;
-            dgvSendForm.MaximizeBox = false;
+            //rtxtForm.MaximizeBox = false;
+            //dgvSendForm.MaximizeBox = false;
+            //connSettingForm.MaximizeBox = false;
 
-            connectionCtrl.connectionSettingsForm.Show();
+            connectionCtrl.connectionSettingsCtrl.Show();
 
             GenerateIconMap();
             //listEmbeddedResources();
@@ -168,7 +215,7 @@ namespace Microsan
             string[] resourceNames = asm.GetManifestResourceNames();
 
             foreach (var name in resourceNames)
-                rtxtForm.rtxt.AppendText(name+"\n");
+                rtxtCtrl.rtxt.AppendText(name+"\n");
             
         }
 
@@ -190,7 +237,7 @@ namespace Microsan
                             // Use the short name as key (e.g., "start" instead of full path)
                             string key = Path.GetFileNameWithoutExtension(resName);
                             key = key.Substring(key.LastIndexOf(".")+1);
-                            rtxtForm.rtxt.AppendText(key + "\n");
+                            rtxtCtrl.rtxt.AppendText(key + "\n");
                             iconMap[key] = img;
                         }
                     }
@@ -272,7 +319,7 @@ namespace Microsan
             if (res == LoadProjectStatus.Success)
             {
                 projectData.sendGroups = pdTemp.sendGroups;
-                dgvSendForm.SetData(projectData.sendGroups);
+                dgvSendCtrl.SetData(projectData.sendGroups);
             }
             return (res == LoadProjectStatus.Success);
         }
@@ -322,10 +369,10 @@ namespace Microsan
             projectData.window.main.ApplyTo(this);
             projectData.window.codeEdit.ApplyTo(rtPrg.srcEditContainerForm);
             projectData.window.jsonEdit.ApplyTo(jsonEditForm);
-            projectData.window.connections.ApplyTo(connectionCtrl.connectionSettingsForm);
-            projectData.window.log.ApplyTo(rtxtForm);
-            projectData.window.dgvSend.ApplyTo(dgvSendForm);
-            dgvSendForm.SetData(projectData.sendGroups);
+            //projectData.window.connections.ApplyTo(connSettingForm);
+            //projectData.window.log.ApplyTo(rtxtForm);
+            //projectData.window.dgvSend.ApplyTo(dgvSendForm);
+            dgvSendCtrl.SetData(projectData.sendGroups);
             connectionCtrl.SetData(projectData.connections);
         }
 
@@ -336,9 +383,9 @@ namespace Microsan
             projectData.window.main.GetFrom(this);
             projectData.window.codeEdit.GetFrom(rtPrg.srcEditContainerForm);
             projectData.window.jsonEdit.GetFrom(jsonEditForm);
-            projectData.window.connections.GetFrom(connectionCtrl.connectionSettingsForm);
-            projectData.window.log.GetFrom(rtxtForm);
-            projectData.window.dgvSend.GetFrom(dgvSendForm);
+            //projectData.window.connections.GetFrom(connSettingForm);
+            //projectData.window.log.GetFrom(rtxtForm);
+            //projectData.window.dgvSend.GetFrom(dgvSendForm);
 
             string jsonStr = projectData.ToJsonString();
             File.WriteAllText(ProjectData.CurrentProjectFilePath, jsonStr);
@@ -350,7 +397,7 @@ namespace Microsan
         /// <param name="data"></param>
 		private void dgvSendForm_SendData(string data)
 		{
-            rtxtForm.rtxt.AppendText(LOG_TX_PREFIX + data + "\n");
+            rtxtCtrl.rtxt.AppendText(LOG_TX_PREFIX + data + "\n");
             connectionCtrl.SendToCurrentConnection(data);
 		}
 		

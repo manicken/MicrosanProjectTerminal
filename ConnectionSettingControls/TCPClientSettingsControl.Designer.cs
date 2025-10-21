@@ -44,6 +44,8 @@ namespace Microsan
             // 
             // grpBoxIpPort
             // 
+            this.grpBoxIpPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxIpPort.Controls.Add(this.txtHostIP);
             this.grpBoxIpPort.Controls.Add(this.txtHostPort);
             this.grpBoxIpPort.Controls.Add(this.label2);
@@ -57,6 +59,8 @@ namespace Microsan
             // 
             // txtHostIP
             // 
+            this.txtHostIP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostIP.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHostIP.Location = new System.Drawing.Point(6, 22);
             this.txtHostIP.Name = "txtHostIP";
@@ -67,6 +71,7 @@ namespace Microsan
             // 
             // txtHostPort
             // 
+            this.txtHostPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostPort.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHostPort.Location = new System.Drawing.Point(212, 22);
             this.txtHostPort.Name = "txtHostPort";
@@ -77,6 +82,7 @@ namespace Microsan
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(198, 25);
             this.label2.Name = "label2";
@@ -86,6 +92,8 @@ namespace Microsan
             // 
             // grpBoxMessageStartStop
             // 
+            this.grpBoxMessageStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -137,7 +145,7 @@ namespace Microsan
             this.btnConnect.TabIndex = 8;
             this.btnConnect.Text = "Connect";
             // 
-            // TCPSettingsControl
+            // TCPClientSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +153,7 @@ namespace Microsan
             this.Controls.Add(this.grpBoxMessageStartStop);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnConnect);
-            this.Name = "TCPSettingsControl";
+            this.Name = "TCPClientSettingsControl";
             this.Size = new System.Drawing.Size(296, 175);
             this.grpBoxIpPort.ResumeLayout(false);
             this.grpBoxIpPort.PerformLayout();

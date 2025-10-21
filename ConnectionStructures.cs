@@ -15,7 +15,7 @@ namespace Microsan
         public string msgPostfix { get; set; } = "\\r\\n";
     }
     
-    public class ConnectionSettingsControl
+    public class ConnectionSettingsControlBase
     {
         public Func<Action<bool>, UserControl> Create { get; set; }
         public Action<UserControl, ConnectionSettingsBase> ApplySettings { get; set; }
@@ -26,7 +26,7 @@ namespace Microsan
 
     public class ConnectionBase
     {
-        public ConnectionSettingsControl SettingsControl { get; set; }
+        public ConnectionSettingsControlBase SettingsControl { get; set; }
 
         public Func<IConnection> Create { get; set; }
 
