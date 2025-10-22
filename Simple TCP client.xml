@@ -183,7 +183,7 @@
             
             </summary>
         </member>
-        <member name="M:Microsan.MultiInputDialog.Show(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Microsan.MultiInputDialog.Show(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Func{System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean})">
             <summary>
             
             </summary>

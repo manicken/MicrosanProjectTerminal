@@ -219,15 +219,19 @@ namespace Microsan
                 { "Name", sendItems.Name },
                 { "Note", sendItems.Note }
             };
-            var result = MultiInputDialog.Show("Edit Tab Name", projectMeta);
-            if (result != null)
-            {
-                string Name = result["Name"];
+            var result = MultiInputDialog.Show("Edit Tab Name", projectMeta, (validateRes) => {
+                string Name = validateRes["Name"];
                 if (CheckIfNameExist?.Invoke(Name) ?? false)
                 {
                     MessageBox.Show(Name + " allready exist\nPlease choose annother Name");
-                    return;
+                    return false;
                 }
+                return true;
+            });
+            if (result != null)
+            {
+                string Name = result["Name"];
+                
                 string Note = result["Note"];
                 TabNameChanged?.Invoke(sendItems.Name, Name);
                 sendItems.Name = Name;
@@ -263,7 +267,15 @@ namespace Microsan
                 { "Name", "newTab" },
                 { "Note", "" }
             };
-            var result = MultiInputDialog.Show("Add New Tab", projectMeta);
+            var result = MultiInputDialog.Show("Add New Tab", projectMeta, (validateRes) => {
+                string Name = validateRes["Name"];
+                if (CheckIfNameExist?.Invoke(Name) ?? false)
+                {
+                    MessageBox.Show(Name + " allready exist\nPlease choose annother Name");
+                    return false;
+                }
+                return true;
+            });
             if (result != null)
             {
                 string Name = result["Name"];
