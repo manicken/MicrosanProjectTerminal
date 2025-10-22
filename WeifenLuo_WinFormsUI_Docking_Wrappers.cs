@@ -3,31 +3,49 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace Microsan
 {
-    public class LogDockContent : DockContent
+    public class RichTextBoxControlDockContent : DockContent
     {
-        public LogDockContent(RichTextBoxControl rtxtCtrl)
+        public RichTextBoxControlDockContent(RichTextBoxControl rtxtCtrl, string title = "Log")
         {
-            Text = "Log";
+            Text = title;
             rtxtCtrl.Dock = DockStyle.Fill;
+            CloseButton = false;
             Controls.Add(rtxtCtrl);
         }
     }
-    public class DgvSendDockContent : DockContent
+    public class DataGridViewSendTabbedControlDockContent : DockContent
     {
-        public DgvSendDockContent(DataGridViewSendControl dgvSendCtrl)
+        public DataGridViewSendTabbedControlDockContent(DataGridViewSendTabbedControl dgvSendCtrl,string title = "DGVT Sender")
         {
-            Text = "DGV Sender";
+            Text = title;
             dgvSendCtrl.Dock = DockStyle.Fill;
+            CloseButton = false;
             Controls.Add(dgvSendCtrl);
         }
     }
-
-    public class ConnSettingsDockContent : DockContent
+    public class DataGridViewSendControlDockContent : DockContent
     {
-        public ConnSettingsDockContent(ConnectionSettingsControl ctrl)
+        public DataGridViewSendControlDockContent(DataGridViewSendControl dgvSendCtrl, string title = "DGV Sender")
         {
-            Text = "Connection Settings";
+            Text = title;
+            dgvSendCtrl.Dock = DockStyle.Fill;
+            CloseButton = false;
+            Controls.Add(dgvSendCtrl);
+        }
+        protected override string GetPersistString()
+        {
+            // Include type name + unique ID
+            return $"{GetType().FullName}:{Text}";
+        }
+    }
+
+    public class ConnectionSettingsControlDockContent : DockContent
+    {
+        public ConnectionSettingsControlDockContent(ConnectionSettingsControl ctrl, string title = "Connection Settings")
+        {
+            Text = title;
             ctrl.Dock = DockStyle.Fill;
+            CloseButton = false;
             Controls.Add(ctrl);
         }
     }

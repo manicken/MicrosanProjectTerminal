@@ -24,7 +24,7 @@ namespace Microsan
     /// <summary>
     /// Description of DataGridViewSendForm.
     /// </summary>
-    public partial class DataGridViewSendControl : UserControl
+    public partial class DataGridViewSendTabbedControl : UserControl
     {
         const string DATA_COL_NAME = "Data";
         const string NOTE_COL_NAME = "Note";
@@ -40,16 +40,10 @@ namespace Microsan
         /// 
         public Action<string> SendData;
 
-        public Action<string,string> TabNameChanged;
-
-        public Action<SendDataJsonItems> TabAdded;
-
-        public Action<SendDataJsonItems> TabRemoved;
-
         /// <summary>
         /// This is only a stored local reference
         /// </summary>
-        SendDataJsonItems sendItems;
+        List<SendDataJsonItems> sendGroups;
 
         int currentSelectedTabIndex = 0;
 
@@ -59,7 +53,7 @@ namespace Microsan
         /// 
         /// </summary>
         /// <param name="SendDataHandler"></param>
-        public DataGridViewSendControl(Action<string> SendDataHandler)
+        public DataGridViewSendTabbedControl(Action<string> SendDataHandler)
         {
             InitializeComponent();
 
@@ -126,12 +120,23 @@ namespace Microsan
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sendItems"></param>
-        public void SetData(SendDataJsonItems sendItems)
+        /// <param name="sendGroups"></param>
+        public void SetData(List<SendDataJsonItems> sendGroups)
         {
-            this.sendItems = sendItems;
-
-            SetDgvDataSourceSafe(this.sendItems.items);
+            this.sendGroups = sendGroups;
+            if (sendGroups.Count == 0)
+            {
+                sendGroups.Add(new SendDataJsonItems("New Group", "Rename this group to something meaningful"));
+            }
+            tabCtrl.TabPages.Clear();
+            for (int i = 0;i<sendGroups.Count; i++)
+            {
+                tabCtrl.TabPages.Add(TabPageExt.Create(sendGroups[i].Name, sendGroups[i].Note));
+            }
+            if (sendGroups.Count != 0)
+            {
+                SetDgvDataSourceSafe(sendGroups[0].items);
+            }
         }
 
         private void SetDgvDataSourceSafe(BindingList<SendDataItem> items)
@@ -165,27 +170,35 @@ namespace Microsan
             }
         }
 
-        
+        private void tabCtrl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = tabCtrl.SelectedIndex;
+            if (idx < 0 || idx >= sendGroups.Count) return;
+
+            currentSelectedTabIndex = idx;
+
+            SetDgvDataSourceSafe(sendGroups[idx].items);
+        }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (sendItems.items.Count == 0) return;
+            if (sendGroups[currentSelectedTabIndex].items.Count == 0) return;
             if (e.ColumnIndex != 0) return;
             if (e.RowIndex == -1) return;
 
-            string toSend = sendItems.items[e.RowIndex].Data;
+            string toSend = sendGroups[currentSelectedTabIndex].items[e.RowIndex].Data;
             SendData(toSend);
         }
 
         private void addNewRowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sendItems.items.Add(new SendDataItem());
+            sendGroups[currentSelectedTabIndex].items.Add(new SendDataItem());
         }
 
         private void insertNewRowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int index = dgv.CurrentCell?.RowIndex ?? 0;
-            sendItems.items.Insert(index, new SendDataItem());
+            sendGroups[currentSelectedTabIndex].items.Insert(index, new SendDataItem());
             dgv.CurrentCell = dgv.Rows[index].Cells[1];
         }
 
@@ -205,76 +218,131 @@ namespace Microsan
 
         private void confirmDeleteRowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgv.CurrentCell == null) return;
-            int index = dgv.CurrentCell.RowIndex;
-            sendItems.items.RemoveAt(index);
+            int index = dgv.CurrentCell?.RowIndex ?? 0;
+            sendGroups[currentSelectedTabIndex].items.RemoveAt(index);
+        }
+
+        private void tabsContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // the following selects a tab directly when right clicked
+            Point pos = tabCtrl.PointToClient(Cursor.Position);
+            for (int i = 0; i < tabCtrl.TabCount; i++)
+            {
+                if (tabCtrl.GetTabRect(i).Contains(pos))
+                {
+                    tabCtrl.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            int idx = tabCtrl.SelectedIndex;
+            tsmiMoveTabToLeft.Enabled = (idx > 0);
+            tsmiMoveTabToRight.Enabled = (idx >= 0 && idx < tabCtrl.TabPages.Count - 1);
         }
 
         private void editTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var projectMeta = new Dictionary<string, string>()
             {
-                { "Name", sendItems.Name },
-                { "Note", sendItems.Note }
+                { "Name", tabCtrl.SelectedTab.Text },
+                { "Note", tabCtrl.SelectedTab.ToolTipText }
             };
             var result = MultiInputDialog.Show("Edit Tab Name", projectMeta);
             if (result != null)
             {
                 string Name = result["Name"];
                 string Note = result["Note"];
-                TabNameChanged?.Invoke(sendItems.Name, Name);
-                sendItems.Name = Name;
-                sendItems.Note = Note;
-                
+                tabCtrl.SelectedTab.Text = Name;
+                tabCtrl.SelectedTab.ToolTipText = Note;
+                sendGroups[currentSelectedTabIndex].Name = Name;
+                sendGroups[currentSelectedTabIndex].Note = Note;
             }
         }
 
-
-        private void tsmiInsertDelimiterRow_Click(object sender, EventArgs e)
-        {
-            int index = dgv.CurrentCell?.RowIndex ?? 0;
-            SendDataItem sdi = new SendDataItem();
-            sdi.IsDelimiter = true;
-            sendItems.items.Insert(index, sdi);
-            //dgv.CurrentCell = dgv.Rows[index].Cells[1];
-        }
-
-        private void dgwContextMenu_Opening(object sender, CancelEventArgs e)
-        {
-            tsmiDeleteRow.Enabled = (dgv.CurrentCell != null);
-     
-            tsmiAddNewTab.Enabled = (TabAdded != null);
-            tsmiRemoveTab.Enabled = (TabRemoved != null);
-            tsmiEditTabName.Enabled = (TabNameChanged != null);
-
-        }
-
-        private void tsmiAddNewTab_Click(object sender, EventArgs e)
+        private void addTabToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var projectMeta = new Dictionary<string, string>()
             {
-                { "Name", "newTab" },
-                { "Note", "" }
+                { "Name", tabCtrl.SelectedTab.Text },
+                { "Note", tabCtrl.SelectedTab.ToolTipText }
             };
             var result = MultiInputDialog.Show("Add New Tab", projectMeta);
             if (result != null)
             {
                 string Name = result["Name"];
                 string Note = result["Note"];
-                SendDataJsonItems newTab = new SendDataJsonItems(Name, Note);
-                TabAdded?.Invoke(newTab);
+                tabCtrl.TabPages.Add(TabPageExt.Create(Name, Note));
+                sendGroups.Add(new SendDataJsonItems(Name, Note));
             }
         }
 
-        private void tsmiRemoveTab_Click(object sender, EventArgs e)
+        private void toLeftToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int idx = tabCtrl.SelectedIndex;
+            if (idx > 0)
+            {
+                tabCtrl.SelectedIndexChanged -= tabCtrl_SelectedIndexChanged;
+                var tp = tabCtrl.TabPages[idx];
+                tabCtrl.TabPages.RemoveAt(idx);
+                tabCtrl.TabPages.Insert(idx - 1, tp);
+                tabCtrl.SelectedIndex = idx - 1; // keep it selected
+                var sendGroupsItem = sendGroups[idx];
+                sendGroups.RemoveAt(idx);
+                sendGroups.Insert(idx - 1, sendGroupsItem);
+                tabCtrl.SelectedIndexChanged += tabCtrl_SelectedIndexChanged;
+            }
+        }
 
+        private void tsmiMoveTabToRight_Click(object sender, EventArgs e)
+        {
+            int idx = tabCtrl.SelectedIndex;
+            if (idx >= 0 && idx < tabCtrl.TabPages.Count - 1)
+            {
+                tabCtrl.SelectedIndexChanged -= tabCtrl_SelectedIndexChanged;
+                var tp = tabCtrl.TabPages[idx];
+                tabCtrl.TabPages.RemoveAt(idx);
+                tabCtrl.TabPages.Insert(idx + 1, tp);
+                tabCtrl.SelectedIndex = idx + 1; // keep it selected
+                var sendGroupsItem = sendGroups[idx];
+                sendGroups.RemoveAt(idx);
+                sendGroups.Insert(idx + 1, sendGroupsItem);
+                tabCtrl.SelectedIndexChanged += tabCtrl_SelectedIndexChanged;
+            }
         }
 
         private void tsmiRemoveTabConfirm_Click(object sender, EventArgs e)
         {
-            TabRemoved?.Invoke(sendItems);
+            int idx = tabCtrl.SelectedIndex;
+            tabCtrl.TabPages.RemoveAt(idx);
+            sendGroups.RemoveAt(idx);
+        }
+
+        private void tsmiInsertDelimiterRow_Click(object sender, EventArgs e)
+        {
+            int index = dgv.CurrentCell?.RowIndex ?? 0;
+            SendDataItem sdi = new SendDataItem();
+            sdi.IsDelimiter = true;
+            sendGroups[currentSelectedTabIndex].items.Insert(index, sdi);
+            //dgv.CurrentCell = dgv.Rows[index].Cells[1];
         }
     }
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class TabPageExt
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="tooltip"></param>
+        /// <returns></returns>
+        public static TabPage Create(string title, string tooltip = null)
+        {
+            var tp = new TabPage(title);
+            if (tooltip != null)
+                tp.ToolTipText = tooltip;
+            return tp;
+        }
+    }
 }

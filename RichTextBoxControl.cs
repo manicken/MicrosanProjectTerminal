@@ -50,6 +50,15 @@ namespace Microsan
                 this.TopMost = false;
             }*/
         }
+
+        public void AppendText(string text)
+        {
+            rtxt.AppendText(text);
+        }
+        public void AppendLine(string text)
+        {
+            rtxt.AppendText(text + Environment.NewLine);
+        }
         
         private void rtxt_TextChanged(object sender, EventArgs e)
         {

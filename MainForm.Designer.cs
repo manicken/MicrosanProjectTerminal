@@ -57,8 +57,11 @@ namespace Microsan
             this.tsBtnProjectNameEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnShowJsonEditor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.toolStrip1.SuspendLayout();
+            this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -79,10 +82,11 @@ namespace Microsan
             this.toolStripSeparator1,
             this.tsBtnProjectNameEdit,
             this.toolStripSeparator5,
-            this.tsbtnShowJsonEditor});
+            this.tsbtnShowJsonEditor,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(590, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(953, 36);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -205,21 +209,44 @@ namespace Microsan
             this.tsbtnShowJsonEditor.Text = "Edit JSON";
             this.tsbtnShowJsonEditor.Click += new System.EventHandler(this.tsbtnShowJsonEditor_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(127, 33);
+            this.toolStripButton1.Text = "list docked stuff";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // panelContent
             // 
             this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContent.Controls.Add(this.dockPanel1);
             this.panelContent.Location = new System.Drawing.Point(0, 42);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(590, 464);
+            this.panelContent.Size = new System.Drawing.Size(953, 464);
             this.panelContent.TabIndex = 15;
+            // 
+            // dockPanel1
+            // 
+            this.dockPanel1.ActiveAutoHideContent = null;
+            this.dockPanel1.DockLeftPortion = 400D;
+            this.dockPanel1.Enabled = false;
+            this.dockPanel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.dockPanel1.Location = new System.Drawing.Point(123, 52);
+            this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.ShowDocumentIcon = true;
+            this.dockPanel1.Size = new System.Drawing.Size(200, 100);
+            this.dockPanel1.TabIndex = 0;
+            this.dockPanel1.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(590, 506);
+            this.ClientSize = new System.Drawing.Size(953, 506);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -228,6 +255,7 @@ namespace Microsan
             this.Shown += new System.EventHandler(this.this_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panelContent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -251,5 +279,7 @@ namespace Microsan
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tsmiCustomEntryPoints;
         private System.Windows.Forms.Panel panelContent;
+        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

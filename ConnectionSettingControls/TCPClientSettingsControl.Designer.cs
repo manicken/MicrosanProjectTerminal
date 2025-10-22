@@ -44,36 +44,31 @@ namespace Microsan
             // 
             // grpBoxIpPort
             // 
-            this.grpBoxIpPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxIpPort.Controls.Add(this.txtHostIP);
             this.grpBoxIpPort.Controls.Add(this.txtHostPort);
             this.grpBoxIpPort.Controls.Add(this.label2);
             this.grpBoxIpPort.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxIpPort.Location = new System.Drawing.Point(3, 3);
             this.grpBoxIpPort.Name = "grpBoxIpPort";
-            this.grpBoxIpPort.Size = new System.Drawing.Size(289, 59);
+            this.grpBoxIpPort.Size = new System.Drawing.Size(260, 59);
             this.grpBoxIpPort.TabIndex = 11;
             this.grpBoxIpPort.TabStop = false;
             this.grpBoxIpPort.Text = "Host/Ip && Port";
             // 
             // txtHostIP
             // 
-            this.txtHostIP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostIP.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHostIP.Location = new System.Drawing.Point(6, 22);
             this.txtHostIP.Name = "txtHostIP";
-            this.txtHostIP.Size = new System.Drawing.Size(198, 29);
+            this.txtHostIP.Size = new System.Drawing.Size(174, 29);
             this.txtHostIP.TabIndex = 2;
             this.txtHostIP.Text = "192.168.001.004";
             this.txtHostIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtHostPort
             // 
-            this.txtHostPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostPort.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHostPort.Location = new System.Drawing.Point(212, 22);
+            this.txtHostPort.Location = new System.Drawing.Point(186, 22);
             this.txtHostPort.Name = "txtHostPort";
             this.txtHostPort.Size = new System.Drawing.Size(69, 29);
             this.txtHostPort.TabIndex = 4;
@@ -82,9 +77,8 @@ namespace Microsan
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(198, 25);
+            this.label2.Location = new System.Drawing.Point(173, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(16, 20);
             this.label2.TabIndex = 3;
@@ -92,8 +86,6 @@ namespace Microsan
             // 
             // grpBoxMessageStartStop
             // 
-            this.grpBoxMessageStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

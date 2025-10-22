@@ -31,22 +31,38 @@ namespace Microsan
         /// </summary>
         public WindowSettings window { get; set; } = new WindowSettings();
 
+        public string dockData { get; set; } = "";
+
         public List<SourceFile> sourceFiles { get; set; } = new List<SourceFile>();
+
+        private int newItemCount = 0;
+
+        public SendDataJsonItems SendGroupByName(string name)
+        {
+            for (int i=0;i<sendGroups.Count;i++)
+            {
+                if (sendGroups[i].Name == name) return sendGroups[i];
+            }
+            newItemCount++;
+            SendDataJsonItems newGrp = new SendDataJsonItems("newItem"+ (newItemCount), "newitem comment");
+            sendGroups.Add(newGrp);
+            return newGrp;
+        }
         /// <summary>
         /// 
         /// </summary>
         public string ToJsonString()
         {
-            var sb = new StringBuilder();
-            sb.AppendLine("{");
-            sb.AppendLine(meta.ToJsonString("  ") + ",");
-            sb.AppendLine(SendGroupsToJsonString("  ") + ",");
-            sb.AppendLine(connections.ToJsonString("  ") + ",");
-            sb.AppendLine(SourceFilesToJsonString("  ") + ",");
-            sb.AppendLine(window.ToJsonString("  "));
+            string incr = "  ";
+            List<string> jsonObjects = new List<string>();
+            jsonObjects.Add(meta.ToJsonString(incr));
+            jsonObjects.Add(SendGroupsToJsonString(incr));
+            jsonObjects.Add(connections.ToJsonString(incr));
+            jsonObjects.Add(SourceFilesToJsonString(incr));
+            jsonObjects.Add(window.ToJsonString(incr));
+            jsonObjects.Add($"{incr}\"dockData\":{JsonConvert.SerializeObject(dockData)}");
 
-            sb.AppendLine("}");
-            return sb.ToString();
+            return $"{{\n{string.Join(",\n", jsonObjects)}\n}}\n";
         }
 
         private string SendGroupsToJsonString(string lineincr)
@@ -67,18 +83,13 @@ namespace Microsan
 
         private string SourceFilesToJsonString(string lineincr)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine(lineincr + "\"sourceFiles\": [");
+            List<string> fileJsonObjectStrings = new List<string>();
             for (int i = 0; i < sourceFiles.Count; i++)
             {
-                sb.Append(sourceFiles[i].ToJsonString(lineincr));
-                if (i < sourceFiles.Count - 1)
-                    sb.AppendLine(",");
-                else
-                    sb.AppendLine();
+                fileJsonObjectStrings.Add(sourceFiles[i].ToJsonString(lineincr));
             }
-            sb.Append(lineincr + "]");
-            return sb.ToString();
+            string fileJsonObjectsStr = string.Join(",\n", fileJsonObjectStrings);
+            return $"{lineincr}\"sourceFiles\": [\n{fileJsonObjectsStr}\n{lineincr}]";
         }
 
 
@@ -191,19 +202,6 @@ namespace Microsan
         /// <summary>
         /// 
         /// </summary>
-        public RectData socket { get; set; } = new RectData();
-        public RectData connections { get; set; } = new RectData();
-        /// <summary>
-        /// 
-        /// </summary>
-        public RectData dgvSend { get; set; } = new RectData();
-        /// <summary>
-        /// 
-        /// </summary>
-        public RectData log { get; set; } = new RectData();
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="lineincr"></param>
         /// <returns></returns>
         public string ToJsonString(string lineincr)
@@ -213,10 +211,6 @@ namespace Microsan
             sb.Append(lineincr); sb.Append("  \"main\": "); sb.AppendLine(JsonConvert.SerializeObject(main) + ",");
             sb.Append(lineincr); sb.Append("  \"codeEdit\": "); sb.AppendLine(JsonConvert.SerializeObject(codeEdit) + ",");
             sb.Append(lineincr); sb.Append("  \"jsonEdit\": "); sb.AppendLine(JsonConvert.SerializeObject(jsonEdit) + ",");
-            sb.Append(lineincr); sb.Append("  \"socket\": ");  sb.AppendLine(JsonConvert.SerializeObject(socket) + ",");
-            sb.Append(lineincr); sb.Append("  \"connections\": "); sb.AppendLine(JsonConvert.SerializeObject(connections) + ",");
-            sb.Append(lineincr); sb.Append("  \"dgvSend\": "); sb.AppendLine(JsonConvert.SerializeObject(dgvSend) + ",");
-            sb.Append(lineincr); sb.Append("  \"log\": ");     sb.AppendLine(JsonConvert.SerializeObject(log));
             sb.Append(lineincr + "}");
             return sb.ToString();
         }

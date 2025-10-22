@@ -50,13 +50,9 @@ namespace Microsan
 
         public JSONEditorForm jsonEditForm;
 
-        public DataGridViewSendControl dgvSendCtrl;
-        public DockableFormInfo dfi_dgvSendForm;
-        
+         
         public RichTextBoxControl rtxtCtrl;
-        public DockableFormInfo dfi_rtxtForm;
-
-        public DockableFormInfo dfi_connectionCfgForm;
+        
         
         public RuntimeProgramming rtPrg;
         
@@ -64,9 +60,11 @@ namespace Microsan
 
         public ConnectionController connectionCtrl = new ConnectionController();
 
-        //public Crom.Controls.Docking.DockContainer dc;
-
         private DockPanel dockPanel;
+
+        private Dictionary<string,DataGridViewSendControlDockContent> currentDgvSenderDocs = new Dictionary<string,DataGridViewSendControlDockContent>();
+        private RichTextBoxControlDockContent rtxtCtrlDockContent;
+        private ConnectionSettingsControlDockContent connCfgCtrlDockContent;
 
         /// <summary>
         /// main form constructor
@@ -81,8 +79,11 @@ namespace Microsan
             this.FormClosing += this_FormClosing;
 
 			rtxtCtrl = new RichTextBoxControl("Log");
-            
-            dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
+
+            //dgvSendCtrl = new DataGridViewSendTabbedControl(dgvSendForm_SendData);
+            //dgvSendCtrl2 = new DataGridViewSendControl(dgvSendForm_SendData);
+            // dgvSendCtrl3 = new DataGridViewSendControl(dgvSendForm_SendData);
+            //dgvSendCtrl4 = new DataGridViewSendControl(dgvSendForm_SendData);
 
 
             //dc = new Crom.Controls.Docking.DockContainer();
@@ -91,12 +92,7 @@ namespace Microsan
             //dc.BackColor = System.Drawing.Color.Gray;
             //panelContent.Controls.Add(dc);
 
-            dockPanel = new DockPanel
-            {
-                Dock = DockStyle.Fill//,
-               // Theme = new VS2015DarkTheme()  // or VS2015BlueTheme, etc.
-            };
-            panelContent.Controls.Add(dockPanel);
+            
 
             Microsan.Debugger.Message = rtxtCtrl.rtxt.AppendText;
 
@@ -114,7 +110,7 @@ namespace Microsan
             ReadOnlyMode = false;
             tsbtnReload.Enabled = true;
             tsbtnSave.Enabled = true;
-            ApplyProjectData();
+            ApplyProjectData(ApplyProjectDataMode.Reload);
         }
 
         private void connectionCtrl_DataReceived(byte[] data)
@@ -154,55 +150,11 @@ namespace Microsan
         /// <param name="e"></param>
         private void this_Shown(object sender, EventArgs e)
         {
-            rtxtCtrl.Dock = DockStyle.Fill;
-            dgvSendCtrl.Dock = DockStyle.Fill;
-            connectionCtrl.connectionSettingsCtrl.Dock = DockStyle.Fill;
-            //rtxtForm.Text = "Log";
-            //dgvSendForm.Text = "DGV sender";
-            //connSettingForm.Text = "Connection Settings";
-            //rtxtForm.Controls.Add(rtxtCtrl);
-            //dgvSendForm.Controls.Add(dgvSendCtrl);
-            //connSettingForm.Controls.Add(connectionCtrl.connectionSettingsCtrl);
-
-            var logDock = new LogDockContent(rtxtCtrl);
-            var senderDock = new DgvSendDockContent(dgvSendCtrl);
-            var connDock = new ConnSettingsDockContent(connectionCtrl.connectionSettingsCtrl);
-            dockPanel.DocumentStyle = DocumentStyle.DockingWindow;
-
-            // show them docked
-            connDock.Show(dockPanel, DockState.DockLeft);
-            /*connDock.DockHandler.Form.BeginInvoke(new Action(() =>
-            {
-                if (connDock.Pane != null)
-                {
-                    connDock.Pane.Width = connectionCtrl.connectionSettingsCtrl.Width;
-                }
-            }));*/
-            logDock.Show(connDock.Pane, DockAlignment.Bottom, 0.5);
-            senderDock.Show(dockPanel);
-            // connectionCtrl.connectionSettingsCtrl.Width;
-
-            //dfi_rtxtForm = dc.Add(rtxtForm, zAllowedDock.All, rtxtForm.GetType().GUID);
-            //dfi_dgvSendForm = dc.Add(dgvSendForm, zAllowedDock.All, dgvSendForm.GetType().GUID);
-            //dfi_connectionCfgForm = dc.Add(connSettingForm, zAllowedDock.All, connSettingForm.GetType().GUID);
-
             rtPrg = new RuntimeProgramming(this);
             rtPrg.SaveAll = rtProg_SaveAll;
             rtPrg.CompiledAndRunning = rtProg_CompiledAndRunning;
             rtPrg.InitScriptEditor_IfNeeded();
             LoadAndAppyProjectJson(LoadAndAppyProjectJsonMode.FirstLoad);
-
-            // have the following here,
-            // as currently restoring the dock cfg from json is not possible
-            //dc.DockForm(dfi_dgvSendForm, DockStyle.Fill, zDockMode.Inner);
-            //dc.DockForm(dfi_connectionCfgForm, DockStyle.Left, zDockMode.None);
-            //dc.DockForm(dfi_rtxtForm, dfi_connectionCfgForm, DockStyle.Bottom, zDockMode.None);
-
-            //rtxtForm.MaximizeBox = false;
-            //dgvSendForm.MaximizeBox = false;
-            //connSettingForm.MaximizeBox = false;
-
-            connectionCtrl.connectionSettingsCtrl.Show();
 
             GenerateIconMap();
             //listEmbeddedResources();
@@ -224,7 +176,8 @@ namespace Microsan
         private void GenerateIconMap()
         {
             Assembly asm = Assembly.GetExecutingAssembly();
-
+            rtxtCtrl.AppendLine("\nCurrent available icons:");
+            
             foreach (var resName in asm.GetManifestResourceNames())
             {
                 if (resName.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
@@ -237,7 +190,7 @@ namespace Microsan
                             // Use the short name as key (e.g., "start" instead of full path)
                             string key = Path.GetFileNameWithoutExtension(resName);
                             key = key.Substring(key.LastIndexOf(".")+1);
-                            rtxtCtrl.rtxt.AppendText(key + "\n");
+                            rtxtCtrl.AppendLine(key);
                             iconMap[key] = img;
                         }
                     }
@@ -253,7 +206,7 @@ namespace Microsan
 
         public void rtProg_SaveAll()
         {
-            SaveToProjectJson();
+            SaveToProjectJsonFile();
         }
 
         public enum LoadProjectStatus
@@ -319,7 +272,8 @@ namespace Microsan
             if (res == LoadProjectStatus.Success)
             {
                 projectData.sendGroups = pdTemp.sendGroups;
-                dgvSendCtrl.SetData(projectData.sendGroups);
+                RefreshOpenDocuments();
+                //dgvSendCtrl.SetData(projectData.sendGroups);
             }
             return (res == LoadProjectStatus.Success);
         }
@@ -363,32 +317,121 @@ namespace Microsan
             ApplyProjectData();
         }
 
-        private void ApplyProjectData()
+        private enum ApplyProjectDataMode
+        {
+            FirstStart,
+            Reload
+        }
+        private void ApplyProjectData(ApplyProjectDataMode mode = ApplyProjectDataMode.FirstStart)
         {
             ApplyProjectName();
             projectData.window.main.ApplyTo(this);
             projectData.window.codeEdit.ApplyTo(rtPrg.srcEditContainerForm);
             projectData.window.jsonEdit.ApplyTo(jsonEditForm);
-            //projectData.window.connections.ApplyTo(connSettingForm);
-            //projectData.window.log.ApplyTo(rtxtForm);
-            //projectData.window.dgvSend.ApplyTo(dgvSendForm);
-            dgvSendCtrl.SetData(projectData.sendGroups);
             connectionCtrl.SetData(projectData.connections);
+
+            if (mode == ApplyProjectDataMode.FirstStart)
+            {
+                InitDockerSystem();
+            }
+            RefreshOpenDocuments();
         }
 
-        private void SaveToProjectJson()
+        private void InitDockerSystem()
         {
-            if (ReadOnlyMode) return; // just ignore to avoid loosing data
+            dockPanel = new DockPanel { Dock = DockStyle.Fill };
+            dockPanel.DocumentStyle = DocumentStyle.DockingWindow;
+            //dockPanel.ShowDocumentIcon = true;
+            panelContent.Controls.Add(dockPanel);
+
+
+            if (string.IsNullOrEmpty(projectData.dockData))
+            {
+                dockPanel.DockLeftPortion = 350;
+                rtxtCtrlDockContent = new RichTextBoxControlDockContent(rtxtCtrl);
+                connCfgCtrlDockContent = new ConnectionSettingsControlDockContent(connectionCtrl.connectionSettingsCtrl);
+
+                connCfgCtrlDockContent.Show(dockPanel, DockState.DockLeft);
+                rtxtCtrlDockContent.Show(connCfgCtrlDockContent.Pane, DockAlignment.Bottom, 0.5);
+            }
+            else
+            {
+                using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(projectData.dockData)))
+                {
+                    dockPanel.LoadFromXml(ms, DeserializeDockContent);
+                }
+            }
+        }
+
+        private void RefreshOpenDocuments()
+        {
+            foreach (DataGridViewSendControlDockContent dgvSendCtrlDockCont in currentDgvSenderDocs.Values)
+            {
+                dgvSendCtrlDockCont.Close();
+            }
+            for (int i = 0; i < projectData.sendGroups.Count; i++)
+            {
+                DataGridViewSendControl dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
+                dgvSendCtrl.TabNameChanged = dgvSendCtrl_TabNameChanged;
+                dgvSendCtrl.TabAdded = dgvSendCtrl_TabAdded;
+                dgvSendCtrl.TabRemoved = dgvSendCtrl_TabRemoved;
+                dgvSendCtrl.SetData(projectData.sendGroups[i]);
+                var dgvSendCtrlDockContent = new DataGridViewSendControlDockContent(dgvSendCtrl, projectData.sendGroups[i].Name);
+                dgvSendCtrlDockContent.Show(dockPanel);
+                // keep track of current 'documents'
+                currentDgvSenderDocs[projectData.sendGroups[i].Name] = dgvSendCtrlDockContent;
+            }
+        }
+
+        private void dgvSendCtrl_TabNameChanged(string from, string to)
+        {
+            if (!currentDgvSenderDocs.TryGetValue(from, out var currDockCont))
+                return;
+
+            currentDgvSenderDocs.Remove(from);
+            currDockCont.TabText = to;
+            currentDgvSenderDocs[to] = currDockCont;
+        }
+
+        private void dgvSendCtrl_TabAdded(SendDataJsonItems sendDataGroup)
+        {
+            DataGridViewSendControl dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
+            dgvSendCtrl.TabNameChanged = dgvSendCtrl_TabNameChanged;
+            dgvSendCtrl.TabAdded = dgvSendCtrl_TabAdded;
+            dgvSendCtrl.TabRemoved = dgvSendCtrl_TabRemoved;
+            projectData.sendGroups.Add(sendDataGroup);
+            dgvSendCtrl.SetData(sendDataGroup);
+            var dgvSendCtrlDockContent = new DataGridViewSendControlDockContent(dgvSendCtrl, sendDataGroup.Name);
+            dgvSendCtrlDockContent.Show(dockPanel);
+            // keep track of current 'documents'
+            currentDgvSenderDocs[sendDataGroup.Name] = dgvSendCtrlDockContent;
+        }
+
+        private void dgvSendCtrl_TabRemoved(SendDataJsonItems sendDataGroup)
+        {
+            if (!currentDgvSenderDocs.TryGetValue(sendDataGroup.Name, out var currDockCont))
+                return;
+            currDockCont.Close();
+            projectData.sendGroups.Remove(sendDataGroup);
+            currentDgvSenderDocs.Remove(sendDataGroup.Name);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>the string that was saved to the file</returns>
+        private string SaveToProjectJsonFile()
+        {
+            if (ReadOnlyMode) return ""; // just ignore to avoid loosing data
 
             projectData.window.main.GetFrom(this);
             projectData.window.codeEdit.GetFrom(rtPrg.srcEditContainerForm);
             projectData.window.jsonEdit.GetFrom(jsonEditForm);
-            //projectData.window.connections.GetFrom(connSettingForm);
-            //projectData.window.log.GetFrom(rtxtForm);
-            //projectData.window.dgvSend.GetFrom(dgvSendForm);
+            projectData.dockData = GetDockData();
 
             string jsonStr = projectData.ToJsonString();
             File.WriteAllText(ProjectData.CurrentProjectFilePath, jsonStr);
+            return jsonStr;
         }
 		
         /// <summary>
@@ -403,7 +446,7 @@ namespace Microsan
 		
 		private void this_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveToProjectJson();
+            SaveToProjectJsonFile();
         }
         bool codeEditorHasBeenShown = false;
         private void tsbtnShowCodeEditor_Click(object sender, EventArgs e)
@@ -415,8 +458,6 @@ namespace Microsan
                 projectData.window.codeEdit.ApplyTo(rtPrg.srcEditContainerForm);
             }
         }
-
-
 
         private void tsBtnProjectNameEdit_Click(object sender, EventArgs e)
         {
@@ -447,7 +488,7 @@ namespace Microsan
 
         private void tsbtnSave_Click(object sender, EventArgs e)
         {
-            SaveToProjectJson();
+            SaveToProjectJsonFile();
         }
 
         private void tsbtnReload_Click(object sender, EventArgs e)
@@ -465,7 +506,7 @@ namespace Microsan
             } 
             else // allways get from current state when in normal mode
             {
-                jsonStr = projectData.ToJsonString();
+                jsonStr = SaveToProjectJsonFile();
             }
 
             jsonEditForm.Show(jsonStr);
@@ -505,6 +546,65 @@ namespace Microsan
             }
         }
 
-     
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            rtxtCtrl.AppendLine("\nCurrently docked items:");
+            foreach (IDockContent idc in dockPanel.Contents)
+            {
+                rtxtCtrl.AppendLine(idc.DockHandler.TabText);
+            }
+            
+        }
+
+        private string GetDockData()
+        {
+            using (var ms = new MemoryStream())
+            {
+                dockPanel.SaveAsXml(ms, Encoding.UTF8);
+                // Convert to string if you want to keep it in memory
+                return Encoding.UTF8.GetString(ms.ToArray());
+            }
+        }
+
+        private IDockContent DeserializeDockContent(string persistString)
+        {
+            if (persistString.StartsWith(typeof(DataGridViewSendControlDockContent).FullName))
+            {
+                // Extract ID (e.g. "MyApp.DgvSendDockContent:ABC123")
+                var parts = persistString.Split(':');
+                string id = parts.Length > 1 ? parts[1] : Guid.NewGuid().ToString();
+
+                // Try to reuse an existing instance, or create a new one dynamically
+                if (currentDgvSenderDocs.TryGetValue(id, out var existing))
+                    return existing;
+                
+                DataGridViewSendControl dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
+                SendDataJsonItems sendGrp = projectData.SendGroupByName(id);
+                dgvSendCtrl.SetData(sendGrp);//.sendGroups[i]);
+
+                var newContent = new DataGridViewSendControlDockContent(dgvSendCtrl, sendGrp.Name);
+                currentDgvSenderDocs[id] = newContent;
+                return newContent;
+            }
+
+            // Add other types (static or dynamic)
+            if (persistString == typeof(RichTextBoxControlDockContent).FullName)
+            {
+                if (rtxtCtrlDockContent == null)
+                    rtxtCtrlDockContent = new RichTextBoxControlDockContent(rtxtCtrl);
+                return rtxtCtrlDockContent;
+            }
+
+            if (persistString == typeof(ConnectionSettingsControlDockContent).FullName)
+            {
+                if (connCfgCtrlDockContent == null)
+                    connCfgCtrlDockContent = new ConnectionSettingsControlDockContent(connectionCtrl.connectionSettingsCtrl);
+                return connCfgCtrlDockContent;
+            }
+
+            return null;
+        }
+
+        
     }
 }

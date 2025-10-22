@@ -50,3 +50,4 @@ G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.ConnectionSettingsCo
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.DataGridViewSendControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.RichTextBoxControl.resources
 G:\_git\__Csharp\MicrosanProjectTerminal\WeifenLuo.WinFormsUI.Docking.dll
+G:\_git\__Csharp\MicrosanProjectTerminal\obj\Debug\Microsan.DataGridViewSendTabbedControl.resources

@@ -200,6 +200,12 @@
     <Compile Include="DataGridViewSendControl.Designer.cs">
       <DependentUpon>DataGridViewSendControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataGridViewSendTabbedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataGridViewSendTabbedControl.Designer.cs">
+      <DependentUpon>DataGridViewSendTabbedControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataGridViewSendControlDataStructures.cs" />
     <Compile Include="JSONEditorForm.cs">
       <SubType>Form</SubType>
@@ -233,6 +239,9 @@
     <Compile Include="WeifenLuo_WinFormsUI_Docking_Wrappers.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="DataGridViewSendControl.resx">
+      <DependentUpon>DataGridViewSendControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="icons\load.png" />
     <EmbeddedResource Include="icons\start.png" />
     <EmbeddedResource Include="icons\start2.png" />
@@ -303,8 +312,8 @@
     <EmbeddedResource Include="ConnectionSettingsControl.resx">
       <DependentUpon>ConnectionSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataGridViewSendControl.resx">
-      <DependentUpon>DataGridViewSendControl.cs</DependentUpon>
+    <EmbeddedResource Include="DataGridViewSendTabbedControl.resx">
+      <DependentUpon>DataGridViewSendTabbedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JSONEditorForm.resx">
       <DependentUpon>JSONEditorForm.cs</DependentUpon>

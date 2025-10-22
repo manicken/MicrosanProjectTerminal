@@ -317,7 +317,7 @@
             </summary>
             
         </member>
-        <member name="F:Microsan.DataGridViewSendControl.sendGroups">
+        <member name="F:Microsan.DataGridViewSendControl.sendItems">
             <summary>
             This is only a stored local reference
             </summary>
@@ -328,16 +328,11 @@
             </summary>
             <param name="SendDataHandler"></param>
         </member>
-        <member name="M:Microsan.DataGridViewSendControl.SetData(System.Collections.Generic.List{Microsan.SendDataJsonItems})">
+        <member name="M:Microsan.DataGridViewSendControl.SetData(Microsan.SendDataJsonItems)">
             <summary>
             
             </summary>
-            <param name="sendGroups"></param>
-        </member>
-        <member name="M:Microsan.DataGridViewSendControl.GetSafeCharIndex(System.Windows.Forms.TextBox,System.Drawing.Point)">
-            <summary>
-            Fix for GetCharIndexFromPosition() not reaching end of text.
-            </summary>
+            <param name="sendItems"></param>
         </member>
         <member name="F:Microsan.DataGridViewSendControl.components">
             <summary>
@@ -351,6 +346,52 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:Microsan.DataGridViewSendControl.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Microsan.DataGridViewSendTabbedControl">
+            <summary>
+            Description of DataGridViewSendForm.
+            </summary>
+        </member>
+        <member name="F:Microsan.DataGridViewSendTabbedControl.SendData">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="F:Microsan.DataGridViewSendTabbedControl.sendGroups">
+            <summary>
+            This is only a stored local reference
+            </summary>
+        </member>
+        <member name="M:Microsan.DataGridViewSendTabbedControl.#ctor(System.Action{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="SendDataHandler"></param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendTabbedControl.SetData(System.Collections.Generic.List{Microsan.SendDataJsonItems})">
+            <summary>
+            
+            </summary>
+            <param name="sendGroups"></param>
+        </member>
+        <member name="F:Microsan.DataGridViewSendTabbedControl.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Microsan.DataGridViewSendTabbedControl.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsan.DataGridViewSendTabbedControl.InitializeComponent">
             <summary>
             This method is required for Windows Forms designer support.
             Do not change the method contents inside the source code editor. The Forms designer might
@@ -684,6 +725,12 @@
             init all docked forms
             </summary>
         </member>
+        <member name="M:Microsan.MainForm.SaveToProjectJsonFile">
+            <summary>
+            
+            </summary>
+            <returns>the string that was saved to the file</returns>
+        </member>
         <member name="M:Microsan.MainForm.dgvSendForm_SendData(System.String)">
             <summary>
             the handler method for DataGridView SendForm
@@ -780,21 +827,6 @@
             </summary>
         </member>
         <member name="P:Microsan.WindowSettings.main">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.WindowSettings.socket">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.WindowSettings.dgvSend">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Microsan.WindowSettings.log">
             <summary>
             
             </summary>

@@ -150,7 +150,7 @@
         wH0Cz/M80vIqjQcb6kOzw6OPbYKgg79jkV/W7SmhOwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="tsmiDeleteRow.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="deleteRowToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EwAACxMBAJqcGAAAAORJREFUOE9jYBgFlIOK7jn/KcFgA8gFRBnw98eP/4/mz/9/Pjb2/wl3dzD9eMEC
@@ -160,4 +160,13 @@
         GQANZ5N2tO4fOwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="tabsContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>898, 17</value>
+  </metadata>
+  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>639, 17</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1046, 17</value>
+  </metadata>
 </root>

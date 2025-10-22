@@ -43,8 +43,6 @@ namespace Microsan
             // 
             // grpBoxUri
             // 
-            this.grpBoxUri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxUri.Controls.Add(this.txtUri);
             this.grpBoxUri.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBoxUri.Location = new System.Drawing.Point(3, 3);
@@ -52,12 +50,10 @@ namespace Microsan
             this.grpBoxUri.Size = new System.Drawing.Size(289, 59);
             this.grpBoxUri.TabIndex = 11;
             this.grpBoxUri.TabStop = false;
-            this.grpBoxUri.Text = "Uri: (excl http:// or https://)";
+            this.grpBoxUri.Text = "Uri: (excl. http:// or https://)";
             // 
             // txtUri
             // 
-            this.txtUri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUri.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUri.Location = new System.Drawing.Point(6, 22);
             this.txtUri.Name = "txtUri";
@@ -68,8 +64,6 @@ namespace Microsan
             // 
             // grpBoxMessageStartStop
             // 
-            this.grpBoxMessageStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,8 +98,6 @@ namespace Microsan
             // 
             // grpSecure
             // 
-            this.grpSecure.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpSecure.Controls.Add(this.chkUseSecure);
             this.grpSecure.Location = new System.Drawing.Point(3, 66);
             this.grpSecure.Name = "grpSecure";
