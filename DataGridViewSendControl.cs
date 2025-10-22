@@ -46,6 +46,8 @@ namespace Microsan
 
         public Action<SendDataJsonItems> TabRemoved;
 
+        public Func<string, bool> CheckIfNameExist;
+
         /// <summary>
         /// This is only a stored local reference
         /// </summary>
@@ -221,6 +223,11 @@ namespace Microsan
             if (result != null)
             {
                 string Name = result["Name"];
+                if (CheckIfNameExist?.Invoke(Name) ?? false)
+                {
+                    MessageBox.Show(Name + " allready exist\nPlease choose annother Name");
+                    return;
+                }
                 string Note = result["Note"];
                 TabNameChanged?.Invoke(sendItems.Name, Name);
                 sendItems.Name = Name;
@@ -243,9 +250,9 @@ namespace Microsan
         {
             tsmiDeleteRow.Enabled = (dgv.CurrentCell != null);
      
-            tsmiAddNewTab.Enabled = (TabAdded != null);
+            tsmiAddNewTab.Enabled = (TabAdded != null) && (CheckIfNameExist != null);
             tsmiRemoveTab.Enabled = (TabRemoved != null);
-            tsmiEditTabName.Enabled = (TabNameChanged != null);
+            tsmiEditTabName.Enabled = (TabNameChanged != null) && (CheckIfNameExist != null);
 
         }
 
@@ -260,6 +267,11 @@ namespace Microsan
             if (result != null)
             {
                 string Name = result["Name"];
+                if (CheckIfNameExist?.Invoke(Name) ?? false)
+                {
+                    MessageBox.Show(Name + " allready exist\nPlease choose annother Name");
+                    return;
+                }
                 string Note = result["Note"];
                 SendDataJsonItems newTab = new SendDataJsonItems(Name, Note);
                 TabAdded?.Invoke(newTab);

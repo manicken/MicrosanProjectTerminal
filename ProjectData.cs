@@ -48,6 +48,14 @@ namespace Microsan
             sendGroups.Add(newGrp);
             return newGrp;
         }
+        public bool SendGroupsContainsName(string name)
+        {
+            for (int i = 0; i < sendGroups.Count; i++)
+            {
+                if (sendGroups[i].Name == name) return true;
+            }
+            return false;
+        }
         /// <summary>
         /// 
         /// </summary>

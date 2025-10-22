@@ -363,6 +363,26 @@ namespace Microsan
             }
         }
 
+        private void AddDataGridViewSendControl(SendDataJsonItems sendDataGroup)
+        {
+            DataGridViewSendControl dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
+            dgvSendCtrl.TabNameChanged = dgvSendCtrl_TabNameChanged;
+            dgvSendCtrl.TabAdded = dgvSendCtrl_TabAdded;
+            dgvSendCtrl.TabRemoved = dgvSendCtrl_TabRemoved;
+            dgvSendCtrl.CheckIfNameExist = dgvSendCtrl_CheckIfNameExists;
+            
+            dgvSendCtrl.SetData(sendDataGroup);
+            var dgvSendCtrlDockContent = new DataGridViewSendControlDockContent(dgvSendCtrl, sendDataGroup.Name);
+            dgvSendCtrlDockContent.Show(dockPanel);
+            // keep track of current 'documents'
+            currentDgvSenderDocs[sendDataGroup.Name] = dgvSendCtrlDockContent;
+        }
+
+        private bool dgvSendCtrl_CheckIfNameExists(string name)
+        {
+            return projectData.SendGroupsContainsName(name);
+        }
+
         private void RefreshOpenDocuments()
         {
             foreach (DataGridViewSendControlDockContent dgvSendCtrlDockCont in currentDgvSenderDocs.Values)
@@ -371,15 +391,7 @@ namespace Microsan
             }
             for (int i = 0; i < projectData.sendGroups.Count; i++)
             {
-                DataGridViewSendControl dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
-                dgvSendCtrl.TabNameChanged = dgvSendCtrl_TabNameChanged;
-                dgvSendCtrl.TabAdded = dgvSendCtrl_TabAdded;
-                dgvSendCtrl.TabRemoved = dgvSendCtrl_TabRemoved;
-                dgvSendCtrl.SetData(projectData.sendGroups[i]);
-                var dgvSendCtrlDockContent = new DataGridViewSendControlDockContent(dgvSendCtrl, projectData.sendGroups[i].Name);
-                dgvSendCtrlDockContent.Show(dockPanel);
-                // keep track of current 'documents'
-                currentDgvSenderDocs[projectData.sendGroups[i].Name] = dgvSendCtrlDockContent;
+                AddDataGridViewSendControl(projectData.sendGroups[i]);
             }
         }
 
@@ -395,16 +407,8 @@ namespace Microsan
 
         private void dgvSendCtrl_TabAdded(SendDataJsonItems sendDataGroup)
         {
-            DataGridViewSendControl dgvSendCtrl = new DataGridViewSendControl(dgvSendForm_SendData);
-            dgvSendCtrl.TabNameChanged = dgvSendCtrl_TabNameChanged;
-            dgvSendCtrl.TabAdded = dgvSendCtrl_TabAdded;
-            dgvSendCtrl.TabRemoved = dgvSendCtrl_TabRemoved;
             projectData.sendGroups.Add(sendDataGroup);
-            dgvSendCtrl.SetData(sendDataGroup);
-            var dgvSendCtrlDockContent = new DataGridViewSendControlDockContent(dgvSendCtrl, sendDataGroup.Name);
-            dgvSendCtrlDockContent.Show(dockPanel);
-            // keep track of current 'documents'
-            currentDgvSenderDocs[sendDataGroup.Name] = dgvSendCtrlDockContent;
+            AddDataGridViewSendControl(sendDataGroup);
         }
 
         private void dgvSendCtrl_TabRemoved(SendDataJsonItems sendDataGroup)
