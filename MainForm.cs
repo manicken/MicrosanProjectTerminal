@@ -413,6 +413,17 @@ namespace Microsan
                 if (!currentDgvSenderDocs.ContainsKey(sendGroup.Name))
                     AddDataGridViewSendControl(sendGroup);
             }
+            // 3. Update EventHandlers and data
+            foreach (var sendGroupDockItem in currentDgvSenderDocs)
+            {
+                DataGridViewSendControl dgvSendCtrl = sendGroupDockItem.Value.dgvSendCtrlRef;
+                dgvSendCtrl.TabNameChanged = dgvSendCtrl_TabNameChanged;
+                dgvSendCtrl.TabAdded = dgvSendCtrl_TabAdded;
+                dgvSendCtrl.TabRemoved = dgvSendCtrl_TabRemoved;
+                dgvSendCtrl.CheckIfNameExist = dgvSendCtrl_CheckIfNameExists;
+
+                dgvSendCtrl.SetData(projectData.SendGroupByName(sendGroupDockItem.Value.Text));
+            }
         }
 
 

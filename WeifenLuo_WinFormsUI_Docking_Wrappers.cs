@@ -25,8 +25,10 @@ namespace Microsan
     }
     public class DataGridViewSendControlDockContent : DockContent
     {
+        public DataGridViewSendControl dgvSendCtrlRef;
         public DataGridViewSendControlDockContent(DataGridViewSendControl dgvSendCtrl, string title = "DGV Sender")
         {
+            dgvSendCtrlRef = dgvSendCtrl;
             Text = title;
             dgvSendCtrl.Dock = DockStyle.Fill;
             CloseButton = false;
