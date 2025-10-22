@@ -383,7 +383,7 @@ namespace Microsan
             return projectData.SendGroupsContainsName(name);
         }
 
-        private void RefreshOpenDocuments()
+        /*private void RefreshOpenDocuments()
         {
             foreach (DataGridViewSendControlDockContent dgvSendCtrlDockCont in currentDgvSenderDocs.Values)
             {
@@ -393,7 +393,28 @@ namespace Microsan
             {
                 AddDataGridViewSendControl(projectData.sendGroups[i]);
             }
+        }*/
+        private void RefreshOpenDocuments()
+        {
+            // 1. Remove only deleted tabs
+            var existingNames = currentDgvSenderDocs.Keys;
+            foreach (var name in existingNames)
+            {
+                if (!projectData.SendGroupsContainsName(name))
+                {
+                    currentDgvSenderDocs[name].Close();
+                    currentDgvSenderDocs.Remove(name);
+                }
+            }
+
+            // 2. Add only new tabs
+            foreach (var sendGroup in projectData.sendGroups)
+            {
+                if (!currentDgvSenderDocs.ContainsKey(sendGroup.Name))
+                    AddDataGridViewSendControl(sendGroup);
+            }
         }
+
 
         private void dgvSendCtrl_TabNameChanged(string from, string to)
         {
