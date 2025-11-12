@@ -9,6 +9,9 @@ namespace Microsan
     public class SerialConnection : IConnection
     {
         public const string TypeName = "Serial";
+
+        public bool SupportSendOptions => false;
+
         public static ConnectionBase GetConnectionBase()
         {
             return new ConnectionBase
@@ -63,13 +66,13 @@ namespace Microsan
             ConnectionStateChanged?.Invoke(false);
         }
 
-        public void Send(byte[] data)
+        public void Send(byte[] data, Dictionary<string, object> options = null)
         {
             if (IsConnected == false) return;
             _serialPort.Write(data, 0, data.Length);
         }
 
-        public void Send(string text)
+        public void Send(string text, Dictionary<string, object> options = null)
         {
             text = _settings.msgPrefix + text + _settings.msgPostfix;
             text = text.Replace("\\n", "\n").Replace("\\r", "\r");

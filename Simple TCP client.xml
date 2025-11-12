@@ -322,7 +322,7 @@
             This is only a stored local reference
             </summary>
         </member>
-        <member name="M:Microsan.DataGridViewSendControl.#ctor(System.Action{System.String})">
+        <member name="M:Microsan.DataGridViewSendControl.#ctor(System.Action{Microsan.SendDataItem})">
             <summary>
             
             </summary>
@@ -731,7 +731,7 @@
             </summary>
             <returns>the string that was saved to the file</returns>
         </member>
-        <member name="M:Microsan.MainForm.dgvSendForm_SendData(System.String)">
+        <member name="M:Microsan.MainForm.dgvSendForm_SendData(Microsan.SendDataItem)">
             <summary>
             the handler method for DataGridView SendForm
             </summary>

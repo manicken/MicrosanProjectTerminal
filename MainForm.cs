@@ -474,10 +474,10 @@ namespace Microsan
         /// the handler method for DataGridView SendForm
         /// </summary>
         /// <param name="data"></param>
-		private void dgvSendForm_SendData(string data)
+		private void dgvSendForm_SendData(SendDataItem dataItem)
 		{
-            rtxtCtrl.rtxt.AppendText(LOG_TX_PREFIX + data + "\n");
-            connectionCtrl.SendToCurrentConnection(data);
+            rtxtCtrl.rtxt.AppendText(LOG_TX_PREFIX + dataItem.Data + "\n");
+            connectionCtrl.SendToCurrentConnection(dataItem);
 		}
 		
 		private void this_FormClosing(object sender, FormClosingEventArgs e)

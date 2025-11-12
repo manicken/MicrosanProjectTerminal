@@ -11,6 +11,8 @@ namespace Microsan
     {
         public const string TypeName = "HttpRest";
 
+        public bool SupportSendOptions => false;
+
         public static ConnectionBase GetConnectionBase()
         {
             return new ConnectionBase
@@ -51,7 +53,7 @@ namespace Microsan
             ConnectionStateChanged?.Invoke(false);
         }
 
-        public async void Send(string url)
+        public async void Send(string url, Dictionary<string, object> options = null)
         {
             //url = "http" + (_settings.UseSecure ? "s" : "") + "://" + _settings.Uri + (url.StartsWith("/")?"":"/") + url;
             // Build full URL
@@ -71,7 +73,7 @@ namespace Microsan
             }
         }
 
-        public void Send(byte[] data) => Send(Encoding.UTF8.GetString(data));
+        public void Send(byte[] data, Dictionary<string, object> options = null) => Send(Encoding.UTF8.GetString(data), options);
 
         public void Dispose() => _client.Dispose();
     }

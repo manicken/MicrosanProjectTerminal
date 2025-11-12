@@ -12,6 +12,7 @@ namespace Microsan
     {
 
         public const string TypeName = "Websocket";
+        public bool SupportSendOptions => false;
 
         public static ConnectionBase GetConnectionBase()
         {
@@ -96,7 +97,7 @@ namespace Microsan
             }
         }
 
-        public void Send(byte[] data)
+        public void Send(byte[] data, Dictionary<string, object> options = null)
         {
             if (!IsConnected) return;
             try
@@ -112,7 +113,7 @@ namespace Microsan
             }
         }
 
-        public void Send(string text)
+        public void Send(string text, Dictionary<string, object> options = null)
         {
             if (!IsConnected) return;
             try

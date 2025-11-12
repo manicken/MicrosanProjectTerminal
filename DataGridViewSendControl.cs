@@ -38,7 +38,7 @@ namespace Microsan
         /// 
         /// </summary>
         /// 
-        public Action<string> SendData;
+        public Action<SendDataItem> SendData;
 
         public Action<string,string> TabNameChanged;
 
@@ -61,7 +61,7 @@ namespace Microsan
         /// 
         /// </summary>
         /// <param name="SendDataHandler"></param>
-        public DataGridViewSendControl(Action<string> SendDataHandler)
+        public DataGridViewSendControl(Action<SendDataItem> SendDataHandler)
         {
             InitializeComponent();
 
@@ -115,11 +115,12 @@ namespace Microsan
             using (Form editForm = new Form())
             {
                 editForm.StartPosition = FormStartPosition.CenterParent;
-                editForm.Size = new Size(400, 300);
+                editForm.Size = new Size(600, 600);
                 editForm.Text = "Edit Cell";
 
                 // Multiline TextBox
                 TextBox txt = new TextBox();
+                txt.Font = Fonts.CourierNew;
                 txt.Multiline = true;
                 txt.ScrollBars = ScrollBars.Vertical;
                 txt.AcceptsReturn = true;
@@ -186,6 +187,7 @@ namespace Microsan
                 dgv.Columns[NOTE_COL_NAME].MinimumWidth = 128;
                 dgv.Columns[NOTE_COL_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dgv.Columns[NOTE_COL_NAME].SortMode = DataGridViewColumnSortMode.Programmatic;
+                dgv.Columns[NOTE_COL_NAME].DefaultCellStyle.Font = Fonts.CourierNew;
                 dgv.Columns[NOTE_COL_NAME].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns[NOTE_COL_NAME].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[NOTE_COL_NAME].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -255,8 +257,7 @@ namespace Microsan
             if (e.ColumnIndex != 0) return;
             if (e.RowIndex == -1) return;
 
-            string toSend = sendItems.items[e.RowIndex].Data;
-            SendData(toSend);
+            SendData(sendItems.items[e.RowIndex]);
         }
 
         private void addNewRowToolStripMenuItem_Click(object sender, EventArgs e)

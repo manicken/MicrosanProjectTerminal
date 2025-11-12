@@ -11,6 +11,7 @@ namespace Microsan
     public class TCPClientConnection : IConnection
     {
         public const string TypeName = "TCP";
+        public bool SupportSendOptions => false;
         public static ConnectionBase GetConnectionBase()
         {
             return new ConnectionBase
@@ -93,7 +94,7 @@ namespace Microsan
         }
 
 
-        public void Send(string text)
+        public void Send(string text, Dictionary<string, object> options = null)
         {
             if (!IsConnected || _stream == null)
                 return;
@@ -103,7 +104,7 @@ namespace Microsan
             Send(data);
         }
 
-        public void Send(byte[] data)
+        public void Send(byte[] data, Dictionary<string, object> options = null)
         {
             if (!IsConnected || _stream == null)
                 return;

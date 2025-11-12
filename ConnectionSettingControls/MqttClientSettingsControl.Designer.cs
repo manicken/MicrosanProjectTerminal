@@ -183,7 +183,7 @@ namespace Microsan
             this.grpTopic.Size = new System.Drawing.Size(262, 49);
             this.grpTopic.TabIndex = 13;
             this.grpTopic.TabStop = false;
-            this.grpTopic.Text = "Topic:";
+            this.grpTopic.Text = "Default Topic:";
             // 
             // txtTopic
             // 

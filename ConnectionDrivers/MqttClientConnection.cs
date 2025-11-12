@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using MQTTnet;
 using MQTTnet.Client;
@@ -9,6 +10,7 @@ namespace Microsan
     public class MqttClientConnection : IConnection
     {
         public const string TypeName = "MQTT";
+        public bool SupportSendOptions => true;
         public string Type => TypeName;
         public bool IsConnected => _client?.IsConnected == true;
 
@@ -69,19 +71,32 @@ namespace Microsan
             }
         }
 
-        public void Send(byte[] data)
+        public void Send(byte[] data, Dictionary<string, object> options = null)
         {
-            Send(Encoding.UTF8.GetString(data));
+            Send(Encoding.UTF8.GetString(data), options);
         }
 
-        public void Send(string text)
+        public void Send(string text, Dictionary<string, object> options = null)
         {
             if (_client?.IsConnected == true)
             {
+                string topic = _settings.Topic; // fallback default
+                if (options != null && options.ContainsKey("topic"))
+                {
+                    topic = options["topic"].ToString();
+                }
+
+                bool withRetainFlag = _settings.WithRetainFlag;
+                if (options != null && options.TryGetValue("retain", out object retainObj))
+                {
+                    withRetainFlag = Convert.ToBoolean(retainObj);
+                }
+
+
                 var msg = new MqttApplicationMessageBuilder()
-                    .WithTopic(_settings.Topic)
+                    .WithTopic(topic)
                     .WithPayload(text)
-                    .WithRetainFlag(_settings.WithRetainFlag)
+                    .WithRetainFlag(withRetainFlag)
                     .Build();
                 _client.PublishAsync(msg).Wait();
             }

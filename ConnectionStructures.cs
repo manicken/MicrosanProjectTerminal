@@ -73,14 +73,16 @@ namespace Microsan
         string Type { get; }                        // e.g. "Serial", "TCP", "WebSocket"
         bool IsConnected { get; }
 
+        bool SupportSendOptions { get; }
+
         event Action<byte[]> DataReceived;          // Unified event for incoming data
         event Action<bool> ConnectionStateChanged;  // True = connected, False = disconnected
 
         void Connect(ConnectionSettingsBase cfg);   // Open the connection, with the selected settings
         void Disconnect();                          // Close the connection
 
-        void Send(byte[] data);                     // Send raw data
-        void Send(string text);
+        void Send(byte[] data, Dictionary<string, object> options = null);                     // Send raw data
+        void Send(string text, Dictionary<string, object> options = null);
 
     }
 }

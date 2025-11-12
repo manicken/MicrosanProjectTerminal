@@ -2,7 +2,7 @@
   "meta": {
   "projectName":"Lumatron AMP",
   "created":"2025-10-11 14:14:42",
-  "modified":"2025-11-12 15:14:24",
+  "modified":"2025-11-12 17:01:41",
   "version":1
   },
   "sendGroups": [
@@ -204,7 +204,7 @@
     ]},
     {"name":"dalhal2","note":"","items":[
       {"data": "read/string/i2c/list", "note": "test"},
-      {"data": "{ \r\n  \"name\": \"Room Temperature\",\r\n  \"state_topic\":\"dalhalla/sensor/temp_room\",\r\n  \"unit_of_measurement\": \"°C\",\r\n  \"device_class\": \"temperature\",\r\n  \"unique_id\": \"dalhalla_temp_room\",\r\n  \"availability_topic\": \"dalhalla/status\",\r\n  \"payload_available\": \"online\",\r\n  \"payload_not_available\": \"offline\"\r\n}", "note": ""}  
+      {"data": "{ \r\n  \"name\": \"Room Temperature\",\r\n  \"state_topic\":\"dalhalla/sensor/temp_room\",\r\n  \"unit_of_measurement\": \"°C\",\r\n  \"device_class\": \"temperature\",\r\n  \"unique_id\": \"dalhalla_temp_room\",\r\n  \"availability_topic\": \"dalhalla/status\",\r\n  \"payload_available\": \"online\",\r\n  \"payload_not_available\": \"offline\"\r\n}", "note": "{"}  
     ]},
     {"name":"Part22","note":"","items":[
   

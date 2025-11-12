@@ -107,12 +107,34 @@ namespace Microsan
                 ConnectionRegistry.Types[connections.activeType].SettingsControl.SetConnectedState(currentCtrl, state);
             }));
         }
-        public void SendToCurrentConnection(string text)
+        public void SendToCurrentConnection(SendDataItem dataItem)
         {
             if (currentConnection == null || currentConnection.IsConnected == false) {
                 _Connect(true);
             }
-            currentConnection.Send(text);
+            Dictionary<string, object> options = null;
+
+            if (currentConnection.SupportSendOptions && !string.IsNullOrWhiteSpace(dataItem.Note))
+            {
+                try
+                {
+                    options = JsonConvert.DeserializeObject<Dictionary<string, object>>(dataItem.Note);
+                }
+                catch (JsonException)
+                {
+                    // optional: log or show error
+                    Debug.AddLine("⚠ Invalid JSON in Note, ignoring options.");
+                }
+            }
+
+            if (currentConnection.SupportSendOptions && options != null)
+            {
+                currentConnection.Send(dataItem.Data, options);
+            }
+            else
+            {
+                currentConnection.Send(dataItem.Data);
+            }
         }
         public void SendToCurrentConnection(byte[] data)
         {
