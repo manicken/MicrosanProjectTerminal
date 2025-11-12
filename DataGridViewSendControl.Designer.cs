@@ -185,7 +185,7 @@ namespace Microsan
             // tsmiRemoveTabConfirm
             // 
             this.tsmiRemoveTabConfirm.Name = "tsmiRemoveTabConfirm";
-            this.tsmiRemoveTabConfirm.Size = new System.Drawing.Size(180, 22);
+            this.tsmiRemoveTabConfirm.Size = new System.Drawing.Size(118, 22);
             this.tsmiRemoveTabConfirm.Text = "Confirm";
             this.tsmiRemoveTabConfirm.Click += new System.EventHandler(this.tsmiRemoveTabConfirm_Click);
             // 

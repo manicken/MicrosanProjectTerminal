@@ -78,7 +78,81 @@ namespace Microsan
             dgv.CellClick += dgv_CellClick;
             dgv.RowPrePaint += dgv_RowPrePaint;
             dgv.CellMouseDown += dgv_CellMouseDown;
+            
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgv.EditingControlShowing += (s, e) =>
+            {
+                int dgvCCCI = dgv.CurrentCell.ColumnIndex;
+                if (dgvCCCI == dgv.Columns[DATA_COL_NAME].Index ||
+                    dgvCCCI == dgv.Columns[NOTE_COL_NAME].Index )
+                {
+                    if (e.Control is TextBox tb)
+                    {
+                        tb.Multiline = true;
+                       // tb.ScrollBars = ScrollBars.Vertical; // optional
+
+                    }
+                }
+            };
+
+            dgv.CellDoubleClick += dgv_CellDoubleClick;
         }
+
+        private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            int dgvCCCI = dgv.CurrentCell.ColumnIndex;
+            if (dgvCCCI != dgv.Columns[DATA_COL_NAME].Index &&
+                dgvCCCI != dgv.Columns[NOTE_COL_NAME].Index)
+            {
+                return;
+            }
+
+            var cell = dgv[e.ColumnIndex, e.RowIndex];
+
+            using (Form editForm = new Form())
+            {
+                editForm.StartPosition = FormStartPosition.CenterParent;
+                editForm.Size = new Size(400, 300);
+                editForm.Text = "Edit Cell";
+
+                // Multiline TextBox
+                TextBox txt = new TextBox();
+                txt.Multiline = true;
+                txt.ScrollBars = ScrollBars.Vertical;
+                txt.AcceptsReturn = true;
+                txt.Dock = DockStyle.Fill;
+                txt.Text = cell.Value?.ToString();
+
+                // OK button
+                Button btnOK = new Button();
+                btnOK.Text = "OK";
+                btnOK.DialogResult = DialogResult.OK;
+                btnOK.Dock = DockStyle.Bottom;
+
+                // Cancel button
+                Button btnCancel = new Button();
+                btnCancel.Text = "Cancel";
+                btnCancel.DialogResult = DialogResult.Cancel;
+                btnCancel.Dock = DockStyle.Bottom;
+
+                editForm.Controls.Add(txt);
+                editForm.Controls.Add(btnOK);
+                editForm.Controls.Add(btnCancel);
+
+                editForm.AcceptButton = btnOK;
+                editForm.CancelButton = btnCancel;
+
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    cell.Value = txt.Text;
+                    dgv.CancelEdit();
+                }
+            }
+        }
+
 
         private void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -90,8 +164,10 @@ namespace Microsan
                 dgv.Columns[DATA_COL_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dgv.Columns[DATA_COL_NAME].SortMode = DataGridViewColumnSortMode.Programmatic;
                 dgv.Columns[DATA_COL_NAME].DefaultCellStyle.Font = Fonts.CourierNew;
-                dgv.Columns[DATA_COL_NAME].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[DATA_COL_NAME].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns[DATA_COL_NAME].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[DATA_COL_NAME].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
             }
             if (dgv.Columns[SEND_COL_NAME] != null)
             {
@@ -107,8 +183,9 @@ namespace Microsan
                 dgv.Columns[NOTE_COL_NAME].MinimumWidth = 128;
                 dgv.Columns[NOTE_COL_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dgv.Columns[NOTE_COL_NAME].SortMode = DataGridViewColumnSortMode.Programmatic;
-                dgv.Columns[NOTE_COL_NAME].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[NOTE_COL_NAME].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns[NOTE_COL_NAME].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[NOTE_COL_NAME].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
             if (dgv.Columns[IS_DELIMITER_COL_NAME] != null)
             {
