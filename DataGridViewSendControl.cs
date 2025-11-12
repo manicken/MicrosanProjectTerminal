@@ -126,21 +126,24 @@ namespace Microsan
                 txt.Dock = DockStyle.Fill;
                 txt.Text = cell.Value?.ToString();
 
-                // OK button
-                Button btnOK = new Button();
-                btnOK.Text = "OK";
-                btnOK.DialogResult = DialogResult.OK;
-                btnOK.Dock = DockStyle.Bottom;
+                // Panel to hold buttons side by side
+                FlowLayoutPanel panel = new FlowLayoutPanel
+                {
+                    FlowDirection = FlowDirection.RightToLeft,
+                    Dock = DockStyle.Bottom,
+                    Height = 35,
+                    Padding = new Padding(5)
+                };
 
-                // Cancel button
-                Button btnCancel = new Button();
-                btnCancel.Text = "Cancel";
-                btnCancel.DialogResult = DialogResult.Cancel;
-                btnCancel.Dock = DockStyle.Bottom;
+                Button btnOK = new Button { Text = "OK", DialogResult = DialogResult.OK, Width = 80 };
+                Button btnCancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Width = 80 };
+
+                
+                panel.Controls.Add(btnCancel);
+                panel.Controls.Add(btnOK);
 
                 editForm.Controls.Add(txt);
-                editForm.Controls.Add(btnOK);
-                editForm.Controls.Add(btnCancel);
+                editForm.Controls.Add(panel);
 
                 editForm.AcceptButton = btnOK;
                 editForm.CancelButton = btnCancel;
