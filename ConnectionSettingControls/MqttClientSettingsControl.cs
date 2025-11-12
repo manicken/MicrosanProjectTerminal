@@ -44,6 +44,8 @@ namespace Microsan
             ctrl.txtTopic.Text = cfg.Topic;
             ctrl.txtUsername.Text = cfg.Username;
             ctrl.txtPassword.Text = cfg.Password;
+            ctrl.chkTLS.Checked = cfg.UseTLS;
+            ctrl.chkWithRetainFlag.Checked = cfg.WithRetainFlag;
             ctrl.txtMessageStartId.Text = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT)?"": cfg.msgPrefix;
             ctrl.txtMessageStopId.Text = (cfg.msgPostfix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPostfix;
         }
@@ -61,6 +63,8 @@ namespace Microsan
             cfg.Topic = ctrl.txtTopic.Text;
             cfg.Username = ctrl.txtUsername.Text;
             cfg.Password = ctrl.txtPassword.Text;
+            cfg.WithRetainFlag = ctrl.chkWithRetainFlag.Checked;
+            cfg.UseTLS = ctrl.chkTLS.Checked;
             cfg.msgPrefix = ctrl.txtMessageStartId.Text;
             cfg.msgPostfix = ctrl.txtMessageStopId.Text;
             cfg.msgPrefix = (cfg.msgPrefix == EMPTY_TEXTBOX_DEFAULT) ? "" : cfg.msgPrefix;

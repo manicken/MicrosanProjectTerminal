@@ -14,7 +14,9 @@ namespace Microsan
         public string Username { get; set; } = "";
         public string Password { get; set; } = "";
         public string Topic { get; set; } = "test/topic";
-        public bool UseTls { get; set; } = false;
+        public bool UseTLS { get; set; } = false;
+
+        public bool WithRetainFlag { get; set; } = false;
 
         public MqttClientSettings() { Type = "MQTT"; }
     }

@@ -50,7 +50,7 @@ namespace Microsan
             if (!string.IsNullOrEmpty(_settings.Username))
                 builder.WithCredentials(_settings.Username, _settings.Password);
 
-            if (_settings.UseTls)
+            if (_settings.UseTLS)
                 builder.WithTls();
 
             _options = builder.Build();
@@ -81,6 +81,7 @@ namespace Microsan
                 var msg = new MqttApplicationMessageBuilder()
                     .WithTopic(_settings.Topic)
                     .WithPayload(text)
+                    .WithRetainFlag(_settings.WithRetainFlag)
                     .Build();
                 _client.PublishAsync(msg).Wait();
             }
