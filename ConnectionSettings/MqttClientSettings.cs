@@ -18,6 +18,8 @@ namespace Microsan
 
         public bool WithRetainFlag { get; set; } = false;
 
+        public bool WithCleanSessionFlag { get; set; } = true;
+
         public MqttClientSettings() { Type = "MQTT"; }
     }
 }

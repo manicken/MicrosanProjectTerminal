@@ -20,6 +20,7 @@ namespace Microsan
         private IMqttClient _client;
         private IMqttClientOptions _options;
         private MqttClientSettings _settings;
+        private string lastMainTopic = "";
 
         public static ConnectionBase GetConnectionBase()
         {
@@ -31,23 +32,50 @@ namespace Microsan
             };
         }
 
+        public MqttClientConnection()
+        {
+            var factory = new MqttFactory();
+            _client = factory.CreateMqttClient();
+
+            _client.UseConnectedHandler(async e =>
+            {
+                ConnectionStateChanged?.Invoke(true);
+
+                // Unsubscribe previous subscription (if any)
+                if (!string.IsNullOrEmpty(lastMainTopic))
+                    await _client.UnsubscribeAsync(lastMainTopic);
+
+                // Subscribe current topic
+                if (!string.IsNullOrEmpty(_settings.Topic))
+                    await _client.SubscribeAsync(_settings.Topic);
+
+                // Update last topic
+                lastMainTopic = _settings.Topic;
+            });
+
+            _client.UseDisconnectedHandler(e =>
+            {
+                ConnectionStateChanged?.Invoke(false);
+            });
+
+            _client.UseApplicationMessageReceivedHandler(e =>
+            {
+                string payloadString = e.ApplicationMessage.Payload == null ? "" : Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+                string msg = $"Topic: {e.ApplicationMessage.Topic}\nPayload: {payloadString}";
+                DataReceived?.Invoke(Encoding.UTF8.GetBytes(msg));
+            });
+        }
+
+
+
         public void Connect(ConnectionSettingsBase cfg)
         {
             _settings = cfg as MqttClientSettings ?? new MqttClientSettings();
 
-            var factory = new MqttFactory();
-            _client = factory.CreateMqttClient();
-
-            _client.UseConnectedHandler(e => ConnectionStateChanged?.Invoke(true));
-            _client.UseDisconnectedHandler(e => ConnectionStateChanged?.Invoke(false));
-            _client.UseApplicationMessageReceivedHandler(e =>
-            {
-                DataReceived?.Invoke(e.ApplicationMessage.Payload);
-            });
-
             var builder = new MqttClientOptionsBuilder()
                 .WithClientId(_settings.ClientId)
-                .WithTcpServer(_settings.Host, _settings.Port);
+                .WithTcpServer(_settings.Host, _settings.Port)
+                .WithCleanSession(_settings.WithCleanSessionFlag);
 
             if (!string.IsNullOrEmpty(_settings.Username))
                 builder.WithCredentials(_settings.Username, _settings.Password);
@@ -56,10 +84,8 @@ namespace Microsan
                 builder.WithTls();
 
             _options = builder.Build();
-            _client.ConnectAsync(_options).Wait();
 
-            // Subscribe to the configured topic
-            _client.SubscribeAsync(_settings.Topic).Wait();
+            _client.ConnectAsync(_options).Wait();
         }
 
         public void Disconnect()
@@ -91,7 +117,7 @@ namespace Microsan
                 {
                     withRetainFlag = Convert.ToBoolean(retainObj);
                 }
-
+                _client.SubscribeAsync(topic).Wait();
 
                 var msg = new MqttApplicationMessageBuilder()
                     .WithTopic(topic)

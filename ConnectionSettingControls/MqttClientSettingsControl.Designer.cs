@@ -49,6 +49,8 @@ namespace Microsan
             this.chkWithRetainFlag = new System.Windows.Forms.CheckBox();
             this.grpTLS = new System.Windows.Forms.GroupBox();
             this.chkTLS = new System.Windows.Forms.CheckBox();
+            this.grpCleanSession = new System.Windows.Forms.GroupBox();
+            this.chkWithCleanSessionFlag = new System.Windows.Forms.CheckBox();
             this.grpBoxIpPort.SuspendLayout();
             this.grpBoxMessageStartStop.SuspendLayout();
             this.grpClientID.SuspendLayout();
@@ -56,6 +58,7 @@ namespace Microsan
             this.grpUsernamePassword.SuspendLayout();
             this.grpRetain.SuspendLayout();
             this.grpTLS.SuspendLayout();
+            this.grpCleanSession.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpBoxIpPort
@@ -105,7 +108,7 @@ namespace Microsan
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStopId);
             this.grpBoxMessageStartStop.Controls.Add(this.txtMessageStartId);
             this.grpBoxMessageStartStop.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpBoxMessageStartStop.Location = new System.Drawing.Point(3, 279);
+            this.grpBoxMessageStartStop.Location = new System.Drawing.Point(3, 330);
             this.grpBoxMessageStartStop.Name = "grpBoxMessageStartStop";
             this.grpBoxMessageStartStop.Size = new System.Drawing.Size(262, 65);
             this.grpBoxMessageStartStop.TabIndex = 10;
@@ -138,7 +141,7 @@ namespace Microsan
             // 
             this.btnDisconnect.Enabled = false;
             this.btnDisconnect.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisconnect.Location = new System.Drawing.Point(140, 350);
+            this.btnDisconnect.Location = new System.Drawing.Point(140, 401);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(125, 34);
             this.btnDisconnect.TabIndex = 9;
@@ -147,7 +150,7 @@ namespace Microsan
             // btnConnect
             // 
             this.btnConnect.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.Location = new System.Drawing.Point(3, 350);
+            this.btnConnect.Location = new System.Drawing.Point(3, 401);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(131, 34);
             this.btnConnect.TabIndex = 8;
@@ -232,7 +235,7 @@ namespace Microsan
             this.grpRetain.Size = new System.Drawing.Size(142, 45);
             this.grpRetain.TabIndex = 15;
             this.grpRetain.TabStop = false;
-            this.grpRetain.Text = "WithRetainFlag:";
+            this.grpRetain.Text = "Retain Flag:";
             // 
             // chkWithRetainFlag
             // 
@@ -266,10 +269,31 @@ namespace Microsan
             this.chkTLS.Text = "future impl.";
             this.chkTLS.UseVisualStyleBackColor = true;
             // 
+            // grpCleanSession
+            // 
+            this.grpCleanSession.Controls.Add(this.chkWithCleanSessionFlag);
+            this.grpCleanSession.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpCleanSession.Location = new System.Drawing.Point(3, 279);
+            this.grpCleanSession.Name = "grpCleanSession";
+            this.grpCleanSession.Size = new System.Drawing.Size(142, 45);
+            this.grpCleanSession.TabIndex = 17;
+            this.grpCleanSession.TabStop = false;
+            this.grpCleanSession.Text = "Clean Session:";
+            // 
+            // chkCleanSession
+            // 
+            this.chkWithCleanSessionFlag.AutoSize = true;
+            this.chkWithCleanSessionFlag.Location = new System.Drawing.Point(10, 19);
+            this.chkWithCleanSessionFlag.Name = "chkCleanSession";
+            this.chkWithCleanSessionFlag.Size = new System.Drawing.Size(15, 14);
+            this.chkWithCleanSessionFlag.TabIndex = 0;
+            this.chkWithCleanSessionFlag.UseVisualStyleBackColor = true;
+            // 
             // MqttClientSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grpCleanSession);
             this.Controls.Add(this.grpTLS);
             this.Controls.Add(this.grpRetain);
             this.Controls.Add(this.grpUsernamePassword);
@@ -280,7 +304,7 @@ namespace Microsan
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnConnect);
             this.Name = "MqttClientSettingsControl";
-            this.Size = new System.Drawing.Size(271, 402);
+            this.Size = new System.Drawing.Size(271, 440);
             this.grpBoxIpPort.ResumeLayout(false);
             this.grpBoxIpPort.PerformLayout();
             this.grpBoxMessageStartStop.ResumeLayout(false);
@@ -295,6 +319,8 @@ namespace Microsan
             this.grpRetain.PerformLayout();
             this.grpTLS.ResumeLayout(false);
             this.grpTLS.PerformLayout();
+            this.grpCleanSession.ResumeLayout(false);
+            this.grpCleanSession.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -321,5 +347,7 @@ namespace Microsan
         private System.Windows.Forms.CheckBox chkWithRetainFlag;
         private System.Windows.Forms.GroupBox grpTLS;
         private System.Windows.Forms.CheckBox chkTLS;
+        private System.Windows.Forms.GroupBox grpCleanSession;
+        private System.Windows.Forms.CheckBox chkWithCleanSessionFlag;
     }
 }
